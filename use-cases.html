@@ -393,7 +393,41 @@
     .cell-badge.rachel { background: var(--rachel-light); color: var(--rachel); font-weight: 600; }
     .cell-badge.marcus { background: var(--marcus-light); color: var(--marcus); font-weight: 600; }
 
+    /* ── PERSONA LAYOUT (illustration panel) ── */
+    .persona-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      align-items: start;
+    }
+    .persona-content { min-width: 0; }
+    .persona-illustration {
+      position: sticky;
+      top: 32px;
+      background: #EEF0FD;
+      border-radius: var(--radius);
+      padding: 28px 24px 20px;
+      border: 1.5px solid var(--rachel-mid);
+    }
+    .persona-illustration svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .persona-illustration-caption {
+      font-size: 12px;
+      color: var(--neutral-500);
+      text-align: center;
+      margin-top: 14px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
     /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .persona-layout { grid-template-columns: 1fr; }
+      .persona-illustration { position: static; }
+    }
     @media (max-width: 700px) {
       .hero { padding: 48px 24px 40px; }
       .before-after { grid-template-columns: 1fr; }
@@ -527,6 +561,9 @@
   <!-- ══════════════════════════════════
        USE CASE 2 — MARCUS
   ══════════════════════════════════ -->
+  <div class="persona-layout">
+  <div class="persona-content">
+
   <div class="section-label marcus">Use Case 2</div>
   <h2 class="section-title">Marcus finds the right academic partner</h2>
   <p class="section-desc">An industry research lead stops searching blindly and builds a credible, long-term university relationship — starting with finding Rachel.</p>
@@ -620,7 +657,168 @@
       </div>
     </div>
 
-  </div>
+  </div><!-- /persona-content -->
+
+  <!-- ── ILLUSTRATION PANEL ── -->
+  <aside class="persona-illustration" aria-label="Illustration of a researcher at dual monitors">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg"
+         stroke="#2a3580" stroke-width="1.6" fill="none"
+         stroke-linecap="round" stroke-linejoin="round">
+
+      <!-- BOOKSHELF -->
+      <line x1="22" y1="108" x2="168" y2="108" stroke-width="2.4"/>
+      <rect x="26"  y="55"  width="16" height="53" rx="2"/>
+      <rect x="44"  y="66"  width="12" height="42" rx="2"/>
+      <rect x="58"  y="50"  width="19" height="58" rx="2"/>
+      <rect x="79"  y="63"  width="13" height="45" rx="2"/>
+      <rect x="94"  y="70"  width="16" height="38" rx="2"/>
+      <rect x="112" y="54"  width="14" height="54" rx="2"/>
+      <rect x="128" y="63"  width="17" height="45" rx="2"/>
+      <rect x="147" y="58"  width="14" height="50" rx="2"/>
+
+      <!-- LEFT MONITOR -->
+      <rect x="148" y="112" width="156" height="116" rx="6" stroke-width="2"/>
+      <rect x="156" y="119" width="140" height="102" rx="3" stroke-width="0.8"/>
+      <line x1="226" y1="228" x2="226" y2="252"/>
+      <path d="M 200 252 Q 226 246 252 252" stroke-width="1.5"/>
+
+      <!-- Network graph — left screen -->
+      <circle cx="215" cy="168" r="10" stroke-width="2"/>
+      <circle cx="178" cy="143" r="5.5"/>
+      <circle cx="248" cy="136" r="5.5"/>
+      <circle cx="268" cy="170" r="5.5"/>
+      <circle cx="253" cy="200" r="5.5"/>
+      <circle cx="216" cy="210" r="5.5"/>
+      <circle cx="179" cy="198" r="5.5"/>
+      <circle cx="160" cy="168" r="5.5"/>
+      <line x1="215" y1="168" x2="178" y2="143"/>
+      <line x1="215" y1="168" x2="248" y2="136"/>
+      <line x1="215" y1="168" x2="268" y2="170"/>
+      <line x1="215" y1="168" x2="253" y2="200"/>
+      <line x1="215" y1="168" x2="216" y2="210"/>
+      <line x1="215" y1="168" x2="179" y2="198"/>
+      <line x1="215" y1="168" x2="160" y2="168"/>
+      <line x1="178" y1="143" x2="160" y2="168"/>
+      <line x1="178" y1="143" x2="248" y2="136"/>
+      <line x1="248" y1="136" x2="268" y2="170"/>
+      <line x1="268" y1="170" x2="253" y2="200"/>
+      <line x1="253" y1="200" x2="216" y2="210"/>
+      <line x1="179" y1="198" x2="160" y2="168"/>
+      <!-- Code text lines — left screen -->
+      <line x1="158" y1="126" x2="210" y2="126" stroke-width="0.9" opacity="0.4"/>
+      <line x1="158" y1="132" x2="196" y2="132" stroke-width="0.9" opacity="0.4"/>
+      <line x1="255" y1="126" x2="287" y2="126" stroke-width="0.9" opacity="0.4"/>
+      <line x1="255" y1="132" x2="290" y2="132" stroke-width="0.9" opacity="0.4"/>
+      <line x1="255" y1="138" x2="280" y2="138" stroke-width="0.9" opacity="0.4"/>
+      <line x1="255" y1="144" x2="288" y2="144" stroke-width="0.9" opacity="0.4"/>
+
+      <!-- RIGHT MONITOR -->
+      <rect x="318" y="112" width="156" height="116" rx="6" stroke-width="2"/>
+      <rect x="326" y="119" width="140" height="102" rx="3" stroke-width="0.8"/>
+      <line x1="396" y1="228" x2="396" y2="252"/>
+      <path d="M 370 252 Q 396 246 422 252" stroke-width="1.5"/>
+
+      <!-- Network graph — right screen -->
+      <circle cx="385" cy="168" r="10" stroke-width="2"/>
+      <circle cx="348" cy="143" r="5.5"/>
+      <circle cx="418" cy="136" r="5.5"/>
+      <circle cx="438" cy="170" r="5.5"/>
+      <circle cx="423" cy="200" r="5.5"/>
+      <circle cx="386" cy="210" r="5.5"/>
+      <circle cx="349" cy="198" r="5.5"/>
+      <circle cx="330" cy="168" r="5.5"/>
+      <line x1="385" y1="168" x2="348" y2="143"/>
+      <line x1="385" y1="168" x2="418" y2="136"/>
+      <line x1="385" y1="168" x2="438" y2="170"/>
+      <line x1="385" y1="168" x2="423" y2="200"/>
+      <line x1="385" y1="168" x2="386" y2="210"/>
+      <line x1="385" y1="168" x2="349" y2="198"/>
+      <line x1="385" y1="168" x2="330" y2="168"/>
+      <line x1="348" y1="143" x2="330" y2="168"/>
+      <line x1="348" y1="143" x2="418" y2="136"/>
+      <line x1="418" y1="136" x2="438" y2="170"/>
+      <line x1="438" y1="170" x2="423" y2="200"/>
+      <line x1="423" y1="200" x2="386" y2="210"/>
+      <line x1="349" y1="198" x2="330" y2="168"/>
+      <!-- Code text lines — right screen -->
+      <line x1="328" y1="126" x2="380" y2="126" stroke-width="0.9" opacity="0.4"/>
+      <line x1="328" y1="132" x2="366" y2="132" stroke-width="0.9" opacity="0.4"/>
+      <line x1="425" y1="126" x2="457" y2="126" stroke-width="0.9" opacity="0.4"/>
+      <line x1="425" y1="132" x2="460" y2="132" stroke-width="0.9" opacity="0.4"/>
+      <line x1="425" y1="138" x2="450" y2="138" stroke-width="0.9" opacity="0.4"/>
+      <line x1="425" y1="144" x2="458" y2="144" stroke-width="0.9" opacity="0.4"/>
+
+      <!-- DESK SURFACE -->
+      <line x1="40" y1="272" x2="510" y2="272" stroke-width="2.6"/>
+      <line x1="40" y1="280" x2="510" y2="280" stroke-width="1.2"/>
+
+      <!-- KEYBOARD -->
+      <rect x="190" y="285" width="206" height="22" rx="5"/>
+      <line x1="200" y1="293" x2="386" y2="293" stroke-width="0.8" opacity="0.45"/>
+      <line x1="200" y1="300" x2="386" y2="300" stroke-width="0.8" opacity="0.45"/>
+      <rect x="238" y="303" width="110" height="4" rx="2" stroke-width="0.8"/>
+
+      <!-- MOUSE -->
+      <path d="M 416 283 Q 416 272 428 272 Q 444 272 444 287 Q 444 304 428 304 Q 416 304 416 295 Z" stroke-width="1.5"/>
+      <line x1="428" y1="272" x2="428" y2="288" stroke-width="0.8"/>
+      <path d="M 440 276 Q 476 262 486 246" stroke-width="1.2"/>
+
+      <!-- ID BADGE -->
+      <rect x="462" y="260" width="40" height="28" rx="3" stroke-width="1.5"/>
+      <circle cx="473" cy="270" r="5"/>
+      <line x1="469" y1="279" x2="496" y2="279" stroke-width="0.9"/>
+      <line x1="469" y1="284" x2="493" y2="284" stroke-width="0.9"/>
+
+      <!-- CHAIR -->
+      <path d="M 24 222 Q 22 290 22 300 Q 22 312 38 314 L 60 314 Q 72 312 72 300 Q 72 290 70 222 Q 66 216 46 214 Q 28 216 24 222 Z"/>
+      <path d="M 28 222 Q 46 219 64 222" stroke-width="0.9"/>
+      <path d="M 70 274 L 88 274 L 88 288 L 80 290"/>
+      <path d="M 18 314 Q 46 320 92 314 L 97 326 Q 46 334 14 326 Z"/>
+      <line x1="52" y1="326" x2="52" y2="374"/>
+      <path d="M 26 372 L 78 372"/>
+      <path d="M 18 362 L 86 382"/>
+      <path d="M 18 382 L 86 362"/>
+      <circle cx="20" cy="372" r="4"/>
+      <circle cx="78" cy="372" r="4"/>
+      <circle cx="52" cy="374" r="4"/>
+
+      <!-- PERSON — side view, facing right -->
+      <!-- Head -->
+      <ellipse cx="100" cy="190" rx="21" ry="23"/>
+      <!-- Hair (bob) -->
+      <path d="M 80 185 Q 79 164 100 162 Q 121 164 122 180 L 120 200 Q 116 212 108 215 Q 100 217 92 214 L 80 206 Z"/>
+      <path d="M 80 196 Q 79 210 82 220" stroke-width="0.9" opacity="0.55"/>
+      <!-- Ear -->
+      <path d="M 121 192 Q 127 192 127 199 Q 127 206 122 206"/>
+      <!-- Neck -->
+      <path d="M 93 211 L 89 226"/>
+      <path d="M 109 211 L 113 226"/>
+      <!-- Body -->
+      <path d="M 89 226 Q 80 238 72 260 L 74 276 L 114 276 Q 122 260 128 244 Q 120 232 113 226 Q 104 222 93 226 Q 86 228 89 226 Z"/>
+      <!-- Right arm reaching to keyboard -->
+      <path d="M 122 248 Q 144 260 168 270 Q 188 278 200 281"/>
+      <!-- Left arm reaching to keyboard -->
+      <path d="M 74 256 Q 116 270 170 278"/>
+      <!-- Right hand -->
+      <ellipse cx="202" cy="282" rx="12" ry="7" stroke-width="1.2"/>
+      <line x1="196" y1="278" x2="193" y2="274"/>
+      <line x1="201" y1="276" x2="200" y2="272"/>
+      <line x1="207" y1="277" x2="208" y2="273"/>
+      <line x1="212" y1="279" x2="214" y2="275"/>
+      <!-- Left hand -->
+      <ellipse cx="172" cy="279" rx="10" ry="6" stroke-width="1.2"/>
+      <!-- Sleeve cuff -->
+      <path d="M 155 272 Q 164 270 174 272"/>
+      <!-- Legs (below desk) -->
+      <path d="M 72 276 L 68 330 L 82 330 L 80 276"/>
+      <path d="M 104 276 L 108 330 L 122 330 L 116 276"/>
+      <path d="M 68 330 Q 66 338 62 340 L 82 340 L 82 330"/>
+      <path d="M 108 330 Q 106 338 102 340 L 122 340 L 122 330"/>
+    </svg>
+    <p class="persona-illustration-caption">Marcus searches by research focus area<br>and finds researchers open to industry partnership</p>
+  </aside>
+
+  </div><!-- /persona-layout -->
 
   <div class="section-divider"></div>
 
