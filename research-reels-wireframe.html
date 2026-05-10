@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UW Research Network – Research Reels Wireframe</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a1628;
+    color: #e8eaf0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+  }
+
+  /* ── Shared: App header ── */
+  .app-header {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .app-logo {
+    font-size: 13px;
+    color: #7ea8c9;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .app-logo span { color: #4ecdc4; font-weight: 700; }
+
+  /* ── Wireframe section labels ── */
+  .wf-note {
+    font-size: 10px;
+    color: #ffa040;
+    background: rgba(255,160,64,0.1);
+    border: 1px dashed rgba(255,160,64,0.35);
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-top: 6px;
+    display: inline-block;
+  }
+  .section-divider {
+    width: 100%;
+    max-width: 480px;
+    border: none;
+    border-top: 1px dashed #1e3250;
+    margin: 32px 0 24px;
+  }
+  .section-title {
+    width: 100%;
+    max-width: 480px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #ffa040;
+    margin-bottom: 16px;
+  }
+
+  /* ── Tab nav ── */
+  .tab-nav {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    background: #0f1e35;
+    border: 1px solid #1e3250;
+    border-radius: 30px;
+    padding: 4px;
+    margin-bottom: 20px;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 8px 0;
+    border-radius: 24px;
+    border: none;
+    background: transparent;
+    color: #4a6580;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .tab-btn.active {
+    background: #1a3455;
+    color: #4ecdc4;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .tab-btn svg { width: 15px; height: 15px; }
+
+  /* ── Reel Feed card ── */
+  .feed-card {
+    width: 100%;
+    max-width: 480px;
+    background: #0f2040;
+    border: 1px solid #1e3a5f;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    transition: transform 0.15s;
+  }
+  .feed-card:hover { transform: scale(1.003); }
+
+  /* Thumbnail area */
+  .reel-thumb {
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(135deg, #0d2a4a 0%, #0a1e38 60%, #0d2a3a 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  /* Decorative data viz lines */
+  .reel-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(78,205,196,0.04) 38px, rgba(78,205,196,0.04) 39px),
+      repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(78,205,196,0.04) 22px, rgba(78,205,196,0.04) 23px);
+  }
+  .thumb-play-btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(78,205,196,0.15);
+    border: 2px solid rgba(78,205,196,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+  .thumb-visual {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 16px 10px;
+    z-index: 1;
+  }
+  /* Mini chart bars */
+  .mini-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 60px;
+    opacity: 0.4;
+  }
+  .mini-bar {
+    width: 6px;
+    border-radius: 3px 3px 0 0;
+    background: #4ecdc4;
+  }
+  .thumb-duration-badge {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #e8eaf0;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .thumb-new-badge {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    background: rgba(78,205,196,0.2);
+    border: 1px solid rgba(78,205,196,0.45);
+    color: #4ecdc4;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 2px 7px;
+    border-radius: 6px;
+    z-index: 3;
+  }
+  /* Three-act bar overlay at bottom of thumb */
+  .act-bar-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    display: flex;
+    gap: 2px;
+    padding: 0 2px 2px;
+    z-index: 4;
+  }
+  .act-seg {
+    flex: 1;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.15);
+  }
+  .act-seg.done { background: #4ecdc4; }
+
+  .feed-card-body {
+    padding: 14px 16px;
+  }
+  .feed-topic-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .topic-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.25);
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .topic-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: #4ecdc4; }
+  .feed-reel-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #e8eaf0;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .feed-hook-line {
+    font-size: 12.5px;
+    color: #7ea8c9;
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: 10px;
+    border-left: 2px solid rgba(78,205,196,0.35);
+    padding-left: 10px;
+  }
+  .feed-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .feed-avatar {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e5f4a, #4ecdc4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .feed-researcher-name {
+    font-size: 11px;
+    color: #b0c4d8;
+    font-weight: 500;
+  }
+  .feed-divider { flex: 1; }
+  .feed-views {
+    font-size: 11px;
+    color: #4a6580;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .feed-views svg { width: 11px; height: 11px; }
+  .feed-actions-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #1a3050;
+  }
+  .feed-action {
+    flex: 1;
+    padding: 7px;
+    border-radius: 10px;
+    border: 1px solid #1e3250;
+    background: #0a1628;
+    color: #4a6580;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .feed-action svg { width: 12px; height: 12px; }
+  .feed-action.primary {
+    border-color: rgba(78,205,196,0.4);
+    background: rgba(78,205,196,0.08);
+    color: #4ecdc4;
+  }
+
+  /* ── SCREEN 2: Full Reel Player ── */
+  .player-shell {
+    width: 100%;
+    max-width: 480px;
+    background: #060f1e;
+    border: 1px solid #1e3a5f;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  /* Cinematic viewport */
+  .player-viewport {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    max-height: 380px;
+    background: linear-gradient(160deg, #091828 0%, #06111f 50%, #0a1e10 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Grid bg */
+  .player-viewport::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(78,205,196,0.03) 48px, rgba(78,205,196,0.03) 49px),
+      repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(78,205,196,0.03) 48px, rgba(78,205,196,0.03) 49px);
+  }
+  /* Vignette */
+  .player-viewport::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(6,15,30,0.8) 100%);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* Data visualization in player */
+  .player-viz {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 20px 60px;
+    z-index: 2;
+  }
+  .player-chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 140px;
+    width: 100%;
+    max-width: 320px;
+  }
+  .p-bar {
+    flex: 1;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    transition: height 0.3s;
+  }
+  .p-bar.cool { background: linear-gradient(180deg, #4ecdc4 0%, rgba(78,205,196,0.2) 100%); }
+  .p-bar.warm { background: linear-gradient(180deg, #f0783c 0%, rgba(240,120,60,0.2) 100%); }
+  .p-bar.hot  { background: linear-gradient(180deg, #e03c50 0%, rgba(224,60,80,0.2) 100%); }
+  .p-bar-label {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    color: #3a5a78;
+    white-space: nowrap;
+  }
+
+  /* Animated globe/circle element */
+  .player-globe {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 2px solid rgba(78,205,196,0.3);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    box-shadow: 0 0 40px rgba(78,205,196,0.1), inset 0 0 30px rgba(78,205,196,0.05);
+  }
+  .player-globe::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    border: 1px dashed rgba(78,205,196,0.15);
+  }
+  .player-globe::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(78,205,196,0.08);
+  }
+
+  /* Overlay text in player */
+  .player-overlay-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 18px;
+    z-index: 10;
+    background: linear-gradient(180deg, rgba(6,15,30,0.85) 0%, transparent 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .player-act-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+  }
+  .player-act-label span { color: #4ecdc4; }
+  .player-close-btn {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(255,255,255,0.5);
+  }
+  .player-close-btn svg { width: 14px; height: 14px; }
+
+  .player-overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 18px 16px;
+    z-index: 10;
+    background: linear-gradient(0deg, rgba(6,15,30,0.95) 0%, transparent 100%);
+  }
+  .player-reel-title {
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #fff;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .player-hook-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .player-researcher-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .player-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e5f4a, #4ecdc4);
+    border: 2px solid rgba(78,205,196,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .player-researcher-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+  }
+  .player-researcher-dept {
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* Big play pause button overlay */
+  .play-center-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 8;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: rgba(78,205,196,0.18);
+    border: 2px solid rgba(78,205,196,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+  }
+  .play-center-btn svg { width: 22px; height: 22px; color: #4ecdc4; }
+
+  /* Controls bar below player */
+  .player-controls {
+    padding: 14px 18px;
+    border-bottom: 1px solid #1a3050;
+  }
+
+  /* Segmented progress bar (three acts) */
+  .act-progress {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  .act-segment {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .act-segment-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #2a4060;
+  }
+  .act-segment-label.active { color: #4ecdc4; }
+  .act-segment-label.done { color: #3a6060; }
+  .act-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: #111e30;
+    overflow: hidden;
+    position: relative;
+  }
+  .act-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: #2a4060;
+  }
+  .act-bar-fill.active {
+    background: linear-gradient(90deg, #1a6a5a, #4ecdc4);
+  }
+  .act-bar-fill.done {
+    background: #1a6a5a;
+    width: 100% !important;
+  }
+
+  .controls-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ctrl-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid #1e3250;
+    background: #0a1628;
+    cursor: pointer;
+    color: #7ea8c9;
+    flex-shrink: 0;
+  }
+  .ctrl-btn svg { width: 15px; height: 15px; }
+  .ctrl-btn.primary {
+    width: 44px; height: 44px;
+    border-color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+    color: #4ecdc4;
+  }
+  .ctrl-btn.primary svg { width: 20px; height: 20px; }
+  .time-display {
+    font-size: 12px;
+    font-weight: 700;
+    color: #4ecdc4;
+    font-variant-numeric: tabular-nums;
+  }
+  .time-total { color: #3a5a78; }
+  .ctrl-spacer { flex: 1; }
+
+  /* Player side panel (share / save) */
+  .player-info {
+    padding: 14px 18px;
+  }
+  .player-info-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #3a5a78;
+    margin-bottom: 10px;
+  }
+  .act-summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .act-summary-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    border-radius: 10px;
+    padding: 9px 12px;
+  }
+  .act-summary-row.active-act {
+    border-color: rgba(78,205,196,0.3);
+    background: rgba(78,205,196,0.04);
+  }
+  .act-num-pill {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 2px 7px;
+    border-radius: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .act-num-pill.done { background: rgba(26,106,90,0.3); color: #4ecdc4; }
+  .act-num-pill.active { background: rgba(78,205,196,0.2); color: #4ecdc4; }
+  .act-num-pill.upcoming { background: #111e30; color: #3a5a78; }
+  .act-summary-text {
+    flex: 1; min-width: 0;
+  }
+  .act-summary-text strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #c8dcea;
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+  .act-summary-text span {
+    font-size: 11px;
+    color: #4a6580;
+    line-height: 1.4;
+  }
+  .act-summary-time {
+    font-size: 10px;
+    font-weight: 700;
+    color: #2a4060;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .act-summary-time.active-time { color: #4ecdc4; }
+
+  .player-cta-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .cta-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .cta-btn svg { width: 13px; height: 13px; }
+  .cta-btn.primary {
+    background: rgba(78,205,196,0.12);
+    border: 1px solid rgba(78,205,196,0.4);
+    color: #4ecdc4;
+  }
+  .cta-btn.secondary {
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    color: #7ea8c9;
+  }
+
+  /* ── SCREEN 3: End of Reel ── */
+  .end-card {
+    width: 100%;
+    max-width: 480px;
+    background: #0f2040;
+    border: 1px solid #1e3a5f;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .end-card-header {
+    padding: 20px 20px 14px;
+    text-align: center;
+    border-bottom: 1px solid #1a3050;
+  }
+  .end-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.25);
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .end-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #e8eaf0;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .end-subtitle {
+    font-size: 12px;
+    color: #7ea8c9;
+    line-height: 1.5;
+  }
+  .end-card-body { padding: 16px 20px; }
+  .end-stats-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .end-stat {
+    flex: 1;
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+  }
+  .end-stat-value {
+    font-size: 20px;
+    font-weight: 800;
+    color: #4ecdc4;
+    margin-bottom: 2px;
+  }
+  .end-stat-label {
+    font-size: 9px;
+    color: #4a6580;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .end-related-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #3a5a78;
+    margin-bottom: 10px;
+  }
+  .end-related-cards {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .end-related-card {
+    flex: 1;
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .end-related-thumb {
+    height: 50px;
+    background: linear-gradient(135deg, #0d2a4a, #0a1e38);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .end-related-thumb svg { width: 18px; height: 18px; color: rgba(78,205,196,0.3); }
+  .end-related-info {
+    padding: 7px 8px;
+  }
+  .end-related-title {
+    font-size: 10px;
+    color: #b0c4d8;
+    line-height: 1.35;
+    font-weight: 600;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+  .end-related-author { font-size: 9px; color: #4a6580; }
+  .end-action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .end-action {
+    padding: 11px 12px;
+    border-radius: 12px;
+    border: 1px solid #1e3250;
+    background: #0a1628;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .end-action svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .end-action-label { font-size: 12px; font-weight: 600; line-height: 1.3; }
+  .end-action-sub { font-size: 10px; color: #4a6580; }
+  .end-action.primary {
+    border-color: rgba(78,205,196,0.4);
+    background: rgba(78,205,196,0.06);
+  }
+  .end-action.primary svg { color: #4ecdc4; }
+  .end-action.primary .end-action-label { color: #4ecdc4; }
+  .end-action.amber { border-color: rgba(240,160,80,0.3); background: rgba(240,160,80,0.05); }
+  .end-action.amber svg { color: #f0a050; }
+  .end-action.amber .end-action-label { color: #f0a050; }
+  .end-action svg { color: #7ea8c9; }
+  .end-action .end-action-label { color: #b0c4d8; }
+
+  /* ── SCREEN 4: Auto-Generation Flow ── */
+  .gen-card {
+    width: 100%;
+    max-width: 480px;
+    background: #0f2040;
+    border: 1px solid #1e3a5f;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 14px;
+  }
+  .gen-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #1a3050;
+    margin-bottom: 16px;
+  }
+  .gen-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .gen-icon svg { width: 22px; height: 22px; color: #4ecdc4; }
+  .gen-title { font-size: 15px; font-weight: 700; color: #e8eaf0; margin-bottom: 2px; }
+  .gen-subtitle { font-size: 12px; color: #7ea8c9; }
+  .gen-source-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #3a5a78;
+    margin-bottom: 10px;
+  }
+  .gen-sources {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+  }
+  .gen-source-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    border-radius: 10px;
+    padding: 9px 12px;
+  }
+  .gen-source-row.done { border-color: rgba(78,205,196,0.25); }
+  .gen-source-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: #111e30;
+    border: 1px solid #1e3250;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .gen-source-icon svg { width: 13px; height: 13px; color: #4a6580; }
+  .gen-source-icon.done { border-color: rgba(78,205,196,0.25); background: rgba(78,205,196,0.08); }
+  .gen-source-icon.done svg { color: #4ecdc4; }
+  .gen-source-text { flex: 1; min-width: 0; }
+  .gen-source-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #b0c4d8;
+    margin-bottom: 1px;
+  }
+  .gen-source-desc { font-size: 10px; color: #4a6580; }
+  .gen-source-status {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+  .gen-source-status.done {
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.25);
+    color: #4ecdc4;
+  }
+  .gen-source-status.pending {
+    background: #111e30;
+    border: 1px solid #1e3250;
+    color: #3a5a78;
+  }
+  .gen-source-status.processing {
+    background: rgba(240,160,80,0.08);
+    border: 1px solid rgba(240,160,80,0.25);
+    color: #f0a050;
+  }
+  /* Generation progress bar */
+  .gen-progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #4a6580;
+    margin-bottom: 8px;
+  }
+  .gen-progress-label span { color: #4ecdc4; font-weight: 700; }
+  .gen-progress-bar {
+    height: 6px;
+    background: #111e30;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .gen-progress-fill {
+    height: 100%;
+    width: 65%;
+    background: linear-gradient(90deg, #1a4a6e, #4ecdc4);
+    border-radius: 4px;
+    position: relative;
+  }
+  .gen-progress-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 20px;
+    background: linear-gradient(90deg, transparent, rgba(78,205,196,0.4));
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+  }
+  .gen-preview-box {
+    background: #0a1628;
+    border: 1px dashed rgba(78,205,196,0.25);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .gen-preview-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(78,205,196,0.5);
+    margin-bottom: 8px;
+  }
+  .gen-script-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .gen-script-line {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .gen-script-act {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.2);
+    padding: 2px 6px;
+    border-radius: 5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .gen-script-text {
+    font-size: 11.5px;
+    color: #7ea8c9;
+    line-height: 1.45;
+    font-style: italic;
+  }
+  .gen-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  .gen-btn {
+    flex: 1;
+    padding: 11px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .gen-btn svg { width: 14px; height: 14px; }
+  .gen-btn.primary {
+    background: rgba(78,205,196,0.12);
+    border: 1px solid rgba(78,205,196,0.4);
+    color: #4ecdc4;
+  }
+  .gen-btn.ghost {
+    background: transparent;
+    border: 1px solid #1e3250;
+    color: #4a6580;
+  }
+
+  /* ── Screen 5: Reel Ready / Notification ── */
+  .ready-card {
+    width: 100%;
+    max-width: 480px;
+    background: linear-gradient(160deg, #0f2040 0%, #091e14 100%);
+    border: 1px solid rgba(78,205,196,0.3);
+    border-radius: 20px;
+    padding: 24px 20px;
+    margin-bottom: 14px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(78,205,196,0.06);
+  }
+  .ready-icon-ring {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: rgba(78,205,196,0.1);
+    border: 2px solid rgba(78,205,196,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 0 24px rgba(78,205,196,0.15);
+  }
+  .ready-icon-ring svg { width: 32px; height: 32px; color: #4ecdc4; }
+  .ready-title { font-size: 20px; font-weight: 800; color: #e8eaf0; margin-bottom: 6px; }
+  .ready-subtitle { font-size: 13px; color: #7ea8c9; line-height: 1.5; margin-bottom: 20px; }
+  .ready-reel-preview {
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .ready-thumb-mini {
+    width: 52px; height: 52px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #0d2a4a, #0a1e38);
+    border: 1px solid #1e3a5f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ready-thumb-mini svg { width: 20px; height: 20px; color: rgba(78,205,196,0.4); }
+  .ready-reel-title { font-size: 13px; font-weight: 700; color: #e8eaf0; margin-bottom: 3px; line-height: 1.3; }
+  .ready-reel-meta { font-size: 11px; color: #4a6580; }
+  .ready-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ready-action-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .ready-action-btn svg { width: 16px; height: 16px; }
+  .ready-action-btn.primary {
+    background: rgba(78,205,196,0.12);
+    border: 1px solid rgba(78,205,196,0.4);
+    color: #4ecdc4;
+  }
+  .ready-action-btn.share {
+    background: rgba(240,160,80,0.07);
+    border: 1px solid rgba(240,160,80,0.3);
+    color: #f0a050;
+  }
+  .ready-action-btn.ghost {
+    background: transparent;
+    border: 1px solid #1e3250;
+    color: #4a6580;
+  }
+
+  /* Filter bar */
+  .filter-bar {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+  .filter-chip {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid #1e3250;
+    background: #0f1e35;
+    color: #4a6580;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .filter-chip.active {
+    background: rgba(78,205,196,0.1);
+    border-color: rgba(78,205,196,0.35);
+    color: #4ecdc4;
+  }
+
+  /* empty separator */
+  .spacer-6 { height: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 1: REEL FEED / BROWSE
+═══════════════════════════════════════════════════ -->
+<div class="section-title">SCREEN 1 — REEL FEED / BROWSE</div>
+
+<div class="app-header">
+  <div class="app-logo">UW Research <span>Network</span></div>
+  <div style="font-size:12px;color:#4ecdc4;font-weight:700;background:rgba(78,205,196,0.08);border:1px solid rgba(78,205,196,0.25);padding:4px 12px;border-radius:20px;">▶ Reels</div>
+</div>
+
+<!-- Tab nav -->
+<div class="tab-nav">
+  <button class="tab-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Papers
+  </button>
+  <button class="tab-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Researchers
+  </button>
+  <button class="tab-btn active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    Reels
+  </button>
+</div>
+
+<!-- Filter chips -->
+<div class="filter-bar">
+  <div class="filter-chip active">All Topics</div>
+  <div class="filter-chip">Climate Change</div>
+  <div class="filter-chip">Arctic & Ice</div>
+  <div class="filter-chip">Emissions</div>
+  <div class="filter-chip">Public Health</div>
+</div>
+
+<!-- Reel card 1 (featured / new) -->
+<div class="feed-card">
+  <div class="reel-thumb">
+    <div class="thumb-new-badge">New</div>
+    <div class="thumb-duration-badge">
+      <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      0:30
+    </div>
+    <!-- Mini bar chart (temperature anomalies) -->
+    <div class="thumb-visual">
+      <div class="mini-bars">
+        <div class="mini-bar" style="height:20px"></div>
+        <div class="mini-bar" style="height:24px"></div>
+        <div class="mini-bar" style="height:22px"></div>
+        <div class="mini-bar" style="height:28px"></div>
+        <div class="mini-bar" style="height:30px"></div>
+        <div class="mini-bar" style="height:34px"></div>
+        <div class="mini-bar" style="height:36px"></div>
+        <div class="mini-bar" style="height:40px;background:#f0a050;"></div>
+        <div class="mini-bar" style="height:44px;background:#f07050;"></div>
+        <div class="mini-bar" style="height:50px;background:#e03c50;"></div>
+        <div class="mini-bar" style="height:54px;background:#e03c50;"></div>
+        <div class="mini-bar" style="height:58px;background:#c03040;"></div>
+      </div>
+    </div>
+    <div class="thumb-play-btn" style="z-index:10;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#4ecdc4"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+    <div class="act-bar-overlay">
+      <div class="act-seg"></div>
+      <div class="act-seg"></div>
+      <div class="act-seg"></div>
+    </div>
+  </div>
+  <div class="feed-card-body">
+    <div class="feed-topic-row">
+      <div class="topic-badge"><div class="dot"></div>Climate Change</div>
+    </div>
+    <div class="feed-reel-title">When Pathways Diverge: The Story of the SSPs</div>
+    <div class="feed-hook-line">"By 2100, the choice we make today puts us on two completely different planets."</div>
+    <div class="feed-meta-row">
+      <div class="feed-avatar">KE</div>
+      <div class="feed-researcher-name">Kristie L. Ebi · Global Health</div>
+      <div class="feed-divider"></div>
+      <div class="feed-views">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        1.2k views
+      </div>
+    </div>
+    <div class="feed-actions-row">
+      <div class="feed-action primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Watch Reel
+      </div>
+      <div class="feed-action">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Save
+      </div>
+      <div class="feed-action">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reel card 2 -->
+<div class="feed-card">
+  <div class="reel-thumb" style="background: linear-gradient(135deg, #0d1e30 0%, #091525 60%, #0d2030 100%);">
+    <div class="thumb-duration-badge">
+      <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      0:30
+    </div>
+    <div class="thumb-visual">
+      <div class="mini-bars">
+        <div class="mini-bar" style="height:50px;background:#4ecdc4;opacity:0.8;"></div>
+        <div class="mini-bar" style="height:44px;background:#4ecdc4;opacity:0.7;"></div>
+        <div class="mini-bar" style="height:38px;background:#4ecdc4;opacity:0.6;"></div>
+        <div class="mini-bar" style="height:32px;background:#7ea8c9;opacity:0.5;"></div>
+        <div class="mini-bar" style="height:26px;background:#7ea8c9;opacity:0.4;"></div>
+        <div class="mini-bar" style="height:22px;background:#f0a050;opacity:0.5;"></div>
+        <div class="mini-bar" style="height:18px;background:#f0a050;opacity:0.45;"></div>
+        <div class="mini-bar" style="height:14px;background:#e05c6a;opacity:0.4;"></div>
+        <div class="mini-bar" style="height:10px;background:#e05c6a;opacity:0.35;"></div>
+      </div>
+    </div>
+    <div class="thumb-play-btn" style="z-index:10;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#4ecdc4"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+    <div class="act-bar-overlay">
+      <div class="act-seg done"></div>
+      <div class="act-seg done"></div>
+      <div class="act-seg" style="background:rgba(78,205,196,0.2)"></div>
+    </div>
+  </div>
+  <div class="feed-card-body">
+    <div class="feed-topic-row">
+      <div class="topic-badge"><div class="dot"></div>Arctic & Ice</div>
+    </div>
+    <div class="feed-reel-title">The Tipping Point: Arctic Sea Ice in Freefall</div>
+    <div class="feed-hook-line">"In 30 years we've lost ice the size of Western Europe. This is what that looks like."</div>
+    <div class="feed-meta-row">
+      <div class="feed-avatar" style="background:linear-gradient(135deg,#1a3a6e,#4e8cdc);">ES</div>
+      <div class="feed-researcher-name">Eric J. Steig · Earth & Space</div>
+      <div class="feed-divider"></div>
+      <div class="feed-views">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        874 views
+      </div>
+    </div>
+    <div class="feed-actions-row">
+      <div class="feed-action primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Watch Reel
+      </div>
+      <div class="feed-action">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Save
+      </div>
+      <div class="feed-action">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reel card 3 (compact) -->
+<div class="feed-card" style="opacity:0.75;">
+  <div class="reel-thumb" style="height:90px;background:linear-gradient(135deg,#1a100d,#0d1828);">
+    <div class="thumb-duration-badge">
+      <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      0:30
+    </div>
+    <div class="thumb-play-btn" style="z-index:10;width:36px;height:36px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#4ecdc4"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+  </div>
+  <div class="feed-card-body">
+    <div class="feed-topic-row">
+      <div class="topic-badge"><div class="dot"></div>Public Health</div>
+    </div>
+    <div class="feed-reel-title">Heat, Hunger, and the Health Cost of Fossil Fuels</div>
+    <div class="feed-meta-row">
+      <div class="feed-avatar" style="background:linear-gradient(135deg,#3a1a5f,#9c6ee0);">CB</div>
+      <div class="feed-researcher-name">Cecilia M. Bitz · Atmospheric Sci.</div>
+      <div class="feed-divider"></div>
+      <div class="feed-views">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        521 views
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wf-note">Vertical scrolling feed. Each card shows hook quote, topic, researcher, and view count. Three-act progress bar in thumbnail corners.</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 2: ACTIVE REEL PLAYER (ACT 1 — THE PROBLEM)
+═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div class="section-title">SCREEN 2 — ACTIVE REEL PLAYER (ACT 1 OF 3: THE PROBLEM)</div>
+
+<div class="player-shell">
+  <!-- Cinematic viewport -->
+  <div class="player-viewport">
+    <!-- Globe / world visual -->
+    <div class="player-globe"></div>
+    <!-- Data bars rising from bottom -->
+    <div class="player-viz">
+      <div class="player-chart-bars">
+        <div class="p-bar cool" style="height:30%"><span class="p-bar-label">1960</span></div>
+        <div class="p-bar cool" style="height:35%"></div>
+        <div class="p-bar cool" style="height:38%"></div>
+        <div class="p-bar cool" style="height:42%"></div>
+        <div class="p-bar cool" style="height:45%"></div>
+        <div class="p-bar warm" style="height:52%"></div>
+        <div class="p-bar warm" style="height:58%"></div>
+        <div class="p-bar warm" style="height:65%"></div>
+        <div class="p-bar hot" style="height:74%"></div>
+        <div class="p-bar hot" style="height:82%"></div>
+        <div class="p-bar hot" style="height:90%"><span class="p-bar-label">2023</span></div>
+      </div>
+    </div>
+    <!-- Top overlay -->
+    <div class="player-overlay-top">
+      <div>
+        <div class="player-act-label">ACT 1 OF 3 &nbsp;·&nbsp; <span>The Problem</span></div>
+      </div>
+      <div class="player-close-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+    </div>
+    <!-- Bottom overlay -->
+    <div class="player-overlay-bottom">
+      <div class="player-reel-title">When Pathways Diverge: The Story of the SSPs</div>
+      <div class="player-hook-text">"Global CO₂ is 50% higher than pre-industrial levels. We've never moved this fast."</div>
+      <div class="player-researcher-row">
+        <div class="player-avatar">KE</div>
+        <div>
+          <div class="player-researcher-name">Kristie L. Ebi</div>
+          <div class="player-researcher-dept">Dept. of Global Health, UW</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="player-controls">
+    <!-- Three-act segmented progress -->
+    <div class="act-progress">
+      <div class="act-segment">
+        <div class="act-segment-label active">The Problem</div>
+        <div class="act-bar"><div class="act-bar-fill active" style="width:60%"></div></div>
+      </div>
+      <div class="act-segment">
+        <div class="act-segment-label">Why It Matters</div>
+        <div class="act-bar"><div class="act-bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="act-segment">
+        <div class="act-segment-label">The Breakthrough</div>
+        <div class="act-bar"><div class="act-bar-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+    <!-- Controls row -->
+    <div class="controls-row">
+      <div class="ctrl-btn">
+        <!-- Rewind 10s -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+      </div>
+      <div class="ctrl-btn primary">
+        <!-- Pause -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </div>
+      <div class="ctrl-btn">
+        <!-- Mute -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </div>
+      <div class="time-display">0:07 <span class="time-total">/ 0:30</span></div>
+      <div class="ctrl-spacer"></div>
+      <div class="ctrl-btn">
+        <!-- Fullscreen -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Act timeline + CTAs -->
+  <div class="player-info">
+    <div class="player-info-title">Reel Structure</div>
+    <div class="act-summary-list">
+      <div class="act-summary-row active-act">
+        <span class="act-num-pill active">▶ Act 1</span>
+        <div class="act-summary-text">
+          <strong>The Problem</strong>
+          <span>Global emissions are 50% above pre-industrial levels. Five SSP scenarios map what happens next.</span>
+        </div>
+        <span class="act-summary-time active-time">0:00</span>
+      </div>
+      <div class="act-summary-row">
+        <span class="act-num-pill upcoming">Act 2</span>
+        <div class="act-summary-text">
+          <strong>Why It Matters</strong>
+          <span>Scenario choice determines 2°C vs 4°C — the difference between manageable and catastrophic.</span>
+        </div>
+        <span class="act-summary-time">0:10</span>
+      </div>
+      <div class="act-summary-row">
+        <span class="act-num-pill upcoming">Act 3</span>
+        <div class="act-summary-text">
+          <strong>The Breakthrough</strong>
+          <span>The SSPs are now the backbone of every major IPCC climate model on Earth.</span>
+        </div>
+        <span class="act-summary-time">0:21</span>
+      </div>
+    </div>
+
+    <div class="player-cta-row">
+      <button class="cta-btn primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        View Full Paper
+      </button>
+      <button class="cta-btn secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share Reel
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="wf-note">Full player with cinematic viewport + segmented three-act progress bar. Acts label THE PROBLEM / WHY IT MATTERS / THE BREAKTHROUGH. Timeline below lets viewer jump to any act.</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 3: REEL PLAYER — ACT 3 (BREAKTHROUGH)
+═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div class="section-title">SCREEN 3 — REEL PLAYER (ACT 3: THE BREAKTHROUGH)</div>
+
+<div class="player-shell">
+  <div class="player-viewport" style="background:linear-gradient(160deg,#062018 0%,#041510 50%,#081e08 100%);">
+    <!-- Different visual: converging lines suggesting a solution -->
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;">
+      <div style="position:relative;width:160px;height:160px;">
+        <div style="position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(78,205,196,0.2);"></div>
+        <div style="position:absolute;inset:20px;border-radius:50%;border:1.5px solid rgba(78,205,196,0.3);"></div>
+        <div style="position:absolute;inset:40px;border-radius:50%;border:2px solid rgba(78,205,196,0.5);"></div>
+        <div style="position:absolute;inset:60px;border-radius:50%;background:rgba(78,205,196,0.15);border:2px solid rgba(78,205,196,0.7);display:flex;align-items:center;justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="player-overlay-top">
+      <div class="player-act-label">ACT 3 OF 3 &nbsp;·&nbsp; <span>The Breakthrough</span></div>
+      <div class="player-close-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+    </div>
+    <div class="player-overlay-bottom">
+      <div class="player-reel-title">When Pathways Diverge: The Story of the SSPs</div>
+      <div class="player-hook-text">"The SSPs are now the standard language of every IPCC climate model. 6,330 papers cite this work."</div>
+      <div class="player-researcher-row">
+        <div class="player-avatar">KE</div>
+        <div>
+          <div class="player-researcher-name">Kristie L. Ebi</div>
+          <div class="player-researcher-dept">Dept. of Global Health, UW</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="player-controls">
+    <div class="act-progress">
+      <div class="act-segment">
+        <div class="act-segment-label done">The Problem</div>
+        <div class="act-bar"><div class="act-bar-fill done"></div></div>
+      </div>
+      <div class="act-segment">
+        <div class="act-segment-label done">Why It Matters</div>
+        <div class="act-bar"><div class="act-bar-fill done"></div></div>
+      </div>
+      <div class="act-segment">
+        <div class="act-segment-label active">The Breakthrough</div>
+        <div class="act-bar"><div class="act-bar-fill active" style="width:80%"></div></div>
+      </div>
+    </div>
+    <div class="controls-row">
+      <div class="ctrl-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+      </div>
+      <div class="ctrl-btn primary">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </div>
+      <div class="ctrl-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      </div>
+      <div class="time-display">0:26 <span class="time-total">/ 0:30</span></div>
+      <div class="ctrl-spacer"></div>
+      <div class="ctrl-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="player-info">
+    <div class="act-summary-list">
+      <div class="act-summary-row">
+        <span class="act-num-pill done">✓ Act 1</span>
+        <div class="act-summary-text">
+          <strong>The Problem</strong>
+          <span>Global emissions are 50% above pre-industrial levels.</span>
+        </div>
+        <span class="act-summary-time">0:00</span>
+      </div>
+      <div class="act-summary-row">
+        <span class="act-num-pill done">✓ Act 2</span>
+        <div class="act-summary-text">
+          <strong>Why It Matters</strong>
+          <span>2°C vs 4°C — a policy choice made now.</span>
+        </div>
+        <span class="act-summary-time">0:10</span>
+      </div>
+      <div class="act-summary-row active-act">
+        <span class="act-num-pill active">▶ Act 3</span>
+        <div class="act-summary-text">
+          <strong>The Breakthrough</strong>
+          <span>SSPs are now the backbone of every IPCC climate model on Earth.</span>
+        </div>
+        <span class="act-summary-time active-time">0:21</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wf-note">Same player, later state. Acts 1 & 2 shown as complete. Cinematic visual shifts to a "solution" motif (converging rings) vs. the rising alarm bars in Act 1.</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 4: POST-REEL END CARD
+═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div class="section-title">SCREEN 4 — POST-REEL END CARD</div>
+
+<div class="end-card">
+  <div class="end-card-header">
+    <div class="end-badge">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Reel Complete
+    </div>
+    <div class="end-title">When Pathways Diverge: The Story of the SSPs</div>
+    <div class="end-subtitle">Kristie L. Ebi &nbsp;·&nbsp; Dept. of Global Health, UW &nbsp;·&nbsp; 0:30</div>
+  </div>
+  <div class="end-card-body">
+    <!-- Impact stats from the reel -->
+    <div class="end-stats-row">
+      <div class="end-stat">
+        <div class="end-stat-value">6.3k</div>
+        <div class="end-stat-label">Citations</div>
+      </div>
+      <div class="end-stat">
+        <div class="end-stat-value">+50%</div>
+        <div class="end-stat-label">CO₂ Rise</div>
+      </div>
+      <div class="end-stat">
+        <div class="end-stat-value">5</div>
+        <div class="end-stat-label">Pathways</div>
+      </div>
+    </div>
+
+    <!-- Up next reels -->
+    <div class="end-related-label">Up Next</div>
+    <div class="end-related-cards">
+      <div class="end-related-card">
+        <div class="end-related-thumb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <div class="end-related-info">
+          <div class="end-related-title">The Tipping Point: Arctic Sea Ice in Freefall</div>
+          <div class="end-related-author">E. Steig · 0:30</div>
+        </div>
+      </div>
+      <div class="end-related-card">
+        <div class="end-related-thumb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <div class="end-related-info">
+          <div class="end-related-title">Heat, Hunger, and the Cost of Fossil Fuels</div>
+          <div class="end-related-author">C. Bitz · 0:30</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="end-action-grid">
+      <div class="end-action primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <div>
+          <div class="end-action-label">Read the Paper</div>
+          <div class="end-action-sub">Global Env. Change</div>
+        </div>
+      </div>
+      <div class="end-action amber">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div>
+          <div class="end-action-label">Connect</div>
+          <div class="end-action-sub">with Kristie Ebi</div>
+        </div>
+      </div>
+      <div class="end-action">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div>
+          <div class="end-action-label">Save Reel</div>
+          <div class="end-action-sub">To your shortlist</div>
+        </div>
+      </div>
+      <div class="end-action">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        <div>
+          <div class="end-action-label">Share Reel</div>
+          <div class="end-action-sub">Copy link</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wf-note">Shown immediately after reel ends. Key stats pulled from the paper data. "Up Next" drives continuous watching. CTAs: read paper, connect with researcher, save, share.</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 5: RESEARCHER VIEW — AUTO-GENERATION FLOW
+═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div class="section-title">SCREEN 5 — AUTO-GENERATION (RESEARCHER SIDE)</div>
+
+<div class="app-header">
+  <div class="app-logo">UW Research <span>Network</span></div>
+  <div style="font-size:12px;color:#4ecdc4;font-weight:700;">Your Reels</div>
+</div>
+
+<div class="gen-card">
+  <div class="gen-header">
+    <div class="gen-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+      </svg>
+    </div>
+    <div>
+      <div class="gen-title">Reel being generated…</div>
+      <div class="gen-subtitle">Auto-building from your paper data · No extra work needed</div>
+    </div>
+  </div>
+
+  <div class="gen-source-label">What the platform is using</div>
+  <div class="gen-sources">
+    <div class="gen-source-row done">
+      <div class="gen-source-icon done">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+      </div>
+      <div class="gen-source-text">
+        <div class="gen-source-name">Abstract & Title</div>
+        <div class="gen-source-desc">Shared Socioeconomic Pathways · Global Environmental Change · 2016</div>
+      </div>
+      <span class="gen-source-status done">✓ Used</span>
+    </div>
+    <div class="gen-source-row done">
+      <div class="gen-source-icon done">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="gen-source-text">
+        <div class="gen-source-name">Citation data & impact metrics</div>
+        <div class="gen-source-desc">6,330 citations · 2016–2024 trend</div>
+      </div>
+      <span class="gen-source-status done">✓ Used</span>
+    </div>
+    <div class="gen-source-row" style="border-color:rgba(240,160,80,0.25);">
+      <div class="gen-source-icon" style="border-color:rgba(240,160,80,0.25);background:rgba(240,160,80,0.06);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#f0a050" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+      </div>
+      <div class="gen-source-text">
+        <div class="gen-source-name">Key figures & charts</div>
+        <div class="gen-source-desc">Extracting 3 visualizations from paper PDF</div>
+      </div>
+      <span class="gen-source-status processing">Building…</span>
+    </div>
+    <div class="gen-source-row">
+      <div class="gen-source-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      </div>
+      <div class="gen-source-text">
+        <div class="gen-source-name">AI narration script</div>
+        <div class="gen-source-desc">30-second audio synthesized from abstract</div>
+      </div>
+      <span class="gen-source-status pending">Queued</span>
+    </div>
+  </div>
+
+  <div class="gen-progress-label">
+    Generation progress &nbsp; <span>65%</span>
+  </div>
+  <div class="gen-progress-bar">
+    <div class="gen-progress-fill"></div>
+  </div>
+
+  <!-- Script preview -->
+  <div class="gen-preview-box">
+    <div class="gen-preview-label">Draft script preview (AI-generated)</div>
+    <div class="gen-script-lines">
+      <div class="gen-script-line">
+        <span class="gen-script-act">Act 1</span>
+        <span class="gen-script-text">"Right now, global CO₂ is 50% higher than before the industrial revolution — and climbing faster than any point in human history."</span>
+      </div>
+      <div class="gen-script-line">
+        <span class="gen-script-act">Act 2</span>
+        <span class="gen-script-text">"The pathway we choose in the next decade determines whether we hit 2 degrees or 4. The difference isn't just temperature — it's civilization."</span>
+      </div>
+      <div class="gen-script-line">
+        <span class="gen-script-act">Act 3</span>
+        <span class="gen-script-text">"The Shared Socioeconomic Pathways — developed right here at UW — are now the standard framework used by every major climate model on the planet."</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gen-buttons">
+    <button class="gen-btn ghost">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Edit Script
+    </button>
+    <button class="gen-btn primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Preview Reel
+    </button>
+  </div>
+</div>
+
+<div class="wf-note">Researcher-facing view. Platform shows exactly which existing data it used — paper abstract, citation stats, PDF figures, AI narration. No new inputs required. Researcher can optionally edit the script.</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SCREEN 6: REEL READY / PUBLISH NOTIFICATION
+═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div class="section-title">SCREEN 6 — REEL READY (RESEARCHER NOTIFICATION)</div>
+
+<div class="ready-card">
+  <div class="ready-icon-ring">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+  </div>
+  <div class="ready-title">Your Reel is ready!</div>
+  <div class="ready-subtitle">
+    The platform auto-generated a 30-second visual summary of your SSP paper.<br>
+    Preview it, then publish — or leave it as a draft.
+  </div>
+
+  <div class="ready-reel-preview">
+    <div class="ready-thumb-mini">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+    <div>
+      <div class="ready-reel-title">When Pathways Diverge: The Story of the SSPs</div>
+      <div class="ready-reel-meta">0:30 &nbsp;·&nbsp; 3 acts &nbsp;·&nbsp; Auto-generated from existing paper data</div>
+    </div>
+  </div>
+
+  <div class="ready-actions">
+    <button class="ready-action-btn primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Preview Reel
+    </button>
+    <button class="ready-action-btn share">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+      Publish to Network
+    </button>
+    <button class="ready-action-btn ghost">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Edit Script First
+    </button>
+    <button class="ready-action-btn ghost" style="color:#3a5a78;border-color:#111e30;">
+      Save as Draft
+    </button>
+  </div>
+</div>
+
+<div class="wf-note">Notification state after generation completes. Researcher chooses: preview → publish, edit, or draft. Zero mandatory inputs — all data was sourced automatically.</div>
+
+</body>
+</html>
