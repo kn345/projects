@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UW Research Network – Shortlist Wireframe (Desktop)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #060e1a;
+    color: #e8eaf0;
+  }
+
+  /* ── Wireframe section scaffolding ── */
+  .wf-section {
+    border-bottom: 2px dashed #1e3250;
+    padding: 32px 0 0;
+  }
+  .wf-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #ffa040;
+    background: rgba(255,160,64,0.08);
+    border: 1px dashed rgba(255,160,64,0.35);
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 6px;
+    margin: 0 24px 20px;
+  }
+  .wf-note {
+    font-size: 11px;
+    color: #ffa040;
+    background: rgba(255,160,64,0.07);
+    border-top: 1px dashed rgba(255,160,64,0.25);
+    padding: 8px 24px;
+    margin-top: 0;
+  }
+
+  /* ══════════════════════════════════════════
+     SHARED APP SHELL
+  ══════════════════════════════════════════ */
+
+  /* Top nav bar */
+  .topnav {
+    height: 52px;
+    background: #0a1628;
+    border-bottom: 1px solid #1e3250;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 24px;
+  }
+  .topnav-logo {
+    font-size: 14px;
+    font-weight: 700;
+    color: #7ea8c9;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .topnav-logo span { color: #4ecdc4; }
+  .topnav-divider { width: 1px; height: 24px; background: #1e3250; flex-shrink: 0; }
+  .topnav-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e8eaf0;
+    flex: 1;
+  }
+  .topnav-actions { display: flex; align-items: center; gap: 12px; }
+  .topnav-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.25);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .topnav-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a4a6e, #4ecdc4);
+    border: 2px solid #1e3250;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  /* App shell — sidebar + main + right panel */
+  .app-shell {
+    display: grid;
+    grid-template-columns: 260px 1fr 320px;
+    min-height: calc(100vh - 52px);
+    max-height: calc(100vh - 52px);
+    overflow: hidden;
+  }
+
+  /* ── Left sidebar ── */
+  .sidebar {
+    background: #0a1628;
+    border-right: 1px solid #1e3250;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .sidebar-section {
+    padding: 20px 16px;
+    border-bottom: 1px solid #1e3250;
+  }
+  .sidebar-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #3a5a78;
+    margin-bottom: 12px;
+  }
+
+  /* Mode toggle — sidebar version */
+  .mode-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .mode-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #4a6580;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: left;
+    width: 100%;
+  }
+  .mode-btn:hover { background: #0f1e35; color: #7ea8c9; }
+  .mode-btn.active {
+    background: #111e35;
+    border-color: rgba(78,205,196,0.3);
+    color: #4ecdc4;
+  }
+  .mode-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .mode-count {
+    margin-left: auto;
+    font-size: 11px;
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    padding: 1px 7px;
+    border-radius: 10px;
+    color: #4a6580;
+    font-weight: 500;
+  }
+  .mode-btn.active .mode-count {
+    background: rgba(78,205,196,0.1);
+    border-color: rgba(78,205,196,0.25);
+    color: #4ecdc4;
+  }
+
+  /* Filter chips — sidebar list */
+  .filter-list { display: flex; flex-direction: column; gap: 4px; }
+  .filter-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #4a6580;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-item:hover { background: #0f1e35; color: #7ea8c9; }
+  .filter-item.active {
+    background: rgba(78,205,196,0.07);
+    border-color: rgba(78,205,196,0.2);
+    color: #4ecdc4;
+  }
+  .filter-item-count {
+    font-size: 10px;
+    color: #2a4060;
+  }
+  .filter-item.active .filter-item-count { color: rgba(78,205,196,0.5); }
+
+  /* Progress */
+  .progress-bar {
+    height: 4px;
+    background: #111e30;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1a4a6e, #4ecdc4);
+    border-radius: 2px;
+    transition: width 0.3s;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #4a6580;
+    margin-top: 6px;
+  }
+
+  /* Keyboard shortcuts hint */
+  .kbd-hints { display: flex; flex-direction: column; gap: 6px; }
+  .kbd-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #4a6580;
+  }
+  .kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 20px;
+    padding: 0 5px;
+    background: #0f1e35;
+    border: 1px solid #1e3250;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #7ea8c9;
+    font-family: monospace;
+  }
+
+  /* ── Main content area ── */
+  .main-content {
+    background: #0a1628;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding: 32px 48px;
+    gap: 20px;
+  }
+
+  /* Card — desktop version: wider, more content, no swipe stack needed */
+  .card {
+    width: 100%;
+    max-width: 700px;
+    background: #0f2040;
+    border: 1px solid #1e3a5f;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  }
+  .card-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid #1a3050;
+  }
+  .card-header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .domain-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.25);
+    padding: 4px 12px;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+  .domain-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ecdc4; }
+  .card-actions-top {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .icon-btn {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    border: 1px solid #1e3250;
+    background: #0a1628;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #4a6580;
+    transition: all 0.15s;
+  }
+  .icon-btn:hover { border-color: #4ecdc4; color: #4ecdc4; }
+  .icon-btn svg { width: 15px; height: 15px; }
+  .paper-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #e8eaf0;
+    margin-bottom: 14px;
+  }
+  .paper-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .meta-chip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #7ea8c9;
+  }
+  .meta-chip svg { width: 12px; height: 12px; opacity: 0.7; }
+
+  .card-body {
+    padding: 24px 28px;
+  }
+  .card-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 24px;
+    align-items: start;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #3a5a78;
+    margin-bottom: 10px;
+  }
+  .abstract-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #b0c4d8;
+    margin-bottom: 20px;
+  }
+  .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .keyword {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 12px;
+    background: rgba(30,80,140,0.35);
+    border: 1px solid rgba(78,140,200,0.2);
+    color: #7ea8c9;
+  }
+  .keyword.highlight {
+    background: rgba(78,205,196,0.12);
+    border-color: rgba(78,205,196,0.3);
+    color: #4ecdc4;
+  }
+
+  /* Right column of card body */
+  .card-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .stat-box {
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+  }
+  .stat-box.full { grid-column: span 2; }
+  .stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e8eaf0;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-value.teal { color: #4ecdc4; }
+  .stat-label {
+    font-size: 10px;
+    color: #4a6580;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .author-card {
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e5f4a, #4ecdc4);
+    border: 2px solid #0f2040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .author-info { flex: 1; min-width: 0; }
+  .author-name { font-size: 13px; font-weight: 600; color: #c8dcea; margin-bottom: 2px; }
+  .author-dept { font-size: 11px; color: #4a6580; }
+  .author-link {
+    font-size: 11px;
+    color: #4ecdc4;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Action bar below card */
+  .card-action-bar {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .action-btn-large {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 12px;
+    border: 2px solid;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex: 1;
+    justify-content: center;
+  }
+  .action-btn-large:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+  .action-btn-large.skip {
+    border-color: #e05c6a;
+    color: #e05c6a;
+  }
+  .action-btn-large.skip:hover { background: rgba(224,92,106,0.08); }
+  .action-btn-large.save {
+    border-color: #4ecdc4;
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.05);
+  }
+  .action-btn-large.save:hover { background: rgba(78,205,196,0.12); }
+  .action-btn-large.details {
+    border-color: #1e3250;
+    color: #7ea8c9;
+    flex: 0;
+    padding: 12px 20px;
+  }
+  .action-btn-large.details:hover { border-color: #7ea8c9; background: rgba(126,168,201,0.06); }
+  .action-btn-large svg { width: 18px; height: 18px; }
+  .kbd-inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 18px;
+    padding: 0 4px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 3px;
+    font-size: 10px;
+    font-family: monospace;
+    opacity: 0.7;
+  }
+
+  /* ── Right panel — Shortlist ── */
+  .right-panel {
+    background: #060e1a;
+    border-left: 1px solid #1e3250;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .right-panel-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #1e3250;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .right-panel-header h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #4a6580;
+  }
+  .panel-count {
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(78,205,196,0.1);
+    color: #4ecdc4;
+    padding: 2px 10px;
+    border-radius: 10px;
+  }
+  .right-panel-tabs {
+    display: flex;
+    border-bottom: 1px solid #1e3250;
+    flex-shrink: 0;
+  }
+  .panel-tab {
+    flex: 1;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a6580;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  .panel-tab.active { color: #4ecdc4; border-bottom-color: #4ecdc4; }
+  .right-panel-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .saved-row {
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .saved-row:hover { border-color: #4ecdc4; }
+  .saved-row-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .saved-row-icon svg { width: 14px; height: 14px; color: #4ecdc4; }
+  .saved-row-body { flex: 1; min-width: 0; }
+  .saved-row-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #c8dcea;
+    line-height: 1.35;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .saved-row-meta { font-size: 11px; color: #4a6580; }
+  .saved-row-meta span { color: #4ecdc4; }
+  .saved-row-remove {
+    width: 20px; height: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: #2a4060;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.15s;
+  }
+  .saved-row-remove:hover { color: #e05c6a; }
+  .panel-export-btn {
+    margin: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #1e3250;
+    background: #0a1628;
+    color: #7ea8c9;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .panel-export-btn:hover { border-color: #4ecdc4; color: #4ecdc4; }
+
+  /* ══════════════════════════════════════════
+     RESEARCHER CARD SPECIFICS
+  ══════════════════════════════════════════ */
+  .researcher-hero {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid #1a3050;
+  }
+  .researcher-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a4a6e, #4ecdc4);
+    border: 3px solid #4ecdc4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .online-dot {
+    width: 14px; height: 14px;
+    background: #4ecdc4;
+    border-radius: 50%;
+    border: 3px solid #0f2040;
+    position: absolute;
+    bottom: 2px; right: 2px;
+  }
+  .researcher-hero-info { flex: 1; min-width: 0; }
+  .researcher-hero-info h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #e8eaf0;
+    margin-bottom: 4px;
+  }
+  .researcher-hero-info .affil {
+    font-size: 13px;
+    color: #7ea8c9;
+    margin-bottom: 10px;
+  }
+  .researcher-hero-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+  .match-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.3);
+    padding: 4px 12px;
+    border-radius: 12px;
+  }
+  .open-to-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 14px;
+    border: 1px solid;
+  }
+  .open-to-pill.industry { color: #f0a050; border-color: rgba(240,160,80,0.3); background: rgba(240,160,80,0.07); }
+  .open-to-pill.collab { color: #4ecdc4; border-color: rgba(78,205,196,0.3); background: rgba(78,205,196,0.07); }
+  .open-to-pill.grad { color: #a07ef0; border-color: rgba(160,126,240,0.3); background: rgba(160,126,240,0.07); }
+  .open-to-pill svg { width: 11px; height: 11px; }
+
+  .researcher-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .why-relevant { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .relevance-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: border-color 0.15s;
+  }
+  .relevance-row:hover { border-color: rgba(78,205,196,0.2); }
+  .rel-num { font-size: 11px; font-weight: 700; color: #2a4060; min-width: 20px; padding-top: 1px; }
+  .rel-text { flex: 1; min-width: 0; }
+  .rel-text strong { display: block; font-size: 13px; font-weight: 600; color: #c8dcea; line-height: 1.35; margin-bottom: 3px; }
+  .rel-text span { font-size: 12px; color: #4a6580; line-height: 1.4; }
+
+  .interests-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0; }
+  .interest-tag {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 12px;
+  }
+  .interest-tag.primary {
+    background: rgba(78,205,196,0.12);
+    border: 1px solid rgba(78,205,196,0.3);
+    color: #4ecdc4;
+  }
+  .interest-tag.secondary {
+    background: rgba(30,80,140,0.35);
+    border: 1px solid rgba(78,140,200,0.2);
+    color: #7ea8c9;
+  }
+
+  /* ══════════════════════════════════════════
+     SCREEN 5 — EMPTY STATE
+  ══════════════════════════════════════════ */
+  .empty-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 48px;
+    gap: 20px;
+  }
+  .empty-icon { font-size: 64px; margin-bottom: 8px; }
+  .empty-title { font-size: 26px; font-weight: 700; color: #e8eaf0; }
+  .empty-sub { font-size: 15px; color: #7ea8c9; line-height: 1.6; max-width: 440px; }
+  .empty-actions { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 340px; }
+  .empty-btn {
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid;
+    transition: all 0.15s;
+  }
+  .empty-btn.primary {
+    background: rgba(78,205,196,0.1);
+    border-color: #4ecdc4;
+    color: #4ecdc4;
+  }
+  .empty-btn.secondary {
+    background: transparent;
+    border-color: #1e3250;
+    color: #7ea8c9;
+  }
+
+  /* ══════════════════════════════════════════
+     SCREEN 6 — SAVED LIST (FULL)
+  ══════════════════════════════════════════ */
+  .saved-list-main {
+    padding: 32px 40px;
+    flex: 1;
+    overflow-y: auto;
+  }
+  .saved-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .saved-list-header h2 { font-size: 22px; font-weight: 700; color: #e8eaf0; }
+  .saved-full-row {
+    background: #0f2040;
+    border: 1px solid #1e3a5f;
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .saved-full-row:hover { border-color: #4ecdc4; box-shadow: 0 4px 20px rgba(78,205,196,0.08); }
+  .saved-full-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .saved-full-icon svg { width: 20px; height: 20px; color: #4ecdc4; }
+  .saved-full-body { flex: 1; min-width: 0; }
+  .saved-full-title { font-size: 15px; font-weight: 600; color: #e8eaf0; line-height: 1.4; margin-bottom: 6px; }
+  .saved-full-meta { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; color: #7ea8c9; }
+  .saved-full-meta span { color: #4ecdc4; }
+  .saved-full-actions { display: flex; gap: 8px; flex-shrink: 0; align-items: flex-start; }
+  .tag-chip {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    border: 1px solid #1e3250;
+    color: #4a6580;
+    background: #0a1628;
+  }
+  .remove-btn {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid #1e3250;
+    background: transparent;
+    color: #4a6580;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .remove-btn:hover { border-color: #e05c6a; color: #e05c6a; }
+  .export-bar {
+    display: flex;
+    gap: 10px;
+    padding: 16px 0 0;
+    border-top: 1px solid #1e3250;
+    margin-top: 8px;
+  }
+  .export-btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #1e3250;
+    background: #0a1628;
+    color: #7ea8c9;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .export-btn:hover { border-color: #4ecdc4; color: #4ecdc4; }
+
+  /* Swipe state overlay badges */
+  .swipe-overlay-badge {
+    position: absolute;
+    top: 32px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    border: 3px solid;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .swipe-overlay-badge.nope { left: 32px; color: #e05c6a; border-color: #e05c6a; transform: rotate(-10deg); }
+  .swipe-overlay-badge.like { right: 32px; color: #4ecdc4; border-color: #4ecdc4; transform: rotate(10deg); }
+  .card-swipe-wrapper { position: relative; width: 100%; max-width: 700px; }
+  .card-swipe-wrapper .card { opacity: 0.55; }
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SCREEN 1 — PAPER SHORTLIST (DEFAULT STATE)
+═══════════════════════════════════════════════════════════════ -->
+<div class="wf-section">
+<div class="wf-section-label">SCREEN 1 — PAPER SHORTLIST (DEFAULT STATE)</div>
+
+<!-- Top nav -->
+<nav class="topnav">
+  <div class="topnav-logo">UW Research <span>Network</span></div>
+  <div class="topnav-divider"></div>
+  <div class="topnav-title">Shortlist</div>
+  <div class="topnav-actions">
+    <div class="topnav-badge">12 papers in queue</div>
+    <div class="topnav-avatar">KE</div>
+  </div>
+</nav>
+
+<!-- App shell -->
+<div class="app-shell">
+
+  <!-- Left sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Browse Mode</div>
+      <div class="mode-toggle">
+        <button class="mode-btn active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Papers
+          <span class="mode-count">12</span>
+        </button>
+        <button class="mode-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Researchers
+          <span class="mode-count">8</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Filter by Topic</div>
+      <div class="filter-list">
+        <div class="filter-item active">Climate Change <span class="filter-item-count">12</span></div>
+        <div class="filter-item">Arctic &amp; Ice <span class="filter-item-count">7</span></div>
+        <div class="filter-item">Emissions <span class="filter-item-count">9</span></div>
+        <div class="filter-item">Public Health <span class="filter-item-count">5</span></div>
+        <div class="filter-item">Ecology <span class="filter-item-count">8</span></div>
+        <div class="filter-item">Atmospheric <span class="filter-item-count">4</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Queue Progress</div>
+      <div style="font-size:13px;font-weight:600;color:#e8eaf0;margin-bottom:4px;">4 of 16 reviewed</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:25%"></div></div>
+      <div class="progress-meta"><span>25% complete</span><span>12 remaining</span></div>
+    </div>
+
+    <div class="sidebar-section" style="margin-top:auto;">
+      <div class="sidebar-section-label">Keyboard Shortcuts</div>
+      <div class="kbd-hints">
+        <div class="kbd-row"><span class="kbd">←</span> Skip paper</div>
+        <div class="kbd-row"><span class="kbd">→</span> Save to shortlist</div>
+        <div class="kbd-row"><span class="kbd">↓</span> View full details</div>
+        <div class="kbd-row"><span class="kbd">U</span> Undo last action</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <div class="card">
+      <!-- Header -->
+      <div class="card-header">
+        <div class="card-header-top">
+          <div class="domain-badge"><div class="dot"></div>Earth Sciences &amp; Geology</div>
+          <div class="card-actions-top">
+            <div class="icon-btn" title="Share">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <div class="icon-btn" title="Open in new tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="paper-title">The Shared Socioeconomic Pathways and their energy, land use, and greenhouse gas emissions implications</div>
+        <div class="paper-meta">
+          <div class="meta-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            2016
+          </div>
+          <div class="meta-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Global Environmental Change
+          </div>
+          <div class="meta-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Open Access
+          </div>
+        </div>
+      </div>
+
+      <!-- Body — two-column on desktop -->
+      <div class="card-body">
+        <div class="card-body-grid">
+          <!-- Left column -->
+          <div>
+            <div class="section-label">Abstract</div>
+            <div class="abstract-text">
+              This overview examines the Shared Socioeconomic Pathways (SSPs) developed for the IPCC 6th Assessment Report—narrative scenarios describing how society, demographics, and technology may develop over the 21st century, with differing challenges to climate change mitigation and adaptation. We assess energy use, land use, and greenhouse gas emissions across five distinct pathways ranging from sustainability-focused to fossil-fuel intensive development.
+            </div>
+
+            <div class="section-label">Keywords</div>
+            <div class="keywords">
+              <span class="keyword highlight">Climate Change</span>
+              <span class="keyword highlight">Greenhouse Gas</span>
+              <span class="keyword highlight">Emissions</span>
+              <span class="keyword">Energy Systems</span>
+              <span class="keyword">Land Use</span>
+              <span class="keyword">SSP Scenarios</span>
+              <span class="keyword">IPCC</span>
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="card-aside">
+            <div class="stats-grid">
+              <div class="stat-box">
+                <div class="stat-value teal">6,330</div>
+                <div class="stat-label">Citations</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-value">2016</div>
+                <div class="stat-label">Published</div>
+              </div>
+              <div class="stat-box full">
+                <div class="stat-value">1</div>
+                <div class="stat-label">UW Author</div>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-label">Lead UW Author</div>
+              <div class="author-card">
+                <div class="author-avatar">KE</div>
+                <div class="author-info">
+                  <div class="author-name">Kristie L. Ebi</div>
+                  <div class="author-dept">Dept. of Global Health · 42 papers</div>
+                  <div class="author-link" style="margin-top:4px;">View profile →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action bar -->
+    <div class="card-action-bar">
+      <button class="action-btn-large skip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Skip <span class="kbd-inline">←</span>
+      </button>
+      <button class="action-btn-large details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Details <span class="kbd-inline">↓</span>
+      </button>
+      <button class="action-btn-large save">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Save to Shortlist <span class="kbd-inline">→</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- Right panel — shortlist -->
+  <aside class="right-panel">
+    <div class="right-panel-header">
+      <h3>My Shortlist</h3>
+      <span class="panel-count">3 saved</span>
+    </div>
+    <div class="right-panel-tabs">
+      <div class="panel-tab active">Papers (3)</div>
+      <div class="panel-tab">Researchers (2)</div>
+    </div>
+    <div class="right-panel-list">
+      <div class="saved-row">
+        <div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-row-body">
+          <div class="saved-row-title">Assessing the Effects of Climate Change on Aquatic Invasive Species</div>
+          <div class="saved-row-meta">Conservation Biology · 2008 · <span>1,278 citations</span></div>
+        </div>
+        <button class="saved-row-remove" title="Remove">×</button>
+      </div>
+      <div class="saved-row">
+        <div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-row-body">
+          <div class="saved-row-title">Ecological Dynamics Across the Arctic Associated with Recent Climate Change</div>
+          <div class="saved-row-meta">Science · 2009 · <span>1,254 citations</span></div>
+        </div>
+        <button class="saved-row-remove" title="Remove">×</button>
+      </div>
+      <div class="saved-row">
+        <div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-row-body">
+          <div class="saved-row-title">The 2022 Lancet Countdown on health and climate change</div>
+          <div class="saved-row-meta">The Lancet · 2022 · <span>1,574 citations</span></div>
+        </div>
+        <button class="saved-row-remove" title="Remove">×</button>
+      </div>
+    </div>
+    <div class="panel-export-btn">Export Shortlist →</div>
+  </aside>
+
+</div><!-- end app-shell -->
+<div class="wf-note">Desktop layout: left sidebar = mode/filters/progress/shortcuts · center = active card + action bar · right panel = persistent saved list.</div>
+</div><!-- end section -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SCREEN 2 — SKIP STATE (CARD FLIES LEFT)
+═══════════════════════════════════════════════════════════════ -->
+<div class="wf-section">
+<div class="wf-section-label">SCREEN 2 — SKIP STATE (CARD ANIMATES LEFT)</div>
+<nav class="topnav">
+  <div class="topnav-logo">UW Research <span>Network</span></div>
+  <div class="topnav-divider"></div>
+  <div class="topnav-title">Shortlist</div>
+  <div class="topnav-actions">
+    <div class="topnav-badge">11 papers in queue</div>
+    <div class="topnav-avatar">KE</div>
+  </div>
+</nav>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Browse Mode</div>
+      <div class="mode-toggle">
+        <button class="mode-btn active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Papers <span class="mode-count">11</span>
+        </button>
+        <button class="mode-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Researchers <span class="mode-count">8</span>
+        </button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Queue Progress</div>
+      <div style="font-size:13px;font-weight:600;color:#e8eaf0;margin-bottom:4px;">5 of 16 reviewed</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:31%"></div></div>
+      <div class="progress-meta"><span>31% complete</span><span>11 remaining</span></div>
+    </div>
+    <div class="sidebar-section" style="margin-top:auto;">
+      <div class="sidebar-section-label">Keyboard Shortcuts</div>
+      <div class="kbd-hints">
+        <div class="kbd-row"><span class="kbd">←</span> Skip paper</div>
+        <div class="kbd-row"><span class="kbd">→</span> Save to shortlist</div>
+        <div class="kbd-row"><span class="kbd">U</span> Undo last action</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content" style="justify-content:center;">
+    <!-- Card flying left with NOPE overlay -->
+    <div class="card-swipe-wrapper">
+      <div class="card" style="transform: rotate(-6deg) translateX(-80px);">
+        <div class="card-header">
+          <div class="domain-badge"><div class="dot"></div>Earth Sciences &amp; Geology</div>
+          <div class="paper-title">The Shared Socioeconomic Pathways and their energy, land use, and greenhouse gas emissions implications</div>
+        </div>
+        <div class="card-body" style="min-height:180px;display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:80px;opacity:0.12;color:#e05c6a;">✕</div>
+        </div>
+      </div>
+      <div class="swipe-overlay-badge nope">SKIP</div>
+    </div>
+    <!-- Toast notification -->
+    <div style="background:#0f2040;border:1px solid rgba(224,92,106,0.3);border-radius:12px;padding:12px 20px;display:flex;align-items:center;gap:12px;max-width:700px;width:100%;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e05c6a" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <span style="font-size:13px;color:#b0c4d8;flex:1;">Skipped <strong style="color:#e8eaf0;">Shared Socioeconomic Pathways</strong></span>
+      <button style="font-size:12px;font-weight:600;color:#4ecdc4;background:none;border:none;cursor:pointer;">Undo</button>
+    </div>
+  </main>
+
+  <aside class="right-panel">
+    <div class="right-panel-header"><h3>My Shortlist</h3><span class="panel-count">3 saved</span></div>
+    <div class="right-panel-tabs"><div class="panel-tab active">Papers (3)</div><div class="panel-tab">Researchers (2)</div></div>
+    <div class="right-panel-list">
+      <div class="saved-row"><div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="saved-row-body"><div class="saved-row-title">Assessing the Effects of Climate Change on Aquatic Invasive Species</div><div class="saved-row-meta">2008 · <span>1,278 citations</span></div></div><button class="saved-row-remove">×</button></div>
+      <div class="saved-row"><div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="saved-row-body"><div class="saved-row-title">Ecological Dynamics Across the Arctic Associated with Recent Climate Change</div><div class="saved-row-meta">2009 · <span>1,254 citations</span></div></div><button class="saved-row-remove">×</button></div>
+      <div class="saved-row"><div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="saved-row-body"><div class="saved-row-title">The 2022 Lancet Countdown on health and climate change</div><div class="saved-row-meta">2022 · <span>1,574 citations</span></div></div><button class="saved-row-remove">×</button></div>
+    </div>
+    <div class="panel-export-btn">Export Shortlist →</div>
+  </aside>
+</div>
+<div class="wf-note">Card tilts and fades left. Toast with Undo appears in main area. Next card is already visible underneath. Shortlist panel unchanged.</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SCREEN 3 — SAVE STATE (CARD FLIES RIGHT)
+═══════════════════════════════════════════════════════════════ -->
+<div class="wf-section">
+<div class="wf-section-label">SCREEN 3 — SAVE STATE (CARD ANIMATES RIGHT)</div>
+<nav class="topnav">
+  <div class="topnav-logo">UW Research <span>Network</span></div>
+  <div class="topnav-divider"></div>
+  <div class="topnav-title">Shortlist</div>
+  <div class="topnav-actions">
+    <div class="topnav-badge">11 papers in queue</div>
+    <div class="topnav-avatar">KE</div>
+  </div>
+</nav>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Browse Mode</div>
+      <div class="mode-toggle">
+        <button class="mode-btn active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Papers <span class="mode-count">11</span></button>
+        <button class="mode-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Researchers <span class="mode-count">8</span></button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Queue Progress</div>
+      <div style="font-size:13px;font-weight:600;color:#e8eaf0;margin-bottom:4px;">5 of 16 reviewed</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:31%"></div></div>
+      <div class="progress-meta"><span>31% complete</span><span>11 remaining</span></div>
+    </div>
+  </aside>
+
+  <main class="main-content" style="justify-content:center;">
+    <div class="card-swipe-wrapper">
+      <div class="card" style="transform: rotate(6deg) translateX(80px);">
+        <div class="card-header">
+          <div class="domain-badge"><div class="dot"></div>Earth Sciences &amp; Geology</div>
+          <div class="paper-title">The Shared Socioeconomic Pathways and their energy, land use, and greenhouse gas emissions implications</div>
+        </div>
+        <div class="card-body" style="min-height:180px;display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:80px;opacity:0.12;color:#4ecdc4;">♥</div>
+        </div>
+      </div>
+      <div class="swipe-overlay-badge like">SAVED</div>
+    </div>
+    <!-- Toast -->
+    <div style="background:#0f2040;border:1px solid rgba(78,205,196,0.3);border-radius:12px;padding:12px 20px;display:flex;align-items:center;gap:12px;max-width:700px;width:100%;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span style="font-size:13px;color:#b0c4d8;flex:1;">Saved <strong style="color:#e8eaf0;">Shared Socioeconomic Pathways</strong> to your shortlist</span>
+      <button style="font-size:12px;font-weight:600;color:#4ecdc4;background:none;border:none;cursor:pointer;">Undo</button>
+    </div>
+  </main>
+
+  <!-- Right panel — newly added item highlighted -->
+  <aside class="right-panel">
+    <div class="right-panel-header"><h3>My Shortlist</h3><span class="panel-count">4 saved</span></div>
+    <div class="right-panel-tabs"><div class="panel-tab active">Papers (4)</div><div class="panel-tab">Researchers (2)</div></div>
+    <div class="right-panel-list">
+      <!-- Newly added — highlighted -->
+      <div class="saved-row" style="border-color: rgba(78,205,196,0.5); background: rgba(78,205,196,0.05);">
+        <div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-row-body">
+          <div class="saved-row-title">The Shared Socioeconomic Pathways and their energy, land use…</div>
+          <div class="saved-row-meta" style="color:#4ecdc4;">Just added ✓</div>
+        </div>
+        <button class="saved-row-remove">×</button>
+      </div>
+      <div class="saved-row"><div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="saved-row-body"><div class="saved-row-title">Assessing the Effects of Climate Change on Aquatic Invasive Species</div><div class="saved-row-meta">2008 · <span>1,278 citations</span></div></div><button class="saved-row-remove">×</button></div>
+      <div class="saved-row"><div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="saved-row-body"><div class="saved-row-title">Ecological Dynamics Across the Arctic Associated with Recent Climate Change</div><div class="saved-row-meta">2009 · <span>1,254 citations</span></div></div><button class="saved-row-remove">×</button></div>
+    </div>
+    <div class="panel-export-btn">Export Shortlist →</div>
+  </aside>
+</div>
+<div class="wf-note">Card tilts and fades right. Right panel immediately updates with new item highlighted. Toast with Undo appears in main area.</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SCREEN 4 — RESEARCHER SHORTLIST CARD
+═══════════════════════════════════════════════════════════════ -->
+<div class="wf-section">
+<div class="wf-section-label">SCREEN 4 — RESEARCHER SHORTLIST CARD</div>
+<nav class="topnav">
+  <div class="topnav-logo">UW Research <span>Network</span></div>
+  <div class="topnav-divider"></div>
+  <div class="topnav-title">Shortlist</div>
+  <div class="topnav-actions">
+    <div class="topnav-badge">8 researchers in queue</div>
+    <div class="topnav-avatar">KE</div>
+  </div>
+</nav>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Browse Mode</div>
+      <div class="mode-toggle">
+        <button class="mode-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Papers <span class="mode-count">12</span></button>
+        <button class="mode-btn active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Researchers <span class="mode-count">8</span></button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Filter by Topic</div>
+      <div class="filter-list">
+        <div class="filter-item active">Climate Science <span class="filter-item-count">8</span></div>
+        <div class="filter-item">Oceanography <span class="filter-item-count">5</span></div>
+        <div class="filter-item">Ecology <span class="filter-item-count">4</span></div>
+        <div class="filter-item">Atmospheric <span class="filter-item-count">3</span></div>
+        <div class="filter-item">Public Health <span class="filter-item-count">2</span></div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Queue Progress</div>
+      <div style="font-size:13px;font-weight:600;color:#e8eaf0;margin-bottom:4px;">3 of 11 reviewed</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:27%"></div></div>
+      <div class="progress-meta"><span>27% complete</span><span>8 remaining</span></div>
+    </div>
+    <div class="sidebar-section" style="margin-top:auto;">
+      <div class="sidebar-section-label">Keyboard Shortcuts</div>
+      <div class="kbd-hints">
+        <div class="kbd-row"><span class="kbd">←</span> Pass</div>
+        <div class="kbd-row"><span class="kbd">→</span> Connect</div>
+        <div class="kbd-row"><span class="kbd">↓</span> Full profile</div>
+        <div class="kbd-row"><span class="kbd">U</span> Undo</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="card">
+      <!-- Researcher hero -->
+      <div class="researcher-hero">
+        <div class="researcher-avatar">
+          ES
+          <div class="online-dot"></div>
+        </div>
+        <div class="researcher-hero-info">
+          <h2>Eric J. Steig</h2>
+          <div class="affil">University of Washington · Earth &amp; Space Sciences</div>
+          <div class="researcher-hero-badges">
+            <div class="match-badge">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+              High match · Climatology
+            </div>
+            <span class="open-to-pill collab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Research collaboration
+            </span>
+            <span class="open-to-pill industry">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              Industry partnerships
+            </span>
+          </div>
+        </div>
+        <div class="card-actions-top">
+          <div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+        </div>
+      </div>
+
+      <!-- Body — two-column -->
+      <div class="card-body">
+        <div class="researcher-body-grid">
+          <!-- Left -->
+          <div>
+            <div class="section-label">Why this researcher is relevant to you</div>
+            <div class="why-relevant">
+              <div class="relevance-row">
+                <span class="rel-num">01</span>
+                <div class="rel-text">
+                  <strong>You both publish on Antarctic ice sheet dynamics.</strong>
+                  <span>His 2013 Bedmap2 paper shares 5 keywords with your saved papers on polar climate change.</span>
+                </div>
+              </div>
+              <div class="relevance-row">
+                <span class="rel-num">02</span>
+                <div class="rel-text">
+                  <strong>4 mutual collaborators in your network.</strong>
+                  <span>Incl. D. Schindler (UW Ecology) and C. Bitz (UW Atmospheric Sciences).</span>
+                </div>
+              </div>
+              <div class="relevance-row">
+                <span class="rel-num">03</span>
+                <div class="rel-text">
+                  <strong>His current work targets the same domain as your search.</strong>
+                  <span>Recent papers overlap with your "Climate Change" and "Emissions" filters.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-label">Primary Topics</div>
+            <div class="interests-grid">
+              <span class="interest-tag primary">Climatology</span>
+              <span class="interest-tag primary">Ice Core Analysis</span>
+              <span class="interest-tag primary">Oceanography</span>
+              <span class="interest-tag secondary">Geology</span>
+              <span class="interest-tag secondary">Paleoclimate</span>
+            </div>
+          </div>
+
+          <!-- Right -->
+          <div class="card-aside">
+            <div class="stats-grid">
+              <div class="stat-box">
+                <div class="stat-value teal">75</div>
+                <div class="stat-label">Papers</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Collaborators</div>
+              </div>
+              <div class="stat-box full">
+                <div class="stat-value">14.2k</div>
+                <div class="stat-label">Total Citations</div>
+              </div>
+            </div>
+            <div style="background:#0a1628;border:1px solid #1e3250;border-radius:12px;padding:14px;">
+              <div class="section-label">Recent Papers</div>
+              <div style="font-size:12px;color:#7ea8c9;line-height:1.5;">Bedmap2: improved ice bed, surface and thickness datasets for Antarctica<br><span style="color:#4a6580;">Nature · 2013</span></div>
+              <div style="height:1px;background:#1e3250;margin:10px 0;"></div>
+              <div style="font-size:12px;color:#7ea8c9;line-height:1.5;">West Antarctic ice sheet collapse triggered by anthropogenic warming<br><span style="color:#4a6580;">Nature · 2021</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action bar -->
+    <div class="card-action-bar">
+      <button class="action-btn-large skip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Pass <span class="kbd-inline">←</span>
+      </button>
+      <button class="action-btn-large details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Full Profile <span class="kbd-inline">↓</span>
+      </button>
+      <button class="action-btn-large save">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Connect <span class="kbd-inline">→</span>
+      </button>
+    </div>
+  </main>
+
+  <aside class="right-panel">
+    <div class="right-panel-header"><h3>My Shortlist</h3><span class="panel-count">5 saved</span></div>
+    <div class="right-panel-tabs"><div class="panel-tab">Papers (3)</div><div class="panel-tab active">Researchers (2)</div></div>
+    <div class="right-panel-list">
+      <div class="saved-row">
+        <div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <div class="saved-row-body"><div class="saved-row-title">Cecilia M. Bitz</div><div class="saved-row-meta">Sea Ice &amp; Climatology · <span>32 papers</span></div></div>
+        <button class="saved-row-remove">×</button>
+      </div>
+      <div class="saved-row">
+        <div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <div class="saved-row-body"><div class="saved-row-title">Daniel E. Schindler</div><div class="saved-row-meta">Ecology &amp; Fishery · <span>58 papers</span></div></div>
+        <button class="saved-row-remove">×</button>
+      </div>
+    </div>
+    <div class="panel-export-btn">Export Shortlist →</div>
+  </aside>
+</div>
+<div class="wf-note">Researcher card uses a hero row for avatar + name + badges. Two-column body: relevance reasons left, stats + recent papers right. Same action bar pattern as papers.</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SCREEN 5 — QUEUE COMPLETE / EMPTY STATE
+═══════════════════════════════════════════════════════════════ -->
+<div class="wf-section">
+<div class="wf-section-label">SCREEN 5 — QUEUE COMPLETE (EMPTY STATE)</div>
+<nav class="topnav">
+  <div class="topnav-logo">UW Research <span>Network</span></div>
+  <div class="topnav-divider"></div>
+  <div class="topnav-title">Shortlist</div>
+  <div class="topnav-actions">
+    <div class="topnav-badge" style="color:#4a6580;background:#0f1e35;border-color:#1e3250;">0 remaining</div>
+    <div class="topnav-avatar">KE</div>
+  </div>
+</nav>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Browse Mode</div>
+      <div class="mode-toggle">
+        <button class="mode-btn active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Papers <span class="mode-count">0</span></button>
+        <button class="mode-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Researchers <span class="mode-count">8</span></button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Queue Progress</div>
+      <div style="font-size:13px;font-weight:600;color:#4ecdc4;margin-bottom:4px;">All 16 reviewed ✓</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+      <div class="progress-meta"><span>100% complete</span><span>5 saved</span></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Expand Filters</div>
+      <div class="filter-list">
+        <div class="filter-item">Atmospheric <span class="filter-item-count">4</span></div>
+        <div class="filter-item">Oceanography <span class="filter-item-count">6</span></div>
+        <div class="filter-item">Geology <span class="filter-item-count">3</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="empty-center">
+      <div class="empty-icon">🔬</div>
+      <div class="empty-title">You're all caught up!</div>
+      <div class="empty-sub">You've reviewed all 16 climate change papers in your queue and saved <strong style="color:#4ecdc4;">5 papers</strong> to your shortlist.</div>
+      <div class="empty-actions">
+        <button class="empty-btn primary">View Saved Papers (5)</button>
+        <button class="empty-btn secondary">Expand Filters &amp; Reload Queue</button>
+        <button class="empty-btn secondary">Switch to Researcher Mode (8 queued)</button>
+      </div>
+    </div>
+  </main>
+
+  <aside class="right-panel">
+    <div class="right-panel-header"><h3>My Shortlist</h3><span class="panel-count">5 saved</span></div>
+    <div class="right-panel-tabs"><div class="panel-tab active">Papers (5)</div><div class="panel-tab">Researchers (2)</div></div>
+    <div class="right-panel-list">
+      <div class="saved-row"><div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="saved-row-body"><div class="saved-row-title">Assessing the Effects of Climate Change on Aquatic Invasive Species</div><div class="saved-row-meta">2008 · <span>1,278 citations</span></div></div><button class="saved-row-remove">×</button></div>
+      <div class="saved-row"><div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="saved-row-body"><div class="saved-row-title">Ecological Dynamics Across the Arctic Associated with Recent Climate Change</div><div class="saved-row-meta">2009 · <span>1,254 citations</span></div></div><button class="saved-row-remove">×</button></div>
+      <div class="saved-row"><div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="saved-row-body"><div class="saved-row-title">The 2022 Lancet Countdown on health and climate change</div><div class="saved-row-meta">2022 · <span>1,574 citations</span></div></div><button class="saved-row-remove">×</button></div>
+    </div>
+    <div class="panel-export-btn">Export Shortlist →</div>
+  </aside>
+</div>
+<div class="wf-note">Empty state fills center column. CTAs guide user to view saved items, broaden filters, or switch mode. Shortlist panel shows full count on right.</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SCREEN 6 — SAVED LIST / MY SHORTLIST (FULL VIEW)
+═══════════════════════════════════════════════════════════════ -->
+<div class="wf-section">
+<div class="wf-section-label">SCREEN 6 — MY SHORTLIST (FULL VIEW)</div>
+<nav class="topnav">
+  <div class="topnav-logo">UW Research <span>Network</span></div>
+  <div class="topnav-divider"></div>
+  <div class="topnav-title">My Shortlist</div>
+  <div class="topnav-actions">
+    <div class="topnav-badge">7 items total</div>
+    <div class="topnav-avatar">KE</div>
+  </div>
+</nav>
+<div class="app-shell" style="grid-template-columns: 220px 1fr;">
+  <!-- Sidebar: simpler nav for full-list view -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">View</div>
+      <div class="mode-toggle">
+        <button class="mode-btn active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Papers <span class="mode-count">5</span></button>
+        <button class="mode-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Researchers <span class="mode-count">2</span></button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Sort By</div>
+      <div class="filter-list">
+        <div class="filter-item active">Date Saved</div>
+        <div class="filter-item">Citation Count</div>
+        <div class="filter-item">Year Published</div>
+        <div class="filter-item">Relevance</div>
+      </div>
+    </div>
+    <div class="sidebar-section" style="margin-top:auto;">
+      <div class="sidebar-section-label">Export</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <button class="export-btn" style="width:100%;text-align:left;">BibTeX (.bib)</button>
+        <button class="export-btn" style="width:100%;text-align:left;">CSV Spreadsheet</button>
+        <button class="export-btn" style="width:100%;text-align:left;">Share Link</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main: full saved list -->
+  <main style="background:#0a1628;overflow-y:auto;">
+    <div class="saved-list-main">
+      <div class="saved-list-header">
+        <h2>Saved Papers</h2>
+        <div style="display:flex;gap:8px;">
+          <button class="export-btn">Export All</button>
+          <button style="padding:10px 20px;border-radius:10px;border:1px solid #4ecdc4;background:rgba(78,205,196,0.07);color:#4ecdc4;font-size:13px;font-weight:600;cursor:pointer;">← Back to Queue</button>
+        </div>
+      </div>
+
+      <div class="saved-full-row">
+        <div class="saved-full-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-full-body">
+          <div class="saved-full-title">Assessing the Effects of Climate Change on Aquatic Invasive Species</div>
+          <div class="saved-full-meta">Conservation Biology · 2008 · <span>1,278 citations</span> · UW Author: J. Leung</div>
+        </div>
+        <div class="saved-full-actions">
+          <span class="tag-chip">Climate Change</span>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <div class="saved-full-row">
+        <div class="saved-full-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-full-body">
+          <div class="saved-full-title">Ecological Dynamics Across the Arctic Associated with Recent Climate Change</div>
+          <div class="saved-full-meta">Science · 2009 · <span>1,254 citations</span> · UW Author: D. Schindler</div>
+        </div>
+        <div class="saved-full-actions">
+          <span class="tag-chip">Arctic &amp; Ice</span>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <div class="saved-full-row">
+        <div class="saved-full-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-full-body">
+          <div class="saved-full-title">The 2022 Lancet Countdown on health and climate change: health at the mercy of fossil fuels</div>
+          <div class="saved-full-meta">The Lancet · 2022 · <span>1,574 citations</span> · UW Author: K. Ebi</div>
+        </div>
+        <div class="saved-full-actions">
+          <span class="tag-chip">Public Health</span>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <div class="saved-full-row">
+        <div class="saved-full-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-full-body">
+          <div class="saved-full-title">The Shared Socioeconomic Pathways and their energy, land use, and greenhouse gas emissions implications</div>
+          <div class="saved-full-meta">Global Environmental Change · 2016 · <span>6,330 citations</span> · UW Author: K. Ebi</div>
+        </div>
+        <div class="saved-full-actions">
+          <span class="tag-chip">Emissions</span>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <div class="saved-full-row">
+        <div class="saved-full-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-full-body">
+          <div class="saved-full-title">Bedmap2: improved ice bed, surface and thickness datasets for Antarctica</div>
+          <div class="saved-full-meta">Nature · 2013 · <span>3,920 citations</span> · UW Author: E. Steig</div>
+        </div>
+        <div class="saved-full-actions">
+          <span class="tag-chip">Arctic &amp; Ice</span>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <div class="export-bar">
+        <button class="export-btn">Export as BibTeX</button>
+        <button class="export-btn">Export as CSV</button>
+        <button class="export-btn">Share Shortlist Link</button>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="wf-note">Full saved list uses two-column shell (no right panel needed). Sidebar has sort + export options. Each row shows topic tag and remove action. Export bar at bottom.</div>
+</div>
+
+</body>
+</html>
