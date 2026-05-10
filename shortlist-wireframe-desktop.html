@@ -1101,6 +1101,234 @@
 
 
 <!-- ═══════════════════════════════════════════════════════════════
+     SCREEN 1B — PAPER SHORTLIST (EXTERNAL VIEW)
+═══════════════════════════════════════════════════════════════ -->
+<div class="wf-section">
+<div class="wf-section-label">SCREEN 1B — PAPER SHORTLIST (EXTERNAL / PLAIN-LANGUAGE VIEW)</div>
+
+<!-- Top nav — external view indicator in nav -->
+<nav class="topnav">
+  <div class="topnav-logo">UW Research <span>Network</span></div>
+  <div class="topnav-divider"></div>
+  <div class="topnav-title">Shortlist</div>
+  <div class="topnav-actions">
+    <!-- View mode toggle -->
+    <div style="display:flex;align-items:center;background:#0f1e35;border:1px solid #1e3250;border-radius:20px;padding:3px;gap:2px;">
+      <div style="padding:5px 14px;border-radius:16px;font-size:12px;font-weight:600;color:#4a6580;cursor:pointer;">Researcher</div>
+      <div style="padding:5px 14px;border-radius:16px;background:#1a3455;border:1px solid rgba(160,126,240,0.4);font-size:12px;font-weight:600;color:#a07ef0;cursor:pointer;">External</div>
+    </div>
+    <div class="topnav-badge">12 papers in queue</div>
+    <div class="topnav-avatar">KE</div>
+  </div>
+</nav>
+
+<div class="app-shell">
+
+  <!-- Left sidebar — identical to Screen 1 -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Browse Mode</div>
+      <div class="mode-toggle">
+        <button class="mode-btn active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Papers
+          <span class="mode-count">12</span>
+        </button>
+        <button class="mode-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Researchers
+          <span class="mode-count">8</span>
+        </button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Filter by Topic</div>
+      <div class="filter-list">
+        <div class="filter-item active">Climate Change <span class="filter-item-count">12</span></div>
+        <div class="filter-item">Arctic &amp; Ice <span class="filter-item-count">7</span></div>
+        <div class="filter-item">Emissions <span class="filter-item-count">9</span></div>
+        <div class="filter-item">Public Health <span class="filter-item-count">5</span></div>
+        <div class="filter-item">Ecology <span class="filter-item-count">8</span></div>
+        <div class="filter-item">Atmospheric <span class="filter-item-count">4</span></div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Queue Progress</div>
+      <div style="font-size:13px;font-weight:600;color:#e8eaf0;margin-bottom:4px;">4 of 16 reviewed</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:25%"></div></div>
+      <div class="progress-meta"><span>25% complete</span><span>12 remaining</span></div>
+    </div>
+    <div class="sidebar-section" style="margin-top:auto;">
+      <div class="sidebar-section-label">Keyboard Shortcuts</div>
+      <div class="kbd-hints">
+        <div class="kbd-row"><span class="kbd">←</span> Skip paper</div>
+        <div class="kbd-row"><span class="kbd">→</span> Save to shortlist</div>
+        <div class="kbd-row"><span class="kbd">↓</span> View full details</div>
+        <div class="kbd-row"><span class="kbd">U</span> Undo last action</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+
+    <!-- External view banner above card -->
+    <div style="width:100%;max-width:700px;display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(160,126,240,0.07);border:1px solid rgba(160,126,240,0.25);border-radius:12px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a07ef0" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span style="font-size:12px;font-weight:600;color:#a07ef0;">External View</span>
+      <span style="font-size:12px;color:#7ea8c9;flex:1;">Showing plain-language summaries — as seen by industry partners &amp; collaborators outside UW.</span>
+      <span style="font-size:11px;color:#4a6580;cursor:pointer;text-decoration:underline;">Switch to Researcher View</span>
+    </div>
+
+    <div class="card">
+      <!-- Header — same as Screen 1 -->
+      <div class="card-header">
+        <div class="card-header-top">
+          <div class="domain-badge"><div class="dot"></div>Earth Sciences &amp; Geology</div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <!-- External view badge on the card itself -->
+            <div style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#a07ef0;background:rgba(160,126,240,0.1);border:1px solid rgba(160,126,240,0.3);padding:3px 10px;border-radius:20px;">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              External view
+            </div>
+            <div class="card-actions-top">
+              <div class="icon-btn" title="Share">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              </div>
+              <div class="icon-btn" title="Open in new tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="paper-title">The Shared Socioeconomic Pathways and their energy, land use, and greenhouse gas emissions implications</div>
+        <div class="paper-meta">
+          <div class="meta-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            2016
+          </div>
+          <div class="meta-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Global Environmental Change
+          </div>
+          <div class="meta-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Open Access
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="card-body">
+        <div class="card-body-grid">
+          <!-- Left column: summary instead of abstract -->
+          <div>
+            <!-- Plain-language summary block -->
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <div class="section-label" style="margin-bottom:0;">Summary</div>
+              <div style="font-size:10px;font-weight:600;color:#a07ef0;background:rgba(160,126,240,0.1);border:1px solid rgba(160,126,240,0.2);padding:2px 8px;border-radius:8px;letter-spacing:0.06em;">Plain language</div>
+            </div>
+            <div style="font-size:15px;line-height:1.75;color:#c8dcea;margin-bottom:20px;padding:16px 18px;background:rgba(160,126,240,0.05);border:1px solid rgba(160,126,240,0.15);border-radius:12px;">
+              Scientists mapped out five possible futures for how the world might develop by 2100—from a clean-energy, sustainable path to one heavily dependent on fossil fuels. The study shows how each future would affect global energy use, land, and the amount of carbon dioxide released into the atmosphere, helping policymakers prepare for different scenarios.
+            </div>
+
+            <div class="section-label">Topics</div>
+            <div class="keywords">
+              <span class="keyword highlight">Climate Change</span>
+              <span class="keyword highlight">Greenhouse Gas</span>
+              <span class="keyword highlight">Emissions</span>
+              <span class="keyword">Energy Systems</span>
+              <span class="keyword">Land Use</span>
+              <span class="keyword">Future Scenarios</span>
+              <span class="keyword">IPCC</span>
+            </div>
+          </div>
+
+          <!-- Right column: same stats + author -->
+          <div class="card-aside">
+            <div class="stats-grid">
+              <div class="stat-box">
+                <div class="stat-value teal">6,330</div>
+                <div class="stat-label">Citations</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-value">2016</div>
+                <div class="stat-label">Published</div>
+              </div>
+              <div class="stat-box full">
+                <div class="stat-value">1</div>
+                <div class="stat-label">UW Author</div>
+              </div>
+            </div>
+            <div>
+              <div class="section-label">Lead UW Author</div>
+              <div class="author-card">
+                <div class="author-avatar">KE</div>
+                <div class="author-info">
+                  <div class="author-name">Kristie L. Ebi</div>
+                  <div class="author-dept">Dept. of Global Health · 42 papers</div>
+                  <div class="author-link" style="margin-top:4px;">View profile →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action bar — same as Screen 1 -->
+    <div class="card-action-bar">
+      <button class="action-btn-large skip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Skip <span class="kbd-inline">←</span>
+      </button>
+      <button class="action-btn-large details">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Details <span class="kbd-inline">↓</span>
+      </button>
+      <button class="action-btn-large save">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Save to Shortlist <span class="kbd-inline">→</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- Right panel -->
+  <aside class="right-panel">
+    <div class="right-panel-header">
+      <h3>My Shortlist</h3>
+      <span class="panel-count">3 saved</span>
+    </div>
+    <div class="right-panel-tabs">
+      <div class="panel-tab active">Papers (3)</div>
+      <div class="panel-tab">Researchers (2)</div>
+    </div>
+    <div class="right-panel-list">
+      <div class="saved-row">
+        <div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-row-body"><div class="saved-row-title">Assessing the Effects of Climate Change on Aquatic Invasive Species</div><div class="saved-row-meta">2008 · <span>1,278 citations</span></div></div>
+        <button class="saved-row-remove">×</button>
+      </div>
+      <div class="saved-row">
+        <div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-row-body"><div class="saved-row-title">Ecological Dynamics Across the Arctic Associated with Recent Climate Change</div><div class="saved-row-meta">2009 · <span>1,254 citations</span></div></div>
+        <button class="saved-row-remove">×</button>
+      </div>
+      <div class="saved-row">
+        <div class="saved-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="saved-row-body"><div class="saved-row-title">The 2022 Lancet Countdown on health and climate change</div><div class="saved-row-meta">2022 · <span>1,574 citations</span></div></div>
+        <button class="saved-row-remove">×</button>
+      </div>
+    </div>
+    <div class="panel-export-btn">Export Shortlist →</div>
+  </aside>
+
+</div><!-- end app-shell -->
+<div class="wf-note">External view: top-nav toggle switches between Researcher ↔ External modes · Banner below nav contextualizes the mode · Card replaces "Abstract" with a plain-language "Summary" block in a distinct purple-tinted style · "Plain language" pill labels the section · Topics replace jargon keywords like "SSP Scenarios".</div>
+</div><!-- end section -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════
      SCREEN 2 — SKIP STATE (CARD FLIES LEFT)
 ═══════════════════════════════════════════════════════════════ -->
 <div class="wf-section">
