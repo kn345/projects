@@ -885,7 +885,7 @@
      SCREEN 1 — PAPER SHORTLIST (DEFAULT STATE)
 ═══════════════════════════════════════════════════════════════ -->
 <div class="wf-section">
-<div class="wf-section-label">SCREEN 1 — PAPER SHORTLIST (DEFAULT STATE)</div>
+<div class="wf-section-label">SCREEN 1 — PAPER SHORTLIST (RESEARCHER VIEW)</div>
 
 <!-- Top nav -->
 <nav class="topnav">
@@ -893,6 +893,14 @@
   <div class="topnav-divider"></div>
   <div class="topnav-title">Shortlist</div>
   <div class="topnav-actions">
+    <div style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#7ea8c9;background:#0f1e35;border:1px solid #1e3250;padding:5px 14px;border-radius:20px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Researcher view
+    </div>
+    <button style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#a07ef0;background:rgba(160,126,240,0.08);border:1px solid rgba(160,126,240,0.3);padding:5px 14px;border-radius:20px;cursor:pointer;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      Switch to External view
+    </button>
     <div class="topnav-badge">12 papers in queue</div>
     <div class="topnav-avatar">KE</div>
   </div>
@@ -1102,19 +1110,22 @@
      SCREEN 1B — PAPER SHORTLIST (EXTERNAL VIEW)
 ═══════════════════════════════════════════════════════════════ -->
 <div class="wf-section">
-<div class="wf-section-label">SCREEN 1B — PAPER SHORTLIST (EXTERNAL / PLAIN-LANGUAGE VIEW)</div>
+<div class="wf-section-label">SCREEN 1B — PAPER SHORTLIST (EXTERNAL VIEW)</div>
 
-<!-- Top nav — external view indicator in nav -->
+<!-- Top nav — external view active -->
 <nav class="topnav">
   <div class="topnav-logo">UW Research <span>Network</span></div>
   <div class="topnav-divider"></div>
   <div class="topnav-title">Shortlist</div>
   <div class="topnav-actions">
-    <!-- View mode toggle -->
-    <div style="display:flex;align-items:center;background:#0f1e35;border:1px solid #1e3250;border-radius:20px;padding:3px;gap:2px;">
-      <div style="padding:5px 14px;border-radius:16px;font-size:12px;font-weight:600;color:#4a6580;cursor:pointer;">Researcher</div>
-      <div style="padding:5px 14px;border-radius:16px;background:#1a3455;border:1px solid rgba(160,126,240,0.4);font-size:12px;font-weight:600;color:#a07ef0;cursor:pointer;">External</div>
+    <div style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#a07ef0;background:rgba(160,126,240,0.1);border:1px solid rgba(160,126,240,0.35);padding:5px 14px;border-radius:20px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      External view
     </div>
+    <button style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#7ea8c9;background:#0f1e35;border:1px solid #1e3250;padding:5px 14px;border-radius:20px;cursor:pointer;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Switch to Researcher view
+    </button>
     <div class="topnav-badge">12 papers in queue</div>
     <div class="topnav-avatar">KE</div>
   </div>
@@ -1322,7 +1333,7 @@
   </aside>
 
 </div><!-- end app-shell -->
-<div class="wf-note">External view: top-nav toggle switches between Researcher ↔ External modes · Banner below nav contextualizes the mode · Card replaces "Abstract" with a plain-language "Summary" block in a distinct purple-tinted style · "Plain language" pill labels the section · Topics replace jargon keywords like "SSP Scenarios".</div>
+<div class="wf-note">External view: active view shown as a static badge (purple) · single "Switch to Researcher view" button to flip back · banner below nav contextualizes the mode · card replaces Abstract with a plain-language Summary block · "Plain language" pill labels the section.</div>
 </div><!-- end section -->
 
 
