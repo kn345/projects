@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UW Research Network – Research Reels Wireframe (Desktop)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #060e1a;
+    color: #e8eaf0;
+  }
+
+  /* ── Wireframe section scaffolding ── */
+  .wf-section {
+    border-bottom: 2px dashed #1e3250;
+    padding: 32px 0 0;
+  }
+  .wf-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #ffa040;
+    background: rgba(255,160,64,0.08);
+    border: 1px dashed rgba(255,160,64,0.35);
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 6px;
+    margin: 0 24px 20px;
+  }
+  .wf-note {
+    font-size: 11px;
+    color: #ffa040;
+    background: rgba(255,160,64,0.07);
+    border-top: 1px dashed rgba(255,160,64,0.25);
+    padding: 8px 24px;
+    margin-top: 0;
+  }
+
+  /* ══════════════════════════════════════════
+     TOP NAV
+  ══════════════════════════════════════════ */
+  .topnav {
+    height: 52px;
+    background: #0a1628;
+    border-bottom: 1px solid #1e3250;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 20px;
+  }
+  .topnav-logo {
+    font-size: 13px;
+    font-weight: 700;
+    color: #7ea8c9;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .topnav-logo span { color: #4ecdc4; }
+  .topnav-divider { width: 1px; height: 24px; background: #1e3250; flex-shrink: 0; }
+  .topnav-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e8eaf0;
+    flex: 1;
+  }
+  .topnav-actions { display: flex; align-items: center; gap: 12px; }
+  .topnav-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.25);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .topnav-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a4a6e, #4ecdc4);
+    border: 2px solid #1e3250;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  /* ══════════════════════════════════════════
+     APP SHELL
+  ══════════════════════════════════════════ */
+  .app-shell {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: calc(100vh - 52px);
+  }
+  .app-shell.with-right-panel {
+    grid-template-columns: 240px 1fr;
+  }
+
+  /* ── Left Sidebar ── */
+  .sidebar {
+    background: #0a1628;
+    border-right: 1px solid #1e3250;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-section {
+    padding: 18px 16px;
+    border-bottom: 1px solid #1e3250;
+  }
+  .sidebar-section:last-child { border-bottom: none; flex: 1; }
+  .sidebar-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #3a5a78;
+    margin-bottom: 10px;
+  }
+
+  /* Nav buttons */
+  .nav-list { display: flex; flex-direction: column; gap: 4px; }
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #4a6580;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: all 0.15s;
+  }
+  .nav-btn:hover { background: #0f1e35; color: #7ea8c9; }
+  .nav-btn.active {
+    background: rgba(78,205,196,0.07);
+    border-color: rgba(78,205,196,0.2);
+    color: #4ecdc4;
+  }
+  .nav-btn-icon { font-size: 15px; flex-shrink: 0; }
+
+  /* Filter list */
+  .filter-list { display: flex; flex-direction: column; gap: 3px; }
+  .filter-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #4a6580;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-item:hover { background: #0f1e35; color: #7ea8c9; }
+  .filter-item.active {
+    background: rgba(78,205,196,0.07);
+    border-color: rgba(78,205,196,0.2);
+    color: #4ecdc4;
+  }
+  .filter-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #1e3a5f;
+    flex-shrink: 0;
+  }
+  .filter-item.active .filter-dot { background: #4ecdc4; }
+  .filter-label { flex: 1; margin-left: 8px; }
+  .filter-count { font-size: 10px; color: #2a4060; }
+  .filter-item.active .filter-count { color: rgba(78,205,196,0.5); }
+
+  /* Sidebar footer note */
+  .sidebar-note {
+    font-size: 11px;
+    color: #3a5a78;
+    line-height: 1.5;
+    padding: 14px 16px;
+    border-top: 1px solid #1e3250;
+    margin-top: auto;
+  }
+  .sidebar-note strong { color: #4a6580; display: block; margin-bottom: 4px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* Back link */
+  .back-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #4a6580;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-top: 1px solid #1e3250;
+    margin-top: auto;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: #7ea8c9; }
+
+  /* Up Next list */
+  .up-next-list { display: flex; flex-direction: column; gap: 10px; }
+  .up-next-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #1e3250;
+    background: #0f1e30;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .up-next-card:hover { border-color: rgba(78,205,196,0.3); }
+  .up-next-thumb {
+    width: 50px; height: 36px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #0f2040, #1a3a5a);
+    border: 1px solid #1e3a5f;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+  .up-next-info { flex: 1; min-width: 0; }
+  .up-next-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #b0c4d8;
+    line-height: 1.3;
+    margin-bottom: 3px;
+  }
+  .up-next-author { font-size: 10px; color: #4a6580; }
+
+  /* ══════════════════════════════════════════
+     MAIN CONTENT — FEED
+  ══════════════════════════════════════════ */
+  .main-content {
+    background: #060e1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 48px;
+    gap: 18px;
+    overflow-y: auto;
+  }
+  .main-content.player-area {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  /* Feed header */
+  .feed-header {
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .feed-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e8eaf0;
+  }
+  .feed-header-sub { font-size: 13px; color: #4a6580; margin-top: 2px; }
+  .feed-sort {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #4a6580;
+  }
+  .feed-sort select {
+    background: #0a1628;
+    border: 1px solid #1e3250;
+    color: #7ea8c9;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  /* ── Feed Cards (horizontal) ── */
+  .feed-card {
+    width: 100%;
+    max-width: 760px;
+    background: #0f2040;
+    border: 1px solid #1e3a5f;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .feed-card:hover {
+    border-color: rgba(78,205,196,0.35);
+    box-shadow: 0 6px 32px rgba(0,0,0,0.45);
+  }
+  .feed-card.faded { opacity: 0.72; }
+
+  /* Thumbnail side */
+  .feed-thumb {
+    width: 200px;
+    flex-shrink: 0;
+    position: relative;
+    background: linear-gradient(160deg, #0a1628, #1a3a5a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Mini viz inside thumb */
+  .thumb-viz {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    padding: 0 12px;
+    height: 60px;
+    width: 100%;
+    justify-content: center;
+  }
+  .thumb-bar {
+    width: 14px;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .thumb-globe {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    border: 2px solid rgba(78,205,196,0.3);
+    background: radial-gradient(circle at 35% 38%, rgba(78,205,196,0.2) 0%, rgba(10,22,40,0.8) 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .thumb-globe::after {
+    content: '';
+    position: absolute;
+    width: 100%; height: 35%;
+    top: 50%; left: 0;
+    transform: translateY(-50%);
+    border-top: 1px solid rgba(78,205,196,0.2);
+    border-bottom: 1px solid rgba(78,205,196,0.2);
+  }
+
+  .thumb-rings {
+    width: 70px; height: 70px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thumb-rings::before, .thumb-rings::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(78,205,196,0.25);
+  }
+  .thumb-rings::before { width: 70px; height: 70px; border-color: rgba(78,205,196,0.15); }
+  .thumb-rings::after { width: 45px; height: 45px; border-color: rgba(78,205,196,0.3); }
+  .thumb-rings-inner {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(78,205,196,0.25);
+    border: 2px solid #4ecdc4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #4ecdc4;
+    font-weight: 700;
+    z-index: 1;
+  }
+
+  /* Thumb overlays */
+  .thumb-overlay-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 8px;
+  }
+  .thumb-badge-new {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: #4ecdc4;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .thumb-badge-dur {
+    font-size: 10px;
+    font-weight: 600;
+    color: #e8eaf0;
+    background: rgba(6,14,26,0.75);
+    padding: 2px 7px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+  }
+  .thumb-play {
+    position: absolute;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(78,205,196,0.2);
+    border: 2px solid rgba(78,205,196,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #4ecdc4;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Three-act progress bar at bottom of thumb */
+  .thumb-acts {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 6px;
+    display: flex;
+    gap: 2px;
+    padding: 0 2px 2px;
+  }
+  .thumb-act-seg {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.1);
+  }
+  .thumb-act-seg.done { background: #4ecdc4; }
+  .thumb-act-seg.partial { background: linear-gradient(90deg, #4ecdc4 60%, rgba(255,255,255,0.1) 60%); }
+
+  /* Card content side */
+  .feed-content {
+    flex: 1;
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+  }
+  .feed-topic-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.08);
+    border: 1px solid rgba(78,205,196,0.2);
+    padding: 3px 10px;
+    border-radius: 12px;
+    align-self: flex-start;
+  }
+  .feed-topic-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: #4ecdc4; }
+
+  .feed-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #e8eaf0;
+    line-height: 1.35;
+  }
+
+  .feed-hook {
+    font-size: 13px;
+    font-style: italic;
+    color: #b0c4d8;
+    line-height: 1.55;
+    padding-left: 12px;
+    border-left: 3px solid #4ecdc4;
+  }
+
+  .feed-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #4a6580;
+  }
+  .feed-meta-avatar {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a4a6e, #4ecdc4);
+    border: 1px solid #1e3250;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .feed-meta-name { color: #7ea8c9; font-weight: 500; }
+  .feed-meta-sep { color: #1e3250; }
+  .feed-meta-views { margin-left: auto; color: #4a6580; }
+
+  .feed-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2px;
+  }
+  .btn-watch {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 20px;
+    border-radius: 10px;
+    border: none;
+    background: #4ecdc4;
+    color: #060e1a;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-watch:hover { background: #3bbbb2; transform: translateY(-1px); }
+  .btn-ghost {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: 1px solid #1e3250;
+    background: transparent;
+    color: #7ea8c9;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-ghost:hover { border-color: #7ea8c9; background: rgba(126,168,201,0.07); }
+
+  /* ══════════════════════════════════════════
+     PLAYER INNER LAYOUT (main-content split)
+  ══════════════════════════════════════════ */
+  .player-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    min-height: calc(100vh - 52px);
+  }
+
+  /* Player left column */
+  .player-col {
+    display: flex;
+    flex-direction: column;
+    background: #060e1a;
+    overflow-y: auto;
+  }
+
+  /* Video viewport */
+  .player-viewport {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, #0a1a30, #0d2a40, #091a20);
+    flex-shrink: 0;
+  }
+  .player-viewport.act3 {
+    background: linear-gradient(160deg, #091a14, #0d2a1e, #0d2018);
+  }
+
+  /* Player viz */
+  .player-viz-bars {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 80px 60px;
+  }
+  .player-bar {
+    width: 32px;
+    border-radius: 4px 4px 0 0;
+    opacity: 0.75;
+  }
+
+  .player-viz-rings {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .player-ring-wrap {
+    position: relative;
+    width: 200px; height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .player-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid;
+  }
+  .player-ring-1 { width: 200px; height: 200px; border-color: rgba(78,205,196,0.12); }
+  .player-ring-2 { width: 150px; height: 150px; border-color: rgba(78,205,196,0.2); }
+  .player-ring-3 { width: 100px; height: 100px; border-color: rgba(78,205,196,0.35); }
+  .player-ring-4 { width: 56px; height: 56px; border-color: #4ecdc4; background: rgba(78,205,196,0.1); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+
+  /* Player overlays */
+  .player-overlay-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(6,14,26,0.7) 0%, transparent 100%);
+  }
+  .player-act-badge {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4ecdc4;
+    background: rgba(6,14,26,0.6);
+    border: 1px solid rgba(78,205,196,0.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+  }
+  .player-close {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(6,14,26,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #7ea8c9;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+  }
+  .player-overlay-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 28px 28px;
+    background: linear-gradient(to top, rgba(6,14,26,0.88) 0%, transparent 100%);
+  }
+  .player-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #e8eaf0;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .player-hook {
+    font-size: 14px;
+    font-style: italic;
+    color: #b0c4d8;
+    line-height: 1.55;
+    padding-left: 14px;
+    border-left: 3px solid #4ecdc4;
+    margin-bottom: 14px;
+  }
+  .player-researcher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .player-researcher-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a4a6e, #4ecdc4);
+    border: 2px solid rgba(78,205,196,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .player-researcher-name { font-size: 13px; font-weight: 600; color: #c8dcea; }
+  .player-researcher-dept { font-size: 11px; color: #4a6580; }
+
+  /* Controls bar */
+  .player-controls-wrap {
+    flex-shrink: 0;
+    background: #0a1628;
+    border-bottom: 1px solid #1e3250;
+    padding: 0;
+  }
+
+  .act-timeline {
+    display: flex;
+    height: 6px;
+    gap: 0;
+  }
+  .act-seg {
+    flex: 1;
+    background: #111e30;
+    position: relative;
+    overflow: hidden;
+  }
+  .act-seg + .act-seg { border-left: 2px solid #060e1a; }
+  .act-seg-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: #4ecdc4;
+    transition: width 0.3s;
+  }
+  .act-seg.done .act-seg-fill { width: 100%; }
+  .act-seg.done { background: rgba(78,205,196,0.2); }
+
+  .controls-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+  }
+  .ctrl-btn {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid #1e3250;
+    background: #0f1e30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: #7ea8c9;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .ctrl-btn:hover { border-color: #4ecdc4; color: #4ecdc4; }
+  .ctrl-btn.play-pause {
+    width: 40px; height: 40px;
+    background: #4ecdc4;
+    border-color: #4ecdc4;
+    color: #060e1a;
+    font-size: 16px;
+  }
+  .ctrl-btn.play-pause:hover { background: #3bbbb2; }
+  .act-labels {
+    display: flex;
+    flex: 1;
+    gap: 2px;
+  }
+  .act-label-item {
+    flex: 1;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #2a4060;
+    padding: 3px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .act-label-item.active { color: #4ecdc4; background: rgba(78,205,196,0.08); }
+  .act-label-item.done { color: rgba(78,205,196,0.5); }
+  .ctrl-time {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a6580;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+  .ctrl-spacer { flex: 1; }
+
+  /* ── Player Right Panel ── */
+  .player-right-panel {
+    background: #0a1628;
+    border-left: 1px solid #1e3250;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .panel-section {
+    padding: 18px 18px;
+    border-bottom: 1px solid #1e3250;
+  }
+  .panel-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #3a5a78;
+    margin-bottom: 14px;
+  }
+
+  /* Act summary rows */
+  .act-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #1e3250;
+    background: #0f1e30;
+    margin-bottom: 8px;
+    transition: border-color 0.15s;
+  }
+  .act-row:last-child { margin-bottom: 0; }
+  .act-row.active {
+    border-color: rgba(78,205,196,0.35);
+    background: rgba(78,205,196,0.04);
+  }
+  .act-row.done { opacity: 0.7; }
+  .act-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: #1e3250;
+    border: 1px solid #2a4a6e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #4a6580;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .act-num.active {
+    background: rgba(78,205,196,0.15);
+    border-color: rgba(78,205,196,0.4);
+    color: #4ecdc4;
+  }
+  .act-num.done {
+    background: rgba(78,205,196,0.1);
+    border-color: rgba(78,205,196,0.3);
+    color: #4ecdc4;
+    font-size: 12px;
+  }
+  .act-info { flex: 1; min-width: 0; }
+  .act-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #7ea8c9;
+    margin-bottom: 4px;
+  }
+  .act-row.active .act-name { color: #e8eaf0; }
+  .act-desc {
+    font-size: 11px;
+    color: #3a5a78;
+    line-height: 1.5;
+  }
+  .act-row.active .act-desc { color: #7ea8c9; }
+  .act-status {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .act-status.playing {
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.25);
+  }
+  .act-status.upcoming {
+    color: #2a4060;
+    background: #0f1e30;
+    border: 1px solid #1e3250;
+  }
+  .act-status.done-pill {
+    color: rgba(78,205,196,0.7);
+    background: rgba(78,205,196,0.07);
+    border: 1px solid rgba(78,205,196,0.2);
+  }
+
+  /* Panel CTAs */
+  .panel-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 18px;
+  }
+  .btn-panel-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 0;
+    border-radius: 10px;
+    border: none;
+    background: #4ecdc4;
+    color: #060e1a;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    width: 100%;
+  }
+  .btn-panel-primary:hover { background: #3bbbb2; }
+  .btn-panel-ghost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #1e3250;
+    background: transparent;
+    color: #7ea8c9;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    width: 100%;
+  }
+  .btn-panel-ghost:hover { border-color: #7ea8c9; background: rgba(126,168,201,0.07); }
+
+  /* ══════════════════════════════════════════
+     END CARD SCREEN
+  ══════════════════════════════════════════ */
+  .endcard-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    min-height: calc(100vh - 52px);
+  }
+
+  .endcard-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 52px 48px 48px;
+    gap: 28px;
+    background: #060e1a;
+    overflow-y: auto;
+  }
+
+  .endcard-header {
+    text-align: center;
+    width: 100%;
+    max-width: 520px;
+  }
+  .endcard-complete-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #4ecdc4;
+    background: rgba(78,205,196,0.1);
+    border: 1px solid rgba(78,205,196,0.25);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .endcard-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #e8eaf0;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .endcard-subtitle {
+    font-size: 13px;
+    color: #4a6580;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 14px;
+    width: 100%;
+    max-width: 520px;
+  }
+  .stat-box {
+    flex: 1;
+    background: #0f2040;
+    border: 1px solid #1e3a5f;
+    border-radius: 14px;
+    padding: 18px 14px;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #e8eaf0;
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .stat-value.teal { color: #4ecdc4; }
+  .stat-value.amber { color: #f0a050; }
+  .stat-label {
+    font-size: 11px;
+    color: #4a6580;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 520px;
+  }
+  .action-grid-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 18px;
+    border-radius: 12px;
+    border: 1px solid;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .action-grid-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+  .action-grid-btn.primary { border-color: #4ecdc4; color: #4ecdc4; background: rgba(78,205,196,0.07); }
+  .action-grid-btn.primary:hover { background: rgba(78,205,196,0.12); }
+  .action-grid-btn.amber { border-color: #f0a050; color: #f0a050; background: rgba(240,160,80,0.07); }
+  .action-grid-btn.amber:hover { background: rgba(240,160,80,0.12); }
+  .action-grid-btn.ghost { border-color: #1e3250; color: #7ea8c9; }
+  .action-grid-btn.ghost:hover { border-color: #7ea8c9; background: rgba(126,168,201,0.07); }
+  .action-grid-icon { font-size: 17px; }
+
+  /* End card right panel */
+  .endcard-right {
+    background: #0a1628;
+    border-left: 1px solid #1e3250;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 18px;
+    gap: 16px;
+    overflow-y: auto;
+  }
+  .endcard-right-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4a6580;
+    margin-bottom: 4px;
+  }
+  .related-reel-card {
+    background: #0f2040;
+    border: 1px solid #1e3a5f;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .related-reel-card:hover { border-color: rgba(78,205,196,0.35); }
+  .related-thumb {
+    height: 60px;
+    background: linear-gradient(135deg, #0a1628, #1a3a5a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-bottom: 1px solid #1e3250;
+  }
+  .related-play {
+    font-size: 18px;
+    color: rgba(78,205,196,0.7);
+  }
+  .related-dur {
+    position: absolute;
+    bottom: 6px; right: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #e8eaf0;
+    background: rgba(6,14,26,0.7);
+    padding: 1px 6px;
+    border-radius: 8px;
+  }
+  .related-info {
+    padding: 12px 14px;
+  }
+  .related-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #c8dcea;
+    line-height: 1.3;
+    margin-bottom: 5px;
+  }
+  .related-author { font-size: 11px; color: #4a6580; margin-bottom: 10px; }
+  .btn-watch-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(78,205,196,0.1);
+    color: #4ecdc4;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(78,205,196,0.2);
+    transition: all 0.15s;
+  }
+  .btn-watch-small:hover { background: rgba(78,205,196,0.18); }
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     SCREEN 1 — REEL FEED / BROWSE
+════════════════════════════════════════════════ -->
+<div class="wf-section">
+  <div class="wf-section-label">SCREEN 1 — REEL FEED / BROWSE</div>
+
+  <!-- Top Nav -->
+  <nav class="topnav">
+    <div class="topnav-logo">UW <span>Research</span> Network</div>
+    <div class="topnav-divider"></div>
+    <div class="topnav-title">Research Reels</div>
+    <div class="topnav-actions">
+      <div class="topnav-badge">▶ Reels</div>
+      <div class="topnav-avatar">KE</div>
+    </div>
+  </nav>
+
+  <!-- App Shell: sidebar + main (no right panel on feed) -->
+  <div class="app-shell">
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Navigate</div>
+        <div class="nav-list">
+          <button class="nav-btn">
+            <span class="nav-btn-icon">📄</span> Papers
+          </button>
+          <button class="nav-btn">
+            <span class="nav-btn-icon">👤</span> Researchers
+          </button>
+          <button class="nav-btn active">
+            <span class="nav-btn-icon">▶</span> Reels
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Filter by Topic</div>
+        <div class="filter-list">
+          <div class="filter-item active">
+            <div class="filter-dot"></div>
+            <span class="filter-label">All Topics</span>
+            <span class="filter-count">42</span>
+          </div>
+          <div class="filter-item">
+            <div class="filter-dot"></div>
+            <span class="filter-label">Climate Change</span>
+            <span class="filter-count">14</span>
+          </div>
+          <div class="filter-item">
+            <div class="filter-dot"></div>
+            <span class="filter-label">Arctic &amp; Ice</span>
+            <span class="filter-count">9</span>
+          </div>
+          <div class="filter-item">
+            <div class="filter-dot"></div>
+            <span class="filter-label">Emissions</span>
+            <span class="filter-count">7</span>
+          </div>
+          <div class="filter-item">
+            <div class="filter-dot"></div>
+            <span class="filter-label">Public Health</span>
+            <span class="filter-count">6</span>
+          </div>
+          <div class="filter-item">
+            <div class="filter-dot"></div>
+            <span class="filter-label">Atmospheric</span>
+            <span class="filter-count">6</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-note">
+        <strong>For You</strong>
+        Recommended based on your saved papers and research interests.
+      </div>
+    </aside>
+
+    <!-- Main Content: Feed -->
+    <main class="main-content">
+
+      <div class="feed-header">
+        <div>
+          <h2>Research Reels</h2>
+          <div class="feed-header-sub">30-second visual summaries of UW research</div>
+        </div>
+        <div class="feed-sort">
+          Sort:
+          <select>
+            <option>Trending</option>
+            <option>Newest</option>
+            <option>Most Cited</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Feed Card 1: Featured -->
+      <div class="feed-card">
+        <div class="feed-thumb" style="min-height: 170px;">
+          <!-- Mini bar chart viz -->
+          <div class="thumb-viz">
+            <div class="thumb-bar" style="height:28px; background:#4ecdc4;"></div>
+            <div class="thumb-bar" style="height:38px; background:#4ecdc4;"></div>
+            <div class="thumb-bar" style="height:52px; background:#f0a050;"></div>
+            <div class="thumb-bar" style="height:66px; background:#f0a050;"></div>
+            <div class="thumb-bar" style="height:55px; background:#e05c6a;"></div>
+            <div class="thumb-bar" style="height:44px; background:#e05c6a;"></div>
+          </div>
+          <!-- Play button overlay -->
+          <div class="thumb-play">▶</div>
+          <!-- Top badges -->
+          <div class="thumb-overlay-top">
+            <span class="thumb-badge-new">New</span>
+            <span class="thumb-badge-dur">▶ 0:30</span>
+          </div>
+          <!-- Three-act progress bar -->
+          <div class="thumb-acts">
+            <div class="thumb-act-seg"></div>
+            <div class="thumb-act-seg"></div>
+            <div class="thumb-act-seg"></div>
+          </div>
+        </div>
+        <div class="feed-content">
+          <div class="feed-topic-badge"><div class="dot"></div> Climate Change</div>
+          <div class="feed-title">When Pathways Diverge: The Story of the SSPs</div>
+          <div class="feed-hook">"By 2100, the choice we make today puts us on two completely different planets."</div>
+          <div class="feed-meta">
+            <div class="feed-meta-avatar">KE</div>
+            <span class="feed-meta-name">Kristie L. Ebi</span>
+            <span>·</span>
+            <span style="color:#4a6580;">Global Health</span>
+            <span class="feed-meta-sep">|</span>
+            <span class="feed-meta-views">1.2k views</span>
+          </div>
+          <div class="feed-actions">
+            <button class="btn-watch">▶ Watch Reel</button>
+            <button class="btn-ghost">🔖 Save</button>
+            <button class="btn-ghost">↗ Share</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feed Card 2 -->
+      <div class="feed-card">
+        <div class="feed-thumb" style="min-height: 160px;">
+          <div class="thumb-viz" style="align-items: center; height: 70px;">
+            <div class="thumb-globe"></div>
+          </div>
+          <div class="thumb-play">▶</div>
+          <div class="thumb-overlay-top">
+            <span style="opacity:0;"></span>
+            <span class="thumb-badge-dur">▶ 0:30</span>
+          </div>
+          <div class="thumb-acts">
+            <div class="thumb-act-seg done"></div>
+            <div class="thumb-act-seg done"></div>
+            <div class="thumb-act-seg"></div>
+          </div>
+        </div>
+        <div class="feed-content">
+          <div class="feed-topic-badge"><div class="dot"></div> Arctic &amp; Ice</div>
+          <div class="feed-title">The Tipping Point: Arctic Sea Ice in Freefall</div>
+          <div class="feed-hook">"In 30 years we've lost ice the size of Western Europe."</div>
+          <div class="feed-meta">
+            <div class="feed-meta-avatar" style="background: linear-gradient(135deg,#1a5a4e,#4ecdc4);">ES</div>
+            <span class="feed-meta-name">Eric J. Steig</span>
+            <span>·</span>
+            <span style="color:#4a6580;">Earth &amp; Space Sciences</span>
+            <span class="feed-meta-sep">|</span>
+            <span class="feed-meta-views">874 views</span>
+          </div>
+          <div class="feed-actions">
+            <button class="btn-watch">▶ Watch Reel</button>
+            <button class="btn-ghost">🔖 Save</button>
+            <button class="btn-ghost">↗ Share</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feed Card 3 (slightly faded) -->
+      <div class="feed-card faded">
+        <div class="feed-thumb" style="min-height: 150px;">
+          <div class="thumb-viz" style="align-items: center; height: 70px;">
+            <div style="display:flex; gap: 5px; align-items: flex-end;">
+              <div class="thumb-bar" style="height:32px; background:#e05c6a; width:12px;"></div>
+              <div class="thumb-bar" style="height:44px; background:#f0a050; width:12px;"></div>
+              <div class="thumb-bar" style="height:24px; background:#4ecdc4; width:12px;"></div>
+            </div>
+          </div>
+          <div class="thumb-play">▶</div>
+          <div class="thumb-overlay-top">
+            <span style="opacity:0;"></span>
+            <span class="thumb-badge-dur">▶ 0:30</span>
+          </div>
+          <div class="thumb-acts">
+            <div class="thumb-act-seg"></div>
+            <div class="thumb-act-seg"></div>
+            <div class="thumb-act-seg"></div>
+          </div>
+        </div>
+        <div class="feed-content">
+          <div class="feed-topic-badge" style="color:#7ea8c9; background:rgba(126,168,201,0.07); border-color:rgba(126,168,201,0.2);"><div class="dot" style="background:#7ea8c9;"></div> Public Health</div>
+          <div class="feed-title">Heat, Hunger, and the Health Cost of Fossil Fuels</div>
+          <div class="feed-meta" style="margin-top: 4px;">
+            <div class="feed-meta-avatar" style="background: linear-gradient(135deg,#1a3a6e,#6080c4);">CB</div>
+            <span class="feed-meta-name">Cecilia M. Bitz</span>
+            <span>·</span>
+            <span style="color:#4a6580;">Atmospheric Sciences</span>
+            <span class="feed-meta-sep">|</span>
+            <span class="feed-meta-views">521 views</span>
+          </div>
+          <div class="feed-actions">
+            <button class="btn-watch" style="background:#7ea8c9; color:#060e1a;">▶ Watch Reel</button>
+            <button class="btn-ghost">🔖 Save</button>
+            <button class="btn-ghost">↗ Share</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div><!-- /app-shell -->
+
+  <div class="wf-note">Horizontal feed cards suit desktop — thumbnail left, content right. Left sidebar handles navigation and filtering. No right panel on the feed view; content fills the remaining width up to 760px centered.</div>
+</div>
+<!-- /SCREEN 1 -->
+
+
+<!-- ════════════════════════════════════════════════
+     SCREEN 2 — ACTIVE REEL PLAYER (ACT 1: THE PROBLEM)
+════════════════════════════════════════════════ -->
+<div class="wf-section">
+  <div class="wf-section-label">SCREEN 2 — ACTIVE REEL PLAYER (ACT 1: THE PROBLEM)</div>
+
+  <nav class="topnav">
+    <div class="topnav-logo">UW <span>Research</span> Network</div>
+    <div class="topnav-divider"></div>
+    <div class="topnav-title">Research Reels</div>
+    <div class="topnav-actions">
+      <div class="topnav-badge">▶ Reels</div>
+      <div class="topnav-avatar">KE</div>
+    </div>
+  </nav>
+
+  <div class="app-shell">
+
+    <!-- Left Sidebar: Up Next -->
+    <aside class="sidebar">
+      <div class="sidebar-section" style="flex:1;">
+        <div class="sidebar-section-label">Up Next</div>
+        <div class="up-next-list">
+          <div class="up-next-card">
+            <div class="up-next-thumb">🧊</div>
+            <div class="up-next-info">
+              <div class="up-next-title">The Tipping Point: Arctic Sea Ice in Freefall</div>
+              <div class="up-next-author">E. Steig</div>
+            </div>
+          </div>
+          <div class="up-next-card">
+            <div class="up-next-thumb">🌡️</div>
+            <div class="up-next-info">
+              <div class="up-next-title">Heat, Hunger, and the Cost of Fossil Fuels</div>
+              <div class="up-next-author">C. Bitz</div>
+            </div>
+          </div>
+          <div class="up-next-card">
+            <div class="up-next-thumb">🌿</div>
+            <div class="up-next-info">
+              <div class="up-next-title">Ecological Dynamics Across the Arctic</div>
+              <div class="up-next-author">D. Schindler</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="back-link">← Back to Feed</a>
+    </aside>
+
+    <!-- Main: player layout (2-col inner grid) -->
+    <main class="main-content player-area">
+      <div class="player-layout">
+
+        <!-- Player Left Column -->
+        <div class="player-col">
+
+          <!-- 16:9 Video Viewport -->
+          <div class="player-viewport">
+            <!-- Viz: bar chart rising alarm motif -->
+            <div class="player-viz-bars">
+              <div class="player-bar" style="height:25%; background:#4ecdc4;"></div>
+              <div class="player-bar" style="height:35%; background:#4ecdc4;"></div>
+              <div class="player-bar" style="height:48%; background:#6ab8b4;"></div>
+              <div class="player-bar" style="height:58%; background:#f0a050;"></div>
+              <div class="player-bar" style="height:68%; background:#f0a050;"></div>
+              <div class="player-bar" style="height:78%; background:#e05c6a;"></div>
+              <div class="player-bar" style="height:85%; background:#e05c6a;"></div>
+            </div>
+            <!-- Top overlay -->
+            <div class="player-overlay-top">
+              <div class="player-act-badge">ACT 1 OF 3 · The Problem</div>
+              <div class="player-close">✕</div>
+            </div>
+            <!-- Bottom overlay -->
+            <div class="player-overlay-bottom">
+              <div class="player-title">When Pathways Diverge: The Story of the SSPs</div>
+              <div class="player-hook">"Every model, every scenario, every policy debate begins with a choice — and that choice has a name."</div>
+              <div class="player-researcher">
+                <div class="player-researcher-avatar">KE</div>
+                <div>
+                  <div class="player-researcher-name">Kristie L. Ebi</div>
+                  <div class="player-researcher-dept">Dept. of Global Health, UW</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls bar -->
+          <div class="player-controls-wrap">
+            <!-- Three-act segmented timeline -->
+            <div class="act-timeline">
+              <div class="act-seg" style="position:relative;">
+                <div class="act-seg-fill" style="width: 25%;"></div>
+              </div>
+              <div class="act-seg"></div>
+              <div class="act-seg"></div>
+            </div>
+            <!-- Act labels -->
+            <div style="display:flex; gap:2px; padding: 6px 20px 0; border-bottom: 1px solid #1e3250;">
+              <div class="act-label-item active" style="flex:1;">The Problem</div>
+              <div class="act-label-item" style="flex:1;">Why It Matters</div>
+              <div class="act-label-item" style="flex:1;">The Breakthrough</div>
+            </div>
+            <!-- Controls row -->
+            <div class="controls-row">
+              <div class="ctrl-btn">⟨⟨</div>
+              <div class="ctrl-btn play-pause">⏸</div>
+              <div class="ctrl-btn">🔊</div>
+              <div class="ctrl-time">0:07 / 0:30</div>
+              <div class="ctrl-spacer"></div>
+              <div class="ctrl-btn">⛶</div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /player-col -->
+
+        <!-- Player Right Panel -->
+        <div class="player-right-panel">
+          <div class="panel-section">
+            <div class="panel-section-label">Reel Structure</div>
+
+            <div class="act-row active">
+              <div class="act-num active">1</div>
+              <div class="act-info">
+                <div class="act-name">The Problem</div>
+                <div class="act-desc">Sets up the challenge that motivated the research.</div>
+              </div>
+              <div class="act-status playing">▶ Playing</div>
+            </div>
+
+            <div class="act-row">
+              <div class="act-num">2</div>
+              <div class="act-info">
+                <div class="act-name">Why It Matters</div>
+                <div class="act-desc">Explains the real-world stakes and who is affected.</div>
+              </div>
+              <div class="act-status upcoming">Upcoming</div>
+            </div>
+
+            <div class="act-row">
+              <div class="act-num">3</div>
+              <div class="act-info">
+                <div class="act-name">The Breakthrough</div>
+                <div class="act-desc">Reveals the key finding and its lasting impact.</div>
+              </div>
+              <div class="act-status upcoming">Upcoming</div>
+            </div>
+          </div>
+
+          <div class="panel-cta-group">
+            <button class="btn-panel-primary">📄 View Full Paper</button>
+            <button class="btn-panel-ghost">↗ Share Reel</button>
+          </div>
+        </div>
+        <!-- /player-right-panel -->
+
+      </div>
+      <!-- /player-layout -->
+    </main>
+
+  </div><!-- /app-shell -->
+
+  <div class="wf-note">Landscape 16:9 player replaces portrait mobile player. Act timeline and CTAs move to a right sidebar panel. Up Next reel list in left sidebar. Controls sit below the player viewport.</div>
+</div>
+<!-- /SCREEN 2 -->
+
+
+<!-- ════════════════════════════════════════════════
+     SCREEN 3 — REEL PLAYER (ACT 3: THE BREAKTHROUGH)
+════════════════════════════════════════════════ -->
+<div class="wf-section">
+  <div class="wf-section-label">SCREEN 3 — REEL PLAYER (ACT 3: THE BREAKTHROUGH)</div>
+
+  <nav class="topnav">
+    <div class="topnav-logo">UW <span>Research</span> Network</div>
+    <div class="topnav-divider"></div>
+    <div class="topnav-title">Research Reels</div>
+    <div class="topnav-actions">
+      <div class="topnav-badge">▶ Reels</div>
+      <div class="topnav-avatar">KE</div>
+    </div>
+  </nav>
+
+  <div class="app-shell">
+
+    <!-- Left Sidebar: Up Next (same as Screen 2) -->
+    <aside class="sidebar">
+      <div class="sidebar-section" style="flex:1;">
+        <div class="sidebar-section-label">Up Next</div>
+        <div class="up-next-list">
+          <div class="up-next-card">
+            <div class="up-next-thumb">🧊</div>
+            <div class="up-next-info">
+              <div class="up-next-title">The Tipping Point: Arctic Sea Ice in Freefall</div>
+              <div class="up-next-author">E. Steig</div>
+            </div>
+          </div>
+          <div class="up-next-card">
+            <div class="up-next-thumb">🌡️</div>
+            <div class="up-next-info">
+              <div class="up-next-title">Heat, Hunger, and the Cost of Fossil Fuels</div>
+              <div class="up-next-author">C. Bitz</div>
+            </div>
+          </div>
+          <div class="up-next-card">
+            <div class="up-next-thumb">🌿</div>
+            <div class="up-next-info">
+              <div class="up-next-title">Ecological Dynamics Across the Arctic</div>
+              <div class="up-next-author">D. Schindler</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="back-link">← Back to Feed</a>
+    </aside>
+
+    <!-- Main: player layout -->
+    <main class="main-content player-area">
+      <div class="player-layout">
+
+        <!-- Player Left Column -->
+        <div class="player-col">
+
+          <!-- 16:9 Video Viewport — Act 3 green gradient, rings/solution motif -->
+          <div class="player-viewport act3">
+            <!-- Concentric rings converging to checkmark -->
+            <div class="player-viz-rings">
+              <div class="player-ring-wrap">
+                <div class="player-ring player-ring-1"></div>
+                <div class="player-ring player-ring-2"></div>
+                <div class="player-ring player-ring-3"></div>
+                <div class="player-ring player-ring-4">✓</div>
+              </div>
+            </div>
+            <!-- Top overlay -->
+            <div class="player-overlay-top">
+              <div class="player-act-badge">ACT 3 OF 3 · The Breakthrough</div>
+              <div class="player-close">✕</div>
+            </div>
+            <!-- Bottom overlay -->
+            <div class="player-overlay-bottom">
+              <div class="player-title">When Pathways Diverge: The Story of the SSPs</div>
+              <div class="player-hook">"The SSPs are now the standard language of every IPCC climate model. 6,330 papers cite this work."</div>
+              <div class="player-researcher">
+                <div class="player-researcher-avatar">KE</div>
+                <div>
+                  <div class="player-researcher-name">Kristie L. Ebi</div>
+                  <div class="player-researcher-dept">Dept. of Global Health, UW</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls bar -->
+          <div class="player-controls-wrap">
+            <!-- Three-act segmented timeline — Acts 1 & 2 done, Act 3 at 80% -->
+            <div class="act-timeline">
+              <div class="act-seg done"><div class="act-seg-fill"></div></div>
+              <div class="act-seg done"><div class="act-seg-fill"></div></div>
+              <div class="act-seg" style="position:relative;">
+                <div class="act-seg-fill" style="width: 80%;"></div>
+              </div>
+            </div>
+            <!-- Act labels -->
+            <div style="display:flex; gap:2px; padding: 6px 20px 0; border-bottom: 1px solid #1e3250;">
+              <div class="act-label-item done" style="flex:1;">The Problem</div>
+              <div class="act-label-item done" style="flex:1;">Why It Matters</div>
+              <div class="act-label-item active" style="flex:1;">The Breakthrough</div>
+            </div>
+            <!-- Controls row -->
+            <div class="controls-row">
+              <div class="ctrl-btn">⟨⟨</div>
+              <div class="ctrl-btn play-pause">⏸</div>
+              <div class="ctrl-btn">🔊</div>
+              <div class="ctrl-time">0:26 / 0:30</div>
+              <div class="ctrl-spacer"></div>
+              <div class="ctrl-btn">⛶</div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /player-col -->
+
+        <!-- Player Right Panel -->
+        <div class="player-right-panel">
+          <div class="panel-section">
+            <div class="panel-section-label">Reel Structure</div>
+
+            <div class="act-row done">
+              <div class="act-num done">✓</div>
+              <div class="act-info">
+                <div class="act-name">The Problem</div>
+                <div class="act-desc">Sets up the challenge that motivated the research.</div>
+              </div>
+              <div class="act-status done-pill">✓ Act 1</div>
+            </div>
+
+            <div class="act-row done">
+              <div class="act-num done">✓</div>
+              <div class="act-info">
+                <div class="act-name">Why It Matters</div>
+                <div class="act-desc">Explains the real-world stakes and who is affected.</div>
+              </div>
+              <div class="act-status done-pill">✓ Act 2</div>
+            </div>
+
+            <div class="act-row active">
+              <div class="act-num active">3</div>
+              <div class="act-info">
+                <div class="act-name">The Breakthrough</div>
+                <div class="act-desc">Reveals the key finding and its lasting impact.</div>
+              </div>
+              <div class="act-status playing">▶ Act 3</div>
+            </div>
+          </div>
+
+          <div class="panel-cta-group">
+            <button class="btn-panel-primary">📄 View Full Paper</button>
+            <button class="btn-panel-ghost">↗ Share Reel</button>
+          </div>
+        </div>
+        <!-- /player-right-panel -->
+
+      </div>
+      <!-- /player-layout -->
+    </main>
+
+  </div><!-- /app-shell -->
+
+  <div class="wf-note">Same layout as Screen 2. Visual in player shifts to solution motif (concentric rings + checkmark). Acts 1 &amp; 2 shown as complete in the timeline and right panel. Act 3 progress bar at 80%.</div>
+</div>
+<!-- /SCREEN 3 -->
+
+
+<!-- ════════════════════════════════════════════════
+     SCREEN 4 — POST-REEL END CARD
+════════════════════════════════════════════════ -->
+<div class="wf-section">
+  <div class="wf-section-label">SCREEN 4 — POST-REEL END CARD</div>
+
+  <nav class="topnav">
+    <div class="topnav-logo">UW <span>Research</span> Network</div>
+    <div class="topnav-divider"></div>
+    <div class="topnav-title">Research Reels</div>
+    <div class="topnav-actions">
+      <div class="topnav-badge">▶ Reels</div>
+      <div class="topnav-avatar">KE</div>
+    </div>
+  </nav>
+
+  <div class="app-shell">
+
+    <!-- Left Sidebar: Up Next (same) -->
+    <aside class="sidebar">
+      <div class="sidebar-section" style="flex:1;">
+        <div class="sidebar-section-label">Up Next</div>
+        <div class="up-next-list">
+          <div class="up-next-card">
+            <div class="up-next-thumb">🧊</div>
+            <div class="up-next-info">
+              <div class="up-next-title">The Tipping Point: Arctic Sea Ice in Freefall</div>
+              <div class="up-next-author">E. Steig</div>
+            </div>
+          </div>
+          <div class="up-next-card">
+            <div class="up-next-thumb">🌡️</div>
+            <div class="up-next-info">
+              <div class="up-next-title">Heat, Hunger, and the Cost of Fossil Fuels</div>
+              <div class="up-next-author">C. Bitz</div>
+            </div>
+          </div>
+          <div class="up-next-card">
+            <div class="up-next-thumb">🌿</div>
+            <div class="up-next-info">
+              <div class="up-next-title">Ecological Dynamics Across the Arctic</div>
+              <div class="up-next-author">D. Schindler</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="back-link">← Back to Feed</a>
+    </aside>
+
+    <!-- Main: end card layout -->
+    <main class="main-content player-area">
+      <div class="endcard-layout">
+
+        <!-- End Card Left Column -->
+        <div class="endcard-col">
+
+          <!-- Header -->
+          <div class="endcard-header">
+            <div class="endcard-complete-badge">▶ Reel Complete</div>
+            <div class="endcard-title">When Pathways Diverge: The Story of the SSPs</div>
+            <div class="endcard-subtitle">Kristie L. Ebi · Dept. of Global Health, UW · 0:30</div>
+          </div>
+
+          <!-- Stats row -->
+          <div class="stats-row">
+            <div class="stat-box">
+              <div class="stat-value teal">6.3k</div>
+              <div class="stat-label">Citations</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value amber">+50%</div>
+              <div class="stat-label">CO₂ Rise</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Pathways</div>
+            </div>
+          </div>
+
+          <!-- Action grid 2×2 -->
+          <div class="action-grid">
+            <button class="action-grid-btn primary">
+              <span class="action-grid-icon">📄</span> Read the Paper
+            </button>
+            <button class="action-grid-btn amber">
+              <span class="action-grid-icon">👤</span> Connect with Kristie Ebi
+            </button>
+            <button class="action-grid-btn ghost">
+              <span class="action-grid-icon">🔖</span> Save Reel
+            </button>
+            <button class="action-grid-btn ghost">
+              <span class="action-grid-icon">↗</span> Share Reel
+            </button>
+          </div>
+
+        </div>
+        <!-- /endcard-col -->
+
+        <!-- End Card Right Panel: Related reels -->
+        <div class="endcard-right">
+          <div class="endcard-right-label">Up Next</div>
+
+          <div class="related-reel-card">
+            <div class="related-thumb">
+              <span class="related-play">▶</span>
+              <span class="related-dur">0:30</span>
+            </div>
+            <div class="related-info">
+              <div class="related-title">The Tipping Point: Arctic Sea Ice in Freefall</div>
+              <div class="related-author">Eric J. Steig · Earth &amp; Space Sciences</div>
+              <button class="btn-watch-small">Watch →</button>
+            </div>
+          </div>
+
+          <div class="related-reel-card">
+            <div class="related-thumb" style="background: linear-gradient(135deg, #0a1820, #1a2a3a);">
+              <span class="related-play">▶</span>
+              <span class="related-dur">0:30</span>
+            </div>
+            <div class="related-info">
+              <div class="related-title">Heat, Hunger, and the Health Cost of Fossil Fuels</div>
+              <div class="related-author">Cecilia M. Bitz · Atmospheric Sciences</div>
+              <button class="btn-watch-small">Watch →</button>
+            </div>
+          </div>
+        </div>
+        <!-- /endcard-right -->
+
+      </div>
+      <!-- /endcard-layout -->
+    </main>
+
+  </div><!-- /app-shell -->
+
+  <div class="wf-note">End card replaces the player. Stats summarize the reel's key data points. 2×2 action grid for primary and secondary CTAs. Related reels in a right panel drive continuous watching.</div>
+</div>
+<!-- /SCREEN 4 -->
+
+</body>
+</html>
