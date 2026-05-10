@@ -98,8 +98,6 @@
     display: grid;
     grid-template-columns: 260px 1fr 320px;
     min-height: calc(100vh - 52px);
-    max-height: calc(100vh - 52px);
-    overflow: hidden;
   }
 
   /* ── Left sidebar ── */
@@ -1328,11 +1326,8 @@
 </div><!-- end section -->
 
 
-<!-- ═══════════════════════════════════════════════════════════════
-     SCREEN 2 — SKIP STATE (CARD FLIES LEFT)
-═══════════════════════════════════════════════════════════════ -->
-<div class="wf-section">
-<div class="wf-section-label">SCREEN 2 — SKIP STATE (CARD ANIMATES LEFT)</div>
+<div class="wf-section" style="display:none">
+<div class="wf-section-label">placeholder-start</div>
 <nav class="topnav">
   <div class="topnav-logo">UW Research <span>Network</span></div>
   <div class="topnav-divider"></div>
@@ -1406,15 +1401,10 @@
     <div class="panel-export-btn">Export Shortlist →</div>
   </aside>
 </div>
-<div class="wf-note">Card tilts and fades left. Toast with Undo appears in main area. Next card is already visible underneath. Shortlist panel unchanged.</div>
+<div class="wf-note">placeholder-end</div>
 </div>
-
-
-<!-- ═══════════════════════════════════════════════════════════════
-     SCREEN 3 — SAVE STATE (CARD FLIES RIGHT)
-═══════════════════════════════════════════════════════════════ -->
-<div class="wf-section">
-<div class="wf-section-label">SCREEN 3 — SAVE STATE (CARD ANIMATES RIGHT)</div>
+<div class="wf-section" style="display:none">
+<div class="wf-section-label">placeholder-screen3</div>
 <nav class="topnav">
   <div class="topnav-logo">UW Research <span>Network</span></div>
   <div class="topnav-divider"></div>
@@ -1482,15 +1472,15 @@
     <div class="panel-export-btn">Export Shortlist →</div>
   </aside>
 </div>
-<div class="wf-note">Card tilts and fades right. Right panel immediately updates with new item highlighted. Toast with Undo appears in main area.</div>
+<div class="wf-note">placeholder-screen3-end</div>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════════════════════
-     SCREEN 4 — RESEARCHER SHORTLIST CARD
+     SCREEN 2 — RESEARCHER SHORTLIST CARD
 ═══════════════════════════════════════════════════════════════ -->
 <div class="wf-section">
-<div class="wf-section-label">SCREEN 4 — RESEARCHER SHORTLIST CARD</div>
+<div class="wf-section-label">SCREEN 2 — RESEARCHER SHORTLIST CARD</div>
 <nav class="topnav">
   <div class="topnav-logo">UW Research <span>Network</span></div>
   <div class="topnav-divider"></div>
@@ -1669,7 +1659,7 @@
     <div class="panel-export-btn">Export Shortlist →</div>
   </aside>
 </div>
-<div class="wf-note">Researcher card uses a hero row for avatar + name + badges. Two-column body: relevance reasons left, stats + recent papers right. Same action bar pattern as papers.</div>
+<div class="wf-note">Researcher card: hero row for avatar + name + open-to badges · Two-column body: relevance reasons left, stats + recent papers right · Pass / Full Profile / Connect action bar below card matches the paper card pattern.</div>
 </div>
 
 
@@ -1677,7 +1667,7 @@
      SCREEN 5 — QUEUE COMPLETE / EMPTY STATE
 ═══════════════════════════════════════════════════════════════ -->
 <div class="wf-section">
-<div class="wf-section-label">SCREEN 5 — QUEUE COMPLETE (EMPTY STATE)</div>
+<div class="wf-section-label">SCREEN 3 — QUEUE COMPLETE (EMPTY STATE)</div>
 <nav class="topnav">
   <div class="topnav-logo">UW Research <span>Network</span></div>
   <div class="topnav-divider"></div>
@@ -1744,7 +1734,7 @@
      SCREEN 6 — SAVED LIST / MY SHORTLIST (FULL VIEW)
 ═══════════════════════════════════════════════════════════════ -->
 <div class="wf-section">
-<div class="wf-section-label">SCREEN 6 — MY SHORTLIST (FULL VIEW)</div>
+<div class="wf-section-label">SCREEN 4 — MY SHORTLIST (FULL VIEW)</div>
 <nav class="topnav">
   <div class="topnav-logo">UW Research <span>Network</span></div>
   <div class="topnav-divider"></div>
