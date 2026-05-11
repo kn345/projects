@@ -487,99 +487,269 @@ body {
 }
 .sidebar-sort .filter-item { cursor: pointer; }
 
-/* ── Reels screen ── */
-.reels-layout {
-  display: grid; grid-template-columns: 1fr 340px;
-  flex: 1; overflow: hidden;
+/* ── Reels feed (no right panel — sidebar + main only) ── */
+.reels-main {
+  overflow-y: auto; padding: 28px 40px;
+  display: flex; flex-direction: column; gap: 0;
 }
-.reels-feed {
-  overflow-y: auto; padding: 24px 32px;
-  display: flex; flex-direction: column; gap: 16px;
+.feed-header {
+  display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 24px;
 }
-.reel-card {
-  background: #0f2040; border: 1px solid #1e3a5f; border-radius: 18px;
-  overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
+.feed-header h2 { font-size: 20px; font-weight: 700; color: #e8eaf0; }
+.feed-header-sub { font-size: 13px; color: #4a6580; margin-top: 3px; }
+.feed-sort {
+  display: flex; align-items: center; gap: 8px; font-size: 13px; color: #4a6580;
 }
-.reel-card:hover { border-color: #4ecdc4; box-shadow: 0 6px 30px rgba(78,205,196,0.10); }
-.reel-thumb {
-  height: 180px; background: linear-gradient(135deg, #0a1f3d 0%, #112640 50%, #0d2235 100%);
-  display: flex; align-items: center; justify-content: center; position: relative;
+.feed-sort select {
+  background: #0f1e35; border: 1px solid #1e3250; color: #7ea8c9;
+  padding: 4px 10px; border-radius: 8px; font-size: 12px; cursor: pointer;
 }
-.reel-play-btn {
-  width: 56px; height: 56px; border-radius: 50%;
-  background: rgba(78,205,196,0.15); border: 2px solid rgba(78,205,196,0.5);
+/* Horizontal feed card */
+.feed-card {
+  display: flex; gap: 0;
+  background: #0f2040; border: 1px solid #1e3a5f; border-radius: 16px;
+  overflow: hidden; margin-bottom: 14px;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+.feed-card:hover { border-color: #4ecdc4; box-shadow: 0 4px 28px rgba(78,205,196,0.09); }
+.feed-card.faded { opacity: 0.65; }
+/* Thumbnail (left, fixed width) */
+.feed-thumb {
+  width: 220px; flex-shrink: 0; min-height: 160px;
+  background: linear-gradient(135deg, #081525 0%, #0f2240 55%, #0a1c35 100%);
   display: flex; align-items: center; justify-content: center;
-  font-size: 22px; color: #4ecdc4; transition: all 0.2s;
+  position: relative; overflow: hidden;
 }
-.reel-card:hover .reel-play-btn { background: rgba(78,205,196,0.3); transform: scale(1.08); }
-.reel-duration {
-  position: absolute; bottom: 10px; right: 14px;
-  font-size: 11px; font-weight: 600; color: #e8eaf0;
+.thumb-viz {
+  display: flex; align-items: flex-end; gap: 5px; padding: 0 20px; width: 100%; justify-content: center;
+}
+.thumb-bar { width: 14px; border-radius: 3px 3px 0 0; flex-shrink: 0; }
+.thumb-globe {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 2px solid #4ecdc4; box-shadow: 0 0 20px rgba(78,205,196,0.3);
+  background: radial-gradient(circle at 35% 35%, #1a4a6e, #060e1a);
+}
+.thumb-play {
+  position: absolute; width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(78,205,196,0.15); border: 2px solid rgba(78,205,196,0.55);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #4ecdc4; cursor: pointer;
+  transition: background 0.18s, transform 0.18s;
+}
+.feed-card:hover .thumb-play { background: rgba(78,205,196,0.28); transform: scale(1.08); }
+.thumb-overlay-top {
+  position: absolute; top: 10px; left: 10px; right: 10px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.thumb-badge-new {
+  font-size: 10px; font-weight: 700; color: #060e1a;
+  background: #4ecdc4; padding: 2px 8px; border-radius: 6px;
+}
+.thumb-badge-dur {
+  font-size: 10px; font-weight: 600; color: #e8eaf0;
   background: rgba(0,0,0,0.55); padding: 2px 8px; border-radius: 6px;
 }
-.reel-info { padding: 16px 20px 18px; }
-.reel-researcher {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+.thumb-acts {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: flex; gap: 2px; padding: 0 10px 8px;
 }
-.reel-avatar {
-  width: 36px; height: 36px; border-radius: 50%;
+.thumb-act-seg {
+  flex: 1; height: 3px; border-radius: 2px;
+  background: rgba(255,255,255,0.18);
+}
+.thumb-act-seg.done { background: #4ecdc4; }
+/* Feed card content (right) */
+.feed-content { flex: 1; padding: 18px 22px; display: flex; flex-direction: column; }
+.feed-topic-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+  color: #4ecdc4; background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.25);
+  padding: 3px 10px; border-radius: 12px; align-self: flex-start; margin-bottom: 8px;
+}
+.feed-topic-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: #4ecdc4; }
+.feed-title { font-size: 16px; font-weight: 700; color: #e8eaf0; line-height: 1.4; margin-bottom: 6px; }
+.feed-hook { font-size: 13px; color: #7ea8c9; font-style: italic; line-height: 1.5; margin-bottom: 10px; flex: 1; }
+.feed-meta {
+  display: flex; align-items: center; gap: 8px; font-size: 12px; color: #4a6580; margin-bottom: 12px; flex-wrap: wrap;
+}
+.feed-meta-avatar {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
   background: linear-gradient(135deg, #1a4a6e, #4ecdc4);
   display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0;
+  font-size: 9px; font-weight: 700; color: #fff;
 }
-.reel-name { font-size: 13px; font-weight: 600; color: #c8dcea; }
-.reel-affil { font-size: 11px; color: #4a6580; }
-.reel-title { font-size: 14px; font-weight: 600; color: #e8eaf0; line-height: 1.4; margin-bottom: 10px; }
-.reel-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.reel-tag {
-  font-size: 11px; padding: 3px 10px; border-radius: 10px;
-  background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.25); color: #4ecdc4;
+.feed-meta-name { font-weight: 600; color: #c8dcea; }
+.feed-meta-sep { color: #1e3250; }
+.feed-meta-views { color: #4a6580; }
+.feed-actions { display: flex; gap: 8px; }
+.btn-watch {
+  padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 700;
+  cursor: pointer; border: none; background: #4ecdc4; color: #060e1a;
+  transition: opacity 0.15s;
 }
-.reel-actions { display: flex; gap: 8px; margin-top: 12px; }
-.reel-btn {
-  padding: 7px 16px; border-radius: 8px; font-size: 12px; font-weight: 600;
-  cursor: pointer; border: 1px solid; transition: all 0.15s;
+.btn-watch:hover { opacity: 0.85; }
+.btn-ghost {
+  padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  cursor: pointer; border: 1px solid #1e3250; background: transparent; color: #7ea8c9;
+  transition: border-color 0.15s, color 0.15s;
 }
-.reel-btn.save  { border-color: #4ecdc4; color: #4ecdc4; background: rgba(78,205,196,0.07); }
-.reel-btn.save:hover  { background: rgba(78,205,196,0.18); }
-.reel-btn.skip  { border-color: #1e3250; color: #4a6580; background: transparent; }
-.reel-btn.skip:hover  { border-color: #7ea8c9; color: #7ea8c9; }
-.reels-sidebar {
-  background: #060e1a; border-left: 1px solid #1e3250;
+.btn-ghost:hover { border-color: #7ea8c9; }
+.btn-ghost.saved { border-color: rgba(78,205,196,0.4); color: #4ecdc4; }
+
+/* ── Reel Player ── */
+.reels-shell-player { display: flex; flex: 1; overflow: hidden; }
+/* Player left sidebar: Up Next */
+.player-left-sidebar {
+  width: 260px; flex-shrink: 0;
+  background: #0a1628; border-right: 1px solid #1e3250;
   display: flex; flex-direction: column; overflow: hidden;
 }
-.reels-sidebar-header {
-  padding: 16px 20px; border-bottom: 1px solid #1e3250;
-  font-size: 13px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: #4a6580;
-}
-.reels-queue {
-  flex: 1; overflow-y: auto; padding: 12px;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.reels-queue-item {
+.player-sidebar-section { padding: 18px 16px; border-bottom: 1px solid #1e3250; }
+.player-up-next-list { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; padding: 12px 16px; flex: 1; }
+.up-next-card {
   display: flex; align-items: center; gap: 10px;
   padding: 10px 12px; border-radius: 10px;
-  background: #0a1628; border: 1px solid #1e3250;
+  background: #0f1e35; border: 1px solid #1e3250;
   cursor: pointer; transition: border-color 0.15s;
 }
-.reels-queue-item:hover { border-color: #4ecdc4; }
-.reels-queue-item.active { border-color: rgba(78,205,196,0.4); background: rgba(78,205,196,0.05); }
-.rq-thumb {
-  width: 44px; height: 32px; border-radius: 6px; flex-shrink: 0;
+.up-next-card:hover { border-color: #4ecdc4; }
+.up-next-thumb {
+  width: 40px; height: 30px; border-radius: 6px; flex-shrink: 0;
   background: linear-gradient(135deg, #0a1f3d, #112640);
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.up-next-title { font-size: 11px; font-weight: 600; color: #c8dcea; line-height: 1.3; margin-bottom: 2px; }
+.up-next-author { font-size: 10px; color: #4a6580; }
+.back-link {
+  padding: 14px 16px; font-size: 12px; font-weight: 600; color: #4a6580;
+  cursor: pointer; border-top: 1px solid #1e3250; flex-shrink: 0;
+  transition: color 0.15s;
+}
+.back-link:hover { color: #4ecdc4; }
+/* Player main area */
+.player-area { flex: 1; display: flex; overflow: hidden; }
+.player-layout { display: flex; flex: 1; overflow: hidden; gap: 0; }
+.player-col { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+/* 16:9 viewport */
+.player-viewport {
+  flex: 1; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #060e1a 0%, #0a1c35 60%, #061525 100%);
+  display: flex; align-items: flex-end;
+}
+.player-viz-bars {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: flex; align-items: flex-end; gap: 6px; padding: 0 30px;
+  height: 65%;
+}
+.player-bar { flex: 1; border-radius: 4px 4px 0 0; opacity: 0.9; }
+.player-overlay-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 20px;
+}
+.player-act-badge {
+  font-size: 11px; font-weight: 700; color: #4ecdc4; letter-spacing: 0.1em;
+  background: rgba(78,205,196,0.12); border: 1px solid rgba(78,205,196,0.3);
+  padding: 4px 12px; border-radius: 8px;
+}
+.player-close {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
   display: flex; align-items: center; justify-content: center;
-  font-size: 12px; color: #4ecdc4;
+  font-size: 13px; color: #7ea8c9; cursor: pointer;
 }
-.rq-info { flex: 1; min-width: 0; }
-.rq-name { font-size: 12px; font-weight: 600; color: #c8dcea; }
-.rq-dur { font-size: 10px; color: #4a6580; }
-.coming-soon-banner {
-  background: rgba(160,126,240,0.07); border: 1px dashed rgba(160,126,240,0.3);
-  border-radius: 12px; padding: 10px 16px;
-  display: flex; align-items: center; gap: 8px;
-  font-size: 12px; color: #a07ef0; margin: 0 32px 0;
+.player-close:hover { color: #e8eaf0; }
+.player-overlay-bottom {
+  position: relative; z-index: 2; padding: 20px 24px;
+  background: linear-gradient(to top, rgba(6,14,26,0.95) 0%, transparent 100%);
+  width: 100%;
 }
+.player-title { font-size: 18px; font-weight: 700; color: #e8eaf0; line-height: 1.35; margin-bottom: 6px; }
+.player-hook { font-size: 13px; color: #7ea8c9; font-style: italic; margin-bottom: 12px; }
+.player-researcher { display: flex; align-items: center; gap: 10px; }
+.player-res-avatar {
+  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, #1a4a6e, #4ecdc4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff;
+}
+.player-res-name { font-size: 13px; font-weight: 600; color: #c8dcea; }
+.player-res-dept { font-size: 11px; color: #4a6580; }
+/* Controls */
+.player-controls-wrap { flex-shrink: 0; background: #0a1628; border-top: 1px solid #1e3250; }
+.act-timeline { display: flex; gap: 3px; padding: 12px 20px 0; }
+.act-seg {
+  flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.12);
+  position: relative; overflow: hidden;
+}
+.act-seg-fill { position: absolute; top: 0; left: 0; height: 100%; background: #4ecdc4; }
+.act-labels {
+  display: flex; gap: 3px; padding: 6px 20px 0; border-bottom: 1px solid #1e3250;
+}
+.act-label-item { flex: 1; font-size: 10px; color: #4a6580; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.act-label-item.active { color: #4ecdc4; }
+.controls-row {
+  display: flex; align-items: center; gap: 12px; padding: 10px 20px 12px;
+}
+.ctrl-btn {
+  font-size: 18px; color: #7ea8c9; cursor: pointer; transition: color 0.15s;
+  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+}
+.ctrl-btn:hover { color: #4ecdc4; }
+.ctrl-btn.play-pause { font-size: 22px; color: #4ecdc4; }
+.ctrl-time { font-size: 12px; color: #4a6580; font-family: monospace; }
+.ctrl-spacer { flex: 1; }
+/* Player right panel */
+.player-right-panel {
+  width: 280px; flex-shrink: 0; background: #060e1a;
+  border-left: 1px solid #1e3250;
+  display: flex; flex-direction: column; overflow-y: auto; padding: 20px;
+}
+.panel-section-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  color: #3a5a78; margin-bottom: 14px;
+}
+.act-row {
+  display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px;
+  border-radius: 10px; margin-bottom: 8px; border: 1px solid transparent;
+}
+.act-row.active { background: rgba(78,205,196,0.06); border-color: rgba(78,205,196,0.2); }
+.act-num {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  background: #0f1e35; border: 1px solid #1e3250;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #4a6580;
+}
+.act-num.active { background: rgba(78,205,196,0.15); border-color: rgba(78,205,196,0.4); color: #4ecdc4; }
+.act-name { font-size: 13px; font-weight: 600; color: #c8dcea; margin-bottom: 2px; }
+.act-desc { font-size: 11px; color: #4a6580; line-height: 1.4; }
+.act-status { font-size: 10px; font-weight: 700; margin-left: auto; padding-top: 2px; flex-shrink: 0; }
+.act-status.playing { color: #4ecdc4; }
+.act-status.upcoming { color: #3a5a78; }
+.panel-cta-group { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
+.btn-panel-primary {
+  padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 700;
+  cursor: pointer; border: 1px solid #4ecdc4;
+  background: rgba(78,205,196,0.1); color: #4ecdc4; transition: background 0.15s;
+}
+.btn-panel-primary:hover { background: rgba(78,205,196,0.2); }
+.btn-panel-ghost {
+  padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 600;
+  cursor: pointer; border: 1px solid #1e3250;
+  background: transparent; color: #7ea8c9; transition: border-color 0.15s;
+}
+.btn-panel-ghost:hover { border-color: #7ea8c9; }
+/* Reels feed main area */
+.reels-main {
+  flex: 1; overflow-y: auto; padding: 24px 40px 32px;
+  display: flex; flex-direction: column;
+}
+.reels-feed-header { margin-bottom: 20px; }
+.reels-feed-title { font-size: 22px; font-weight: 700; color: #e8eaf0; margin-bottom: 4px; }
+.reels-feed-sub { font-size: 13px; color: #4a6580; }
+
+/* Reels sidebar (feed mode) filter dot */
+.filter-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ecdc4; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 </style>
@@ -725,6 +895,9 @@ const state = {
   undoTimer: null,
   showUndo: false,
   lastAction: null,
+  reelView: 'feed',     // 'feed' | 'player'
+  activeReelIdx: 0,
+  reelFilter: 'All Topics',
 };
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
@@ -772,7 +945,7 @@ function renderQueueScreen() {
   const badgeDim = !isReels && queueEmpty();
 
   if (isReels) {
-    return `
+    const nav = `
     <nav class="topnav">
       <div class="topnav-logo">UW Research <span>Network</span></div>
       <div class="topnav-div"></div>
@@ -781,11 +954,11 @@ function renderQueueScreen() {
         <div class="queue-badge">6 reels available</div>
         <div class="avatar">KE</div>
       </div>
-    </nav>
-    <div class="app-shell">
-      ${renderSidebar()}
-      ${renderReelsScreen()}
-    </div>`;
+    </nav>`;
+    if (state.reelView === 'player') {
+      return nav + renderReelsPlayer();
+    }
+    return nav + `<div class="app-shell two-col">${renderReelsSidebar()}${renderReelsFeed()}</div>`;
   }
 
   return `
@@ -1026,57 +1199,262 @@ function renderResearcherCard() {
 }
 
 const REELS = [
-  { initials:'ES', name:'Eric J. Steig', topic:'Antarctic Ice Sheet Dynamics', duration:'4:12', tags:['Glaciology','Sea Level'], saved:false },
-  { initials:'CB', name:'Cecilia Bitz', topic:'Arctic Sea Ice Modeling & Climate Feedbacks', duration:'6:45', tags:['Arctic','Climate Modeling'], saved:false },
-  { initials:'KE', name:'Kristie L. Ebi', topic:'Health Impacts of Extreme Heat Events', duration:'3:28', tags:['Public Health','Heat'], saved:false },
-  { initials:'DS', name:'Daniel Schindler', topic:'Pacific Salmon in a Changing Climate', duration:'5:10', tags:['Ecology','Pacific NW'], saved:false },
-  { initials:'BH', name:'Benjamin Halpern', topic:'Ocean Health Index: 10-Year Retrospective', duration:'7:02', tags:['Marine Ecology','Ocean Health'], saved:false },
-  { initials:'MJ', name:'Monica Jimenez', topic:'Wildfire & Watershed Impacts in the PNW', duration:'4:50', tags:['Fire Ecology','Emissions'], saved:false },
+  {
+    initials:'ES', name:'Eric J. Steig', dept:'Earth & Space Sciences',
+    topic:'Antarctic Ice Sheet Dynamics',
+    hook:'"The ice sheet holds enough water to raise sea levels by 58 meters."',
+    topic_badge:'Glaciology', duration:'4:12', views:'1.2k', emoji:'🌊',
+    acts:['The Problem','Why It Matters','The Breakthrough'],
+    actDescs:[
+      'Current melt rates are accelerating beyond what models predicted.',
+      '58 meters of potential sea level rise affects 1 billion coastal people.',
+      'Bedmap2 reveals hidden bedrock topography driving irreversible ice loss.',
+    ], saved:false,
+  },
+  {
+    initials:'CB', name:'Cecilia Bitz', dept:'Atmospheric Sciences',
+    topic:'Arctic Sea Ice & Climate Feedbacks',
+    hook:'"When sea ice disappears, the Arctic warms twice as fast as the rest of the planet."',
+    topic_badge:'Arctic & Ice', duration:'6:45', views:'2.4k', emoji:'🧊',
+    acts:['The Problem','Why It Matters','The Breakthrough'],
+    actDescs:[
+      'Arctic sea ice is thinning 3× faster than global climate models predicted.',
+      'The albedo feedback loop amplifies warming far beyond the Arctic.',
+      'A new ice-ocean coupling model cuts projection uncertainty by 30%.',
+    ], saved:false,
+  },
+  {
+    initials:'KE', name:'Kristie L. Ebi', dept:'Dept. of Global Health',
+    topic:'Health Impacts of Extreme Heat Events',
+    hook:'"Extreme heat is the deadliest weather event globally — and it\'s accelerating."',
+    topic_badge:'Public Health', duration:'3:28', views:'3.1k', emoji:'🌡',
+    acts:['The Problem','Why It Matters','The Breakthrough'],
+    actDescs:[
+      'Heat-related deaths have doubled over two decades across six continents.',
+      'Elderly and outdoor workers face 8× greater mortality risk.',
+      'The Lancet Countdown tracks 47 health indicators across 194 countries.',
+    ], saved:false,
+  },
+  {
+    initials:'DS', name:'Daniel Schindler', dept:'Aquatic & Fishery Sciences',
+    topic:'Pacific Salmon in a Changing Climate',
+    hook:'"Salmon aren\'t just fish — they\'re the backbone of Pacific Northwest ecosystems."',
+    topic_badge:'Ecology', duration:'5:10', views:'1.8k', emoji:'🐟',
+    acts:['The Problem','Why It Matters','The Breakthrough'],
+    actDescs:[
+      'Wildfire and warming are collapsing salmon spawning habitat across the PNW.',
+      '17 salmon runs are listed as threatened or endangered.',
+      'Long-term stream monitoring reveals climate refugia that can anchor recovery.',
+    ], saved:false,
+  },
+  {
+    initials:'BH', name:'Benjamin Halpern', dept:'Aquatic & Fishery Sciences',
+    topic:'Ocean Health Index: 10-Year Retrospective',
+    hook:'"The ocean provides $2.5 trillion in services annually — and we\'re drawing down the account."',
+    topic_badge:'Oceanography', duration:'7:02', views:'4.2k', emoji:'🌊',
+    acts:['The Problem','Why It Matters','The Breakthrough'],
+    actDescs:[
+      'The average global ocean health score is 67/100 and declining.',
+      'Marine ecosystems underpin food security for 3 billion people.',
+      '10 years of index data reveal which policies actually improve ocean health.',
+    ], saved:false,
+  },
+  {
+    initials:'MJ', name:'Monica Jimenez', dept:'Environmental & Forest Sciences',
+    topic:'Wildfire & Watershed Impacts in the PNW',
+    hook:'"Every degree of warming doubles the area burned by wildfire in the Pacific Northwest."',
+    topic_badge:'Emissions', duration:'4:50', views:'2.7k', emoji:'🔥',
+    acts:['The Problem','Why It Matters','The Breakthrough'],
+    actDescs:[
+      'Wildfire severity in the PNW has increased 400% since 1980.',
+      'Ash and sediment destroy salmon spawning grounds for years after fire.',
+      '30 years of satellite data quantify the true cost to watershed health.',
+    ], saved:false,
+  },
 ];
 
-function renderReelsScreen() {
+function renderReelsSidebar() {
+  const topics = [
+    ['All Topics','6'],['Glaciology','1'],['Arctic & Ice','1'],
+    ['Public Health','1'],['Ecology','1'],['Oceanography','1'],['Emissions','1'],
+  ];
+  const active = state.reelFilter;
   return `
-  <div class="reels-layout">
-    <div class="reels-feed">
-      <div class="coming-soon-banner" style="margin-bottom:8px">
-        ✨ <strong style="color:#a07ef0">Research Reels</strong> — short-form video introductions from UW researchers. Save to shortlist or pass.
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sec-label">Browse Mode</div>
+      <div class="mode-toggle">
+        <button class="mode-btn" data-action="mode-papers">${svgIcon('paper')} Papers <span class="mode-count">${PAPERS.length}</span></button>
+        <button class="mode-btn" data-action="mode-researchers">${svgIcon('person')} Researchers <span class="mode-count">${RESEARCHERS.length}</span></button>
+        <button class="mode-btn active" data-action="mode-reels">${svgIcon('play')} Reels <span class="mode-count">6</span></button>
       </div>
-      ${REELS.map((reel, i) => `
-        <div class="reel-card" data-reel="${i}">
-          <div class="reel-thumb">
-            <div class="reel-play-btn" data-action="play-reel" data-idx="${i}">▶</div>
-            <span class="reel-duration">${reel.duration}</span>
-          </div>
-          <div class="reel-info">
-            <div class="reel-researcher">
-              <div class="reel-avatar">${reel.initials}</div>
-              <div>
-                <div class="reel-name">${reel.name}</div>
-                <div class="reel-affil">University of Washington</div>
-              </div>
-            </div>
-            <div class="reel-title">${reel.topic}</div>
-            <div class="reel-tags">${reel.tags.map(t=>`<span class="reel-tag">${t}</span>`).join('')}</div>
-            <div class="reel-actions">
-              <button class="reel-btn save" data-action="save-reel" data-idx="${i}">♥ Save to Shortlist</button>
-              <button class="reel-btn skip" data-action="skip-reel" data-idx="${i}">Skip</button>
-            </div>
-          </div>
-        </div>`).join('')}
     </div>
-    <aside class="reels-sidebar">
-      <div class="reels-sidebar-header">Up Next</div>
-      <div class="reels-queue">
-        ${REELS.map((reel, i) => `
-          <div class="reels-queue-item ${i===0?'active':''}">
-            <div class="rq-thumb">▶</div>
-            <div class="rq-info">
-              <div class="rq-name">${reel.name}</div>
-              <div class="rq-dur">${reel.duration} · ${reel.tags[0]}</div>
-            </div>
+    <div class="sidebar-section">
+      <div class="sec-label">Filter by Topic</div>
+      <div class="filter-list">
+        ${topics.map(([label, count]) => `
+          <div class="filter-item ${label===active?'active':''}" data-action="reel-filter" data-filter="${label}">
+            ${label} <span class="filter-count">${count}</span>
           </div>`).join('')}
       </div>
-    </aside>
+    </div>
+    <div class="sidebar-section push-bottom">
+      <div class="sec-label">For You</div>
+      <div style="font-size:12px;color:#4a6580;line-height:1.6">
+        Personalized based on your saved papers and interest in <strong style="color:#7ea8c9">Climate Change</strong> and <strong style="color:#7ea8c9">Glaciology</strong>.
+      </div>
+    </div>
+  </aside>`;
+}
+
+function renderFeedCard(reel, idx) {
+  const bars = [55,80,40,70,90,50,75,38,82,62,70,45];
+  return `
+  <div class="feed-card${reel.saved?' faded':''}">
+    <div class="feed-thumb" data-action="open-player" data-idx="${idx}" style="cursor:pointer">
+      <div class="thumb-viz">
+        ${bars.map((h,i)=>`<div class="thumb-bar" style="height:${h}%;background:${i%3===0?'#4ecdc4':i%3===1?'#1e4a6e':'#7ea8c9'};opacity:0.75"></div>`).join('')}
+      </div>
+      <div class="thumb-play" data-action="open-player" data-idx="${idx}">▶</div>
+      <div class="thumb-overlay-top">
+        <span class="thumb-badge-new">NEW</span>
+        <span class="thumb-badge-dur">${reel.duration}</span>
+      </div>
+      <div class="thumb-acts">
+        <div class="thumb-act-seg done"></div>
+        <div class="thumb-act-seg"></div>
+        <div class="thumb-act-seg"></div>
+      </div>
+    </div>
+    <div class="feed-content">
+      <div class="feed-topic-badge"><div class="dot"></div>${reel.topic_badge}</div>
+      <div class="feed-title">${reel.topic}</div>
+      <div class="feed-hook">${reel.hook}</div>
+      <div class="feed-meta">
+        <div class="feed-meta-avatar">${reel.initials}</div>
+        <span class="feed-meta-name">${reel.name}</span>
+        <span class="feed-meta-sep">·</span>
+        <span>${reel.dept}</span>
+        <span class="feed-meta-sep">·</span>
+        <span class="feed-meta-views">${reel.views} views</span>
+      </div>
+      <div class="feed-actions">
+        <button class="btn-watch" data-action="open-player" data-idx="${idx}">▶ Watch</button>
+        <button class="btn-ghost${reel.saved?' saved':''}" data-action="save-reel" data-idx="${idx}">${reel.saved?'♥ Saved':'♡ Save'}</button>
+        <button class="btn-ghost" data-action="share-reel" data-idx="${idx}">↗ Share</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderReelsFeed() {
+  const active = state.reelFilter;
+  const reels = active === 'All Topics'
+    ? REELS
+    : REELS.filter(r => r.topic_badge === active);
+  return `
+  <main class="reels-main">
+    <div class="reels-feed-header">
+      <div class="reels-feed-title">Research Reels</div>
+      <div class="reels-feed-sub">Short-form introductions to UW research — curated for your interests.</div>
+    </div>
+    ${reels.length === 0
+      ? `<div style="color:#4a6580;font-size:14px">No reels match this filter.</div>`
+      : reels.map(r => renderFeedCard(r, REELS.indexOf(r))).join('')}
+  </main>`;
+}
+
+function renderReelsPlayer() {
+  const reel = REELS[state.activeReelIdx];
+  const others = REELS.filter((_, i) => i !== state.activeReelIdx);
+  const bars = [55,80,40,70,90,50,75,38,82,62,70,45];
+  return `
+  <div class="reels-shell-player">
+    <div class="player-left-sidebar">
+      <div class="player-sidebar-section">
+        <div class="sec-label">Up Next</div>
+      </div>
+      <div class="player-up-next-list">
+        ${others.map(r => {
+          const i = REELS.indexOf(r);
+          return `
+          <div class="up-next-card" data-action="open-player" data-idx="${i}">
+            <div class="up-next-thumb">${r.emoji}</div>
+            <div>
+              <div class="up-next-title">${r.topic}</div>
+              <div class="up-next-author">${r.name} · ${r.duration}</div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="back-link" data-action="back-to-feed">← Back to Feed</div>
+    </div>
+    <div class="player-area">
+      <div class="player-layout">
+        <div class="player-col">
+          <div class="player-viewport">
+            <div class="player-viz-bars">
+              ${bars.map((h,i)=>`<div class="player-bar" style="height:${h}%;background:${i%3===0?'#4ecdc4':i%3===1?'#1e4a6e':'#7ea8c9'}"></div>`).join('')}
+            </div>
+            <div class="player-overlay-top">
+              <div class="player-act-badge">ACT 1 · THE PROBLEM</div>
+              <div class="player-close" data-action="back-to-feed">✕</div>
+            </div>
+            <div class="player-overlay-bottom">
+              <div class="player-title">${reel.topic}</div>
+              <div class="player-hook">${reel.hook}</div>
+              <div class="player-researcher">
+                <div class="player-res-avatar">${reel.initials}</div>
+                <div>
+                  <div class="player-res-name">${reel.name}</div>
+                  <div class="player-res-dept">${reel.dept}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="player-controls-wrap">
+            <div class="act-timeline">
+              <div class="act-seg"><div class="act-seg-fill" style="width:40%"></div></div>
+              <div class="act-seg"><div class="act-seg-fill" style="width:0%"></div></div>
+              <div class="act-seg"><div class="act-seg-fill" style="width:0%"></div></div>
+            </div>
+            <div class="act-labels">
+              <div class="act-label-item active">The Problem</div>
+              <div class="act-label-item">Why It Matters</div>
+              <div class="act-label-item">The Breakthrough</div>
+            </div>
+            <div class="controls-row">
+              <div class="ctrl-btn">⏮</div>
+              <div class="ctrl-btn play-pause">⏸</div>
+              <div class="ctrl-btn">⏭</div>
+              <div class="ctrl-time">1:42 / ${reel.duration}</div>
+              <div class="ctrl-spacer"></div>
+              <div class="ctrl-btn" title="Captions" style="font-size:12px;font-weight:700">CC</div>
+              <div class="ctrl-btn" title="Fullscreen">⛶</div>
+            </div>
+          </div>
+        </div>
+        <div class="player-right-panel">
+          <div class="panel-section-label">Reel Structure</div>
+          ${reel.acts.map((act, i) => `
+          <div class="act-row ${i===0?'active':''}">
+            <div class="act-num ${i===0?'active':''}">${i+1}</div>
+            <div style="flex:1">
+              <div class="act-name">${act}</div>
+              <div class="act-desc">${reel.actDescs[i]}</div>
+            </div>
+            <div class="act-status ${i===0?'playing':'upcoming'}">${i===0?'PLAYING':'UPCOMING'}</div>
+          </div>`).join('')}
+          <div class="panel-cta-group">
+            <button class="btn-panel-primary" data-action="save-reel" data-idx="${state.activeReelIdx}">
+              ${reel.saved ? '♥ Saved to Shortlist' : '♥ Save to Shortlist'}
+            </button>
+            <button class="btn-panel-ghost">↗ Share this Reel</button>
+            <button class="btn-panel-ghost">📄 View Full Paper</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>`;
 }
 
@@ -1331,16 +1709,19 @@ function handleAction(e) {
       state.mode = 'papers'; if (state.screen !== 'shortlist') state.screen = 'queue'; render(); break;
     case 'mode-researchers':
       state.mode = 'researchers'; if (state.screen !== 'shortlist') state.screen = 'queue'; render(); break;
-    case 'mode-reels':    state.mode = 'reels'; state.screen = 'queue'; render(); break;
-    case 'play-reel':     alert(`▶ Playing reel: "${REELS[+el.dataset.idx].topic}"\n\n(Video player coming soon)`); break;
+    case 'mode-reels':    state.mode = 'reels'; state.reelView = 'feed'; state.screen = 'queue'; render(); break;
+    case 'open-player':   state.reelView = 'player'; state.activeReelIdx = +el.dataset.idx; render(); break;
+    case 'back-to-feed':  state.reelView = 'feed'; render(); break;
+    case 'reel-filter':   state.reelFilter = el.dataset.filter; render(); break;
     case 'save-reel': {
       const reel = REELS[+el.dataset.idx];
+      reel.saved = true;
       if (!state.saved.researchers.find(r => r.name === reel.name)) {
-        state.saved.researchers.push({ id: 200 + +el.dataset.idx, initials: reel.initials, name: reel.name, affil: 'University of Washington', hIndex: '—', tag: reel.tags[0] });
+        state.saved.researchers.push({ id: 200 + +el.dataset.idx, initials: reel.initials, name: reel.name, affil: `University of Washington · ${reel.dept}`, hIndex: '—', tag: reel.topic_badge });
       }
       render(); break;
     }
-    case 'skip-reel':     render(); break;
+    case 'share-reel':    break;
     case 'filter':
       state.activeFilter[state.mode] = el.dataset.filter; render(); break;
     case 'filter-expand':
