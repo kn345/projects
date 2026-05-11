@@ -897,6 +897,7 @@ const state = {
   lastAction: null,
   reelView: 'feed',     // 'feed' | 'player'
   activeReelIdx: 0,
+  activeAct: 0,
   reelFilter: 'All Topics',
 };
 
@@ -1397,7 +1398,7 @@ function renderReelsPlayer() {
               ${bars.map((h,i)=>`<div class="player-bar" style="height:${h}%;background:${i%3===0?'#4ecdc4':i%3===1?'#1e4a6e':'#7ea8c9'}"></div>`).join('')}
             </div>
             <div class="player-overlay-top">
-              <div class="player-act-badge">ACT 1 · THE PROBLEM</div>
+              <div class="player-act-badge">ACT ${state.activeAct + 1} · ${reel.acts[state.activeAct].toUpperCase()}</div>
               <div class="player-close" data-action="back-to-feed">✕</div>
             </div>
             <div class="player-overlay-bottom">
@@ -1414,14 +1415,10 @@ function renderReelsPlayer() {
           </div>
           <div class="player-controls-wrap">
             <div class="act-timeline">
-              <div class="act-seg"><div class="act-seg-fill" style="width:40%"></div></div>
-              <div class="act-seg"><div class="act-seg-fill" style="width:0%"></div></div>
-              <div class="act-seg"><div class="act-seg-fill" style="width:0%"></div></div>
+              ${reel.acts.map((_, i) => `<div class="act-seg" data-action="reel-act" data-act="${i}" style="cursor:pointer"><div class="act-seg-fill" style="width:${i < state.activeAct ? '100%' : i === state.activeAct ? '40%' : '0%'}"></div></div>`).join('')}
             </div>
             <div class="act-labels">
-              <div class="act-label-item active">The Problem</div>
-              <div class="act-label-item">Why It Matters</div>
-              <div class="act-label-item">The Breakthrough</div>
+              ${reel.acts.map((act, i) => `<div class="act-label-item${i === state.activeAct ? ' active' : ''}" data-action="reel-act" data-act="${i}" style="cursor:pointer">${act}</div>`).join('')}
             </div>
             <div class="controls-row">
               <div class="ctrl-btn">⏮</div>
@@ -1437,13 +1434,13 @@ function renderReelsPlayer() {
         <div class="player-right-panel">
           <div class="panel-section-label">Reel Structure</div>
           ${reel.acts.map((act, i) => `
-          <div class="act-row ${i===0?'active':''}">
-            <div class="act-num ${i===0?'active':''}">${i+1}</div>
+          <div class="act-row ${i===state.activeAct?'active':''}" data-action="reel-act" data-act="${i}" style="cursor:pointer">
+            <div class="act-num ${i===state.activeAct?'active':''}">${i+1}</div>
             <div style="flex:1">
               <div class="act-name">${act}</div>
               <div class="act-desc">${reel.actDescs[i]}</div>
             </div>
-            <div class="act-status ${i===0?'playing':'upcoming'}">${i===0?'PLAYING':'UPCOMING'}</div>
+            <div class="act-status ${i===state.activeAct?'playing':'upcoming'}">${i===state.activeAct?'PLAYING':'UPCOMING'}</div>
           </div>`).join('')}
           <div class="panel-cta-group">
             <button class="btn-panel-primary" data-action="save-reel" data-idx="${state.activeReelIdx}">
@@ -1710,14 +1707,21 @@ function handleAction(e) {
     case 'mode-researchers':
       state.mode = 'researchers'; if (state.screen !== 'shortlist') state.screen = 'queue'; render(); break;
     case 'mode-reels':    state.mode = 'reels'; state.reelView = 'feed'; state.screen = 'queue'; render(); break;
-    case 'open-player':   state.reelView = 'player'; state.activeReelIdx = +el.dataset.idx; render(); break;
+    case 'open-player':   state.reelView = 'player'; state.activeReelIdx = +el.dataset.idx; state.activeAct = 0; render(); break;
+    case 'reel-act':      state.activeAct = +el.dataset.act; render(); break;
     case 'back-to-feed':  state.reelView = 'feed'; render(); break;
     case 'reel-filter':   state.reelFilter = el.dataset.filter; render(); break;
     case 'save-reel': {
-      const reel = REELS[+el.dataset.idx];
+      const reelIdx = +el.dataset.idx;
+      const reel = REELS[reelIdx];
       reel.saved = true;
       if (!state.saved.researchers.find(r => r.name === reel.name)) {
-        state.saved.researchers.push({ id: 200 + +el.dataset.idx, initials: reel.initials, name: reel.name, affil: `University of Washington · ${reel.dept}`, hIndex: '—', tag: reel.topic_badge });
+        state.saved.researchers.push({ id: 200 + reelIdx, initials: reel.initials, name: reel.name, affil: `University of Washington · ${reel.dept}`, hIndex: '—', tag: reel.topic_badge });
+      }
+      if (state.reelView === 'player') {
+        const nextIdx = (reelIdx + 1) % REELS.length;
+        state.activeReelIdx = nextIdx;
+        state.activeAct = 0;
       }
       render(); break;
     }
