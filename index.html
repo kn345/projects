@@ -3,87 +3,1169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ORIS — Wireframes</title>
+<title>UW Research Network – Shortlist</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #060e1a;
-    color: #e8eaf0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .container {
-    max-width: 600px;
-    width: 100%;
-    padding: 48px 24px;
-  }
-  h1 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #7ea8c9;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  h1 span { color: #4ecdc4; }
-  .subtitle {
-    font-size: 13px;
-    color: #3a5a78;
-    margin-bottom: 40px;
-    letter-spacing: 0.05em;
-  }
-  .group { margin-bottom: 32px; }
-  .group-label {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #3a5a78;
-    margin-bottom: 12px;
-  }
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    background: #0a1628;
-    border: 1px solid #1e3250;
-    border-radius: 12px;
-    text-decoration: none;
-    color: #c8dcea;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 8px;
-    transition: border-color 0.15s, color 0.15s;
-  }
-  a:hover { border-color: #4ecdc4; color: #4ecdc4; }
-  a span { font-size: 11px; color: #3a5a78; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #060e1a;
+  color: #e8eaf0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Top Nav ── */
+.topnav {
+  height: 52px;
+  background: #0a1628;
+  border-bottom: 1px solid #1e3250;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+.topnav-logo { font-size: 14px; font-weight: 700; color: #7ea8c9; letter-spacing: 0.05em; text-transform: uppercase; flex-shrink: 0; }
+.topnav-logo span { color: #4ecdc4; }
+.topnav-div { width: 1px; height: 24px; background: #1e3250; flex-shrink: 0; }
+.topnav-title { font-size: 14px; font-weight: 600; color: #e8eaf0; flex: 1; }
+.topnav-actions { display: flex; align-items: center; gap: 10px; }
+.view-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600;
+  padding: 5px 14px; border-radius: 20px; border: 1px solid; cursor: pointer;
+  transition: all 0.15s; white-space: nowrap;
+}
+.view-pill.active-res  { color: #7ea8c9; background: rgba(126,168,201,0.08); border-color: rgba(126,168,201,0.3); }
+.view-pill.active-ext  { color: #a07ef0; background: rgba(160,126,240,0.10); border-color: rgba(160,126,240,0.35); }
+.view-pill.inactive    { color: #4a6580; background: #0f1e35; border-color: #1e3250; }
+.view-pill.inactive:hover { color: #7ea8c9; border-color: #7ea8c9; }
+.queue-badge {
+  font-size: 12px; font-weight: 600; color: #4ecdc4;
+  background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.25);
+  padding: 4px 12px; border-radius: 20px; white-space: nowrap;
+}
+.queue-badge.dim { color: #4a6580; background: #0f1e35; border-color: #1e3250; }
+.avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, #1a4a6e, #4ecdc4);
+  border: 2px solid #1e3250;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+
+/* ── App shell ── */
+.app-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr 320px;
+  flex: 1;
+  overflow: hidden;
+}
+.app-shell.two-col { grid-template-columns: 220px 1fr; }
+
+/* ── Sidebar ── */
+.sidebar {
+  background: #0a1628;
+  border-right: 1px solid #1e3250;
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+}
+.sidebar-section { padding: 18px 16px; border-bottom: 1px solid #1e3250; }
+.sidebar-section.push-bottom { margin-top: auto; border-bottom: none; }
+.sec-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: #3a5a78; margin-bottom: 12px;
+}
+.mode-toggle { display: flex; flex-direction: column; gap: 6px; }
+.mode-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 10px;
+  border: 1px solid transparent; background: transparent;
+  color: #4a6580; font-size: 13px; font-weight: 600;
+  cursor: pointer; width: 100%; text-align: left; transition: all 0.15s;
+}
+.mode-btn:hover { background: #0f1e35; color: #7ea8c9; }
+.mode-btn.active { background: #111e35; border-color: rgba(78,205,196,0.3); color: #4ecdc4; }
+.mode-btn svg { width: 16px; height: 16px; flex-shrink: 0; stroke: currentColor; }
+.mode-count {
+  margin-left: auto; font-size: 11px;
+  background: #0a1628; border: 1px solid #1e3250;
+  padding: 1px 7px; border-radius: 10px; color: #4a6580; font-weight: 500;
+}
+.mode-btn.active .mode-count { background: rgba(78,205,196,0.1); border-color: rgba(78,205,196,0.25); color: #4ecdc4; }
+.filter-list { display: flex; flex-direction: column; gap: 4px; }
+.filter-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 10px; border-radius: 8px; border: 1px solid transparent;
+  color: #4a6580; font-size: 12px; cursor: pointer; transition: all 0.15s;
+}
+.filter-item:hover { background: #0f1e35; color: #7ea8c9; }
+.filter-item.active { background: rgba(78,205,196,0.07); border-color: rgba(78,205,196,0.2); color: #4ecdc4; }
+.filter-count { font-size: 10px; color: #2a4060; }
+.filter-item.active .filter-count { color: rgba(78,205,196,0.5); }
+.progress-bar { height: 4px; background: #111e30; border-radius: 2px; overflow: hidden; margin-top: 8px; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #1a4a6e, #4ecdc4); border-radius: 2px; transition: width 0.4s ease; }
+.progress-meta { display: flex; justify-content: space-between; font-size: 11px; color: #4a6580; margin-top: 6px; }
+.kbd-hints { display: flex; flex-direction: column; gap: 6px; }
+.kbd-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #4a6580; }
+.kbd {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 24px; height: 20px; padding: 0 5px;
+  background: #0f1e35; border: 1px solid #1e3250; border-radius: 4px;
+  font-size: 10px; font-weight: 600; color: #7ea8c9; font-family: monospace;
+}
+
+/* ── Main content ── */
+.main-content {
+  background: #0a1628;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+  overflow-y: auto; padding: 28px 40px; gap: 18px;
+  position: relative;
+}
+
+/* ── External view banner ── */
+.ext-banner {
+  width: 100%; max-width: 700px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px;
+  background: rgba(160,126,240,0.07); border: 1px solid rgba(160,126,240,0.25);
+  border-radius: 12px; animation: fadeIn 0.2s ease;
+}
+.ext-banner-title { font-size: 12px; font-weight: 600; color: #a07ef0; }
+.ext-banner-sub { font-size: 12px; color: #7ea8c9; flex: 1; }
+.ext-banner-link { font-size: 11px; color: #4a6580; cursor: pointer; text-decoration: underline; white-space: nowrap; }
+.ext-banner-link:hover { color: #7ea8c9; }
+
+/* ── Card ── */
+.card-wrap { width: 100%; max-width: 700px; position: relative; }
+.card {
+  width: 100%; background: #0f2040;
+  border: 1px solid #1e3a5f; border-radius: 20px;
+  overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  transition: box-shadow 0.15s;
+}
+.card-header { padding: 24px 28px 20px; border-bottom: 1px solid #1a3050; }
+.card-header-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 14px;
+}
+.domain-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; color: #4ecdc4;
+  background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.25);
+  padding: 4px 12px; border-radius: 20px; flex-shrink: 0;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: #4ecdc4; }
+.card-top-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.view-badge-sm {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px; border: 1px solid;
+}
+.view-badge-sm.res { color: #7ea8c9; background: rgba(126,168,201,0.08); border-color: #1e3250; }
+.view-badge-sm.ext { color: #a07ef0; background: rgba(160,126,240,0.1); border-color: rgba(160,126,240,0.3); }
+.icon-btn {
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid #1e3250; background: #0a1628;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #4a6580; transition: all 0.15s; font-size: 15px;
+}
+.icon-btn:hover { border-color: #4ecdc4; color: #4ecdc4; }
+.paper-title { font-size: 20px; font-weight: 700; line-height: 1.4; color: #e8eaf0; margin-bottom: 14px; }
+.paper-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.meta-chip {
+  display: flex; align-items: center; gap: 5px;
+  background: #0a1628; border: 1px solid #1e3250;
+  padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #7ea8c9;
+}
+.card-body { padding: 24px 28px; }
+.card-body-grid { display: grid; grid-template-columns: 1fr 220px; gap: 24px; align-items: start; }
+.body-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #3a5a78; margin-bottom: 10px; }
+.abstract-text { font-size: 14px; line-height: 1.7; color: #b0c4d8; margin-bottom: 20px; }
+.keywords { display: flex; flex-wrap: wrap; gap: 6px; }
+.kw {
+  font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 12px;
+  background: rgba(30,80,140,0.35); border: 1px solid rgba(78,140,200,0.2); color: #7ea8c9;
+}
+.kw.hi { background: rgba(78,205,196,0.12); border-color: rgba(78,205,196,0.3); color: #4ecdc4; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.stat-box {
+  background: #0a1628; border: 1px solid #1e3250;
+  border-radius: 12px; padding: 12px; text-align: center;
+}
+.stat-box.full { grid-column: span 2; }
+.stat-val { font-size: 20px; font-weight: 700; color: #e8eaf0; line-height: 1; margin-bottom: 4px; }
+.stat-val.teal { color: #4ecdc4; }
+.stat-lbl { font-size: 10px; color: #4a6580; text-transform: uppercase; letter-spacing: 0.08em; }
+.author-card {
+  background: #0a1628; border: 1px solid #1e3250; border-radius: 12px;
+  padding: 14px; display: flex; align-items: center; gap: 12px;
+}
+.author-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, #1e5f4a, #4ecdc4); border: 2px solid #0f2040;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.author-name { font-size: 13px; font-weight: 600; color: #c8dcea; margin-bottom: 2px; }
+.author-dept { font-size: 11px; color: #4a6580; }
+.author-link { font-size: 11px; color: #4ecdc4; margin-top: 4px; cursor: pointer; }
+
+/* external summary */
+.ext-summary {
+  background: rgba(160,126,240,0.06); border: 1px solid rgba(160,126,240,0.2);
+  border-radius: 12px; padding: 16px; margin-bottom: 20px;
+  font-size: 14px; line-height: 1.7; color: #b0c4d8; font-style: italic;
+}
+.ext-summary-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  color: #a07ef0; margin-bottom: 8px;
+}
+
+/* ── Researcher card specifics ── */
+.researcher-hero {
+  display: flex; align-items: center; gap: 20px;
+  padding: 24px 28px 20px; border-bottom: 1px solid #1a3050;
+}
+.res-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, #1a4a6e, #4ecdc4);
+  border: 3px solid #4ecdc4;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; font-weight: 700; color: #fff; flex-shrink: 0; position: relative;
+}
+.online-dot {
+  width: 14px; height: 14px; background: #4ecdc4; border-radius: 50%;
+  border: 3px solid #0f2040; position: absolute; bottom: 2px; right: 2px;
+}
+.res-hero-info { flex: 1; min-width: 0; }
+.res-hero-info h2 { font-size: 24px; font-weight: 700; color: #e8eaf0; margin-bottom: 4px; }
+.res-affil { font-size: 13px; color: #7ea8c9; margin-bottom: 10px; }
+.res-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.match-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 700; color: #4ecdc4;
+  background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.3);
+  padding: 4px 12px; border-radius: 12px;
+}
+.open-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 14px; border: 1px solid;
+}
+.open-pill.collab    { color: #4ecdc4; border-color: rgba(78,205,196,0.3); background: rgba(78,205,196,0.07); }
+.open-pill.industry  { color: #f0a050; border-color: rgba(240,160,80,0.3); background: rgba(240,160,80,0.07); }
+.res-body-grid { display: grid; grid-template-columns: 1fr 220px; gap: 24px; align-items: start; }
+.why-relevant { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.rel-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: #0a1628; border: 1px solid #1e3250;
+  border-radius: 10px; padding: 12px 14px;
+}
+.rel-num { font-size: 11px; font-weight: 700; color: #2a4060; min-width: 20px; padding-top: 1px; }
+.rel-text strong { display: block; font-size: 13px; font-weight: 600; color: #c8dcea; margin-bottom: 3px; }
+.rel-text span { font-size: 12px; color: #4a6580; line-height: 1.4; }
+.interests-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.int-tag { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 12px; }
+.int-tag.primary { background: rgba(78,205,196,0.12); border: 1px solid rgba(78,205,196,0.3); color: #4ecdc4; }
+.int-tag.secondary { background: rgba(30,80,140,0.35); border: 1px solid rgba(78,140,200,0.2); color: #7ea8c9; }
+.res-stat-col { display: flex; flex-direction: column; gap: 8px; }
+
+/* ── Action bar ── */
+.action-bar {
+  width: 100%; max-width: 700px;
+  display: flex; align-items: center; gap: 14px;
+}
+.action-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 13px 28px; border-radius: 12px; border: 2px solid;
+  background: transparent; font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all 0.15s; flex: 1;
+}
+.action-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+.action-btn.skip  { border-color: #e05c6a; color: #e05c6a; }
+.action-btn.skip:hover  { background: rgba(224,92,106,0.08); }
+.action-btn.save  { border-color: #4ecdc4; color: #4ecdc4; background: rgba(78,205,196,0.05); }
+.action-btn.save:hover  { background: rgba(78,205,196,0.12); }
+.action-btn.details { border-color: #1e3250; color: #7ea8c9; flex: 0; padding: 13px 20px; }
+.action-btn.details:hover { border-color: #7ea8c9; }
+.action-btn.connect { border-color: #4ecdc4; color: #4ecdc4; background: rgba(78,205,196,0.05); }
+.action-btn.connect:hover { background: rgba(78,205,196,0.12); }
+.action-btn.pass    { border-color: #e05c6a; color: #e05c6a; }
+.action-btn.pass:hover    { background: rgba(224,92,106,0.08); }
+.kbd-inline {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 20px; height: 18px; padding: 0 4px;
+  background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 3px; font-size: 10px; font-family: monospace; opacity: 0.7;
+}
+
+/* ── Swipe overlay badges ── */
+.swipe-badge {
+  position: absolute; top: 28px;
+  padding: 8px 20px; border-radius: 10px;
+  font-size: 22px; font-weight: 900; letter-spacing: 0.05em;
+  border: 3px solid; pointer-events: none; z-index: 10;
+  opacity: 0; transition: opacity 0.15s;
+}
+.swipe-badge.nope { left: 28px; color: #e05c6a; border-color: #e05c6a; transform: rotate(-10deg); }
+.swipe-badge.like { right: 28px; color: #4ecdc4; border-color: #4ecdc4; transform: rotate(10deg); }
+.swipe-badge.show { opacity: 1; }
+
+/* ── Card animations ── */
+@keyframes exitLeft  { to { transform: translateX(-130%) rotate(-8deg); opacity: 0; } }
+@keyframes exitRight { to { transform: translateX(130%)  rotate(8deg);  opacity: 0; } }
+@keyframes enterCard { from { transform: translateX(50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.exit-left  { animation: exitLeft  0.32s ease forwards; }
+.exit-right { animation: exitRight 0.32s ease forwards; }
+.enter-card { animation: enterCard 0.3s ease; }
+
+/* ── Undo toast ── */
+.undo-toast {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+  background: #1a3050; border: 1px solid #1e3a5f; border-radius: 12px;
+  padding: 12px 20px; display: flex; align-items: center; gap: 12px;
+  font-size: 13px; color: #7ea8c9; z-index: 100;
+  animation: toastIn 0.25s ease;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.undo-btn {
+  font-size: 12px; font-weight: 700; color: #4ecdc4; cursor: pointer;
+  background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.3);
+  padding: 4px 12px; border-radius: 8px; transition: all 0.15s;
+}
+.undo-btn:hover { background: rgba(78,205,196,0.2); }
+@keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(12px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+/* ── Right panel ── */
+.right-panel {
+  background: #060e1a; border-left: 1px solid #1e3250;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.rp-header {
+  padding: 16px 20px; border-bottom: 1px solid #1e3250;
+  display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+}
+.rp-header h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #4a6580; }
+.panel-count {
+  font-size: 12px; font-weight: 600;
+  background: rgba(78,205,196,0.1); color: #4ecdc4;
+  padding: 2px 10px; border-radius: 10px;
+}
+.rp-tabs { display: flex; border-bottom: 1px solid #1e3250; flex-shrink: 0; }
+.panel-tab {
+  flex: 1; padding: 10px; font-size: 12px; font-weight: 600;
+  color: #4a6580; text-align: center; cursor: pointer;
+  border-bottom: 2px solid transparent; transition: all 0.15s;
+}
+.panel-tab.active { color: #4ecdc4; border-bottom-color: #4ecdc4; }
+.rp-list {
+  flex: 1; overflow-y: auto; padding: 12px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.rp-empty { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; padding: 24px; text-align: center; }
+.rp-empty-icon { font-size: 32px; }
+.rp-empty-text { font-size: 12px; color: #3a5a78; }
+.saved-row {
+  background: #0a1628; border: 1px solid #1e3250; border-radius: 12px;
+  padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px;
+  cursor: pointer; transition: border-color 0.15s; animation: fadeIn 0.2s ease;
+}
+.saved-row:hover { border-color: #4ecdc4; }
+.row-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.2);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px;
+}
+.row-body { flex: 1; min-width: 0; }
+.row-title { font-size: 12px; font-weight: 600; color: #c8dcea; line-height: 1.35; margin-bottom: 4px; }
+.row-meta { font-size: 11px; color: #4a6580; }
+.row-meta span { color: #4ecdc4; }
+.row-remove {
+  width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: none; background: transparent; color: #2a4060;
+  cursor: pointer; font-size: 14px; transition: color 0.15s; flex-shrink: 0;
+}
+.row-remove:hover { color: #e05c6a; }
+.rp-export {
+  margin: 12px; padding: 10px; border-radius: 10px;
+  border: 1px solid #1e3250; background: #0a1628; color: #7ea8c9;
+  font-size: 12px; font-weight: 600; cursor: pointer; text-align: center;
+  transition: all 0.15s; flex-shrink: 0;
+}
+.rp-export:hover { border-color: #4ecdc4; color: #4ecdc4; }
+
+/* ── Empty state ── */
+.empty-center {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 60px 48px; gap: 20px;
+}
+.empty-icon { font-size: 64px; margin-bottom: 8px; }
+.empty-title { font-size: 26px; font-weight: 700; color: #e8eaf0; }
+.empty-sub { font-size: 15px; color: #7ea8c9; line-height: 1.6; max-width: 440px; }
+.empty-sub strong { color: #4ecdc4; }
+.empty-actions { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 340px; }
+.empty-btn {
+  padding: 14px 24px; border-radius: 12px; font-size: 14px; font-weight: 600;
+  cursor: pointer; border: 1px solid; transition: all 0.15s;
+}
+.empty-btn.primary { background: rgba(78,205,196,0.1); border-color: #4ecdc4; color: #4ecdc4; }
+.empty-btn.primary:hover { background: rgba(78,205,196,0.2); }
+.empty-btn.secondary { background: transparent; border-color: #1e3250; color: #7ea8c9; }
+.empty-btn.secondary:hover { border-color: #7ea8c9; }
+
+/* ── Shortlist full view ── */
+.shortlist-main { padding: 32px 40px; overflow-y: auto; flex: 1; }
+.shortlist-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.shortlist-header h2 { font-size: 22px; font-weight: 700; color: #e8eaf0; }
+.shortlist-header-actions { display: flex; gap: 8px; }
+.export-btn {
+  padding: 10px 20px; border-radius: 10px;
+  border: 1px solid #1e3250; background: #0a1628; color: #7ea8c9;
+  font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.export-btn:hover { border-color: #4ecdc4; color: #4ecdc4; }
+.back-btn {
+  padding: 10px 20px; border-radius: 10px;
+  border: 1px solid #4ecdc4; background: rgba(78,205,196,0.07); color: #4ecdc4;
+  font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.back-btn:hover { background: rgba(78,205,196,0.15); }
+.full-row {
+  background: #0f2040; border: 1px solid #1e3a5f; border-radius: 14px;
+  padding: 18px 20px; display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 10px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s;
+  animation: fadeIn 0.2s ease;
+}
+.full-row:hover { border-color: #4ecdc4; box-shadow: 0 4px 20px rgba(78,205,196,0.08); }
+.full-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.25);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 20px;
+}
+.full-body { flex: 1; min-width: 0; }
+.full-title { font-size: 15px; font-weight: 600; color: #e8eaf0; line-height: 1.4; margin-bottom: 6px; }
+.full-meta { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; color: #7ea8c9; }
+.full-meta span { color: #4ecdc4; }
+.full-actions { display: flex; gap: 8px; flex-shrink: 0; align-items: flex-start; }
+.tag-chip {
+  font-size: 11px; padding: 3px 10px; border-radius: 10px;
+  border: 1px solid #1e3250; color: #4a6580; background: #0a1628;
+}
+.remove-btn {
+  padding: 6px 14px; border-radius: 8px; border: 1px solid #1e3250;
+  background: transparent; color: #4a6580; font-size: 12px; cursor: pointer; transition: all 0.15s;
+}
+.remove-btn:hover { border-color: #e05c6a; color: #e05c6a; }
+.export-bar {
+  display: flex; gap: 10px; padding: 16px 0 0;
+  border-top: 1px solid #1e3250; margin-top: 8px;
+}
+.sidebar-sort .filter-item { cursor: pointer; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>UW Research <span>Network</span></h1>
-  <div class="subtitle">ORIS — Wireframes &amp; Prototypes</div>
+<div id="app"></div>
 
-  <div class="group">
-    <div class="group-label">Shortlist Feature</div>
-    <a href="shortlist-wireframe-desktop.html">Shortlist — Desktop <span>→</span></a>
-    <a href="shortlist-wireframe.html">Shortlist — Mobile <span>→</span></a>
-  </div>
+<script>
+// ─── DATA ──────────────────────────────────────────────────────────────────────────────
+const PAPERS = [
+  {
+    id: 1,
+    title: "The Shared Socioeconomic Pathways and their energy, land use, and greenhouse gas emissions implications",
+    domain: "Earth Sciences & Geology",
+    year: 2016, journal: "Global Environmental Change", citations: "6,330", access: "Open Access",
+    keywords: [["Climate Change",true],["Greenhouse Gas",true],["Emissions",true],["Energy Systems",false],["Land Use",false],["SSP Scenarios",false]],
+    abstract: "This overview examines the Shared Socioeconomic Pathways (SSPs) developed for the IPCC 6th Assessment Report—narrative scenarios describing how society, demographics, and technology may develop over the 21st century, with differing challenges to climate change mitigation and adaptation.",
+    externalSummary: "A major international study examining five different scenarios for how human society might develop by 2100, and what each means for climate, energy use, and land.",
+    uwAuthors: 1,
+    author: { initials: "KE", name: "Kristie L. Ebi", dept: "Dept. of Global Health · 42 papers" },
+    tag: "Climate Change",
+  },
+  {
+    id: 2,
+    title: "Assessing the Effects of Climate Change on Aquatic Invasive Species",
+    domain: "Conservation Biology",
+    year: 2008, journal: "Conservation Biology", citations: "1,278", access: "Open Access",
+    keywords: [["Climate Change",true],["Aquatic Invasives",true],["Biodiversity",false],["Ecology",false]],
+    abstract: "This study assesses projected climate change effects on aquatic invasive species distributions across North American freshwater systems. We find that warming temperatures and altered precipitation patterns will expand suitable habitat for most invasive species studied, with significant implications for native biodiversity and ecosystem services.",
+    externalSummary: "Research on how climate change may help harmful invasive species spread further into North American lakes and rivers — threatening native fish and ecosystems.",
+    uwAuthors: 1,
+    author: { initials: "JL", name: "Julian Leung", dept: "School of Aquatic & Fishery Sciences · 28 papers" },
+    tag: "Climate Change",
+  },
+  {
+    id: 3,
+    title: "Ecological Dynamics Across the Arctic Associated with Recent Climate Change",
+    domain: "Arctic Sciences",
+    year: 2009, journal: "Science", citations: "1,254", access: "Subscription",
+    keywords: [["Arctic & Ice",true],["Ecology",true],["Climate Change",true],["Tundra",false],["Permafrost",false]],
+    abstract: "We document widespread ecological changes across the Arctic tundra associated with recent climate warming. Analysis of 35 years of data reveals significant shifts in plant communities, animal ranges, and permafrost extent. These changes are accelerating and represent a fundamental reorganization of Arctic ecosystems.",
+    externalSummary: "A long-term study showing how Arctic ecosystems are fundamentally changing as temperatures rise — affecting plants, animals, and frozen ground across the far north.",
+    uwAuthors: 1,
+    author: { initials: "DS", name: "Daniel Schindler", dept: "School of Aquatic & Fishery Sciences · 67 papers" },
+    tag: "Arctic & Ice",
+  },
+  {
+    id: 4,
+    title: "The 2022 Lancet Countdown on health and climate change: health at the mercy of fossil fuels",
+    domain: "Public Health",
+    year: 2022, journal: "The Lancet", citations: "1,574", access: "Open Access",
+    keywords: [["Public Health",true],["Climate Change",true],["Heat Exposure",true],["Food Security",false],["Infectious Disease",false]],
+    abstract: "The 2022 Lancet Countdown tracks 47 indicators of health and climate change across five domains. This report finds that the continued increase in global temperatures is intensifying health hazards, while indicators of health adaptation and mitigation remain inadequate to address the growing threat.",
+    externalSummary: "An annual global report tracking 47 health indicators related to climate change — this year's findings show worsening heat exposure, food insecurity, and disease risk worldwide.",
+    uwAuthors: 1,
+    author: { initials: "KE", name: "Kristie L. Ebi", dept: "Dept. of Global Health · 42 papers" },
+    tag: "Public Health",
+  },
+  {
+    id: 5,
+    title: "Bedmap2: improved ice bed, surface and thickness datasets for Antarctica",
+    domain: "Glaciology",
+    year: 2013, journal: "Nature", citations: "3,920", access: "Open Access",
+    keywords: [["Arctic & Ice",true],["Antarctica",true],["Glaciology",true],["Sea Level",false],["Remote Sensing",false]],
+    abstract: "We present Bedmap2, a new suite of gridded products describing surface elevation, ice-thickness and the sea floor and subglacial bed elevation of the Antarctic continent. Bedmap2 improves significantly on its predecessor through the addition of ice thickness data collected after 2000.",
+    externalSummary: "A major mapping project that created the most detailed picture yet of Antarctica's ice sheet — including what lies beneath, which is crucial for predicting future sea level rise.",
+    uwAuthors: 1,
+    author: { initials: "ES", name: "Eric J. Steig", dept: "Earth & Space Sciences · 54 papers" },
+    tag: "Arctic & Ice",
+  },
+  {
+    id: 6,
+    title: "Impacts of Wildfire on Pacific Northwest Salmon Habitat: A Multi-Decadal Assessment",
+    domain: "Environmental Science",
+    year: 2021, journal: "Ecological Applications", citations: "312", access: "Open Access",
+    keywords: [["Emissions",true],["Ecology",true],["Pacific Northwest",false],["Salmon",false],["Fire Ecology",false]],
+    abstract: "We quantify the effects of wildfire on Pacific Northwest salmon habitat using multi-decadal satellite imagery and stream monitoring data. Results indicate increasing wildfire severity is degrading critical salmon spawning and rearing habitat, with compounding effects from climate-driven low summer flows.",
+    externalSummary: "Research showing how increasingly severe wildfires in the Pacific Northwest are damaging the streams and rivers where salmon breed — adding to other pressures from climate change.",
+    uwAuthors: 2,
+    author: { initials: "MJ", name: "Monica Jimenez", dept: "School of Environmental & Forest Sciences · 19 papers" },
+    tag: "Emissions",
+  },
+];
 
-  <div class="group">
-    <div class="group-label">Research Reels</div>
-    <a href="research-reels-wireframe-desktop.html">Reels — Desktop <span>→</span></a>
-    <a href="research-reels-wireframe.html">Reels — Mobile <span>→</span></a>
-  </div>
+const RESEARCHERS = [
+  {
+    id: 101,
+    initials: "ES", name: "Eric J. Steig",
+    affil: "University of Washington · Earth & Space Sciences",
+    match: "High match · Climatology",
+    openTo: ["Research collaboration", "Industry partnerships"],
+    why: [
+      { num: "01", strong: "You both publish on Antarctic ice sheet dynamics.", detail: "His 2013 Bedmap2 paper shares 5 keywords with your saved papers on polar climate change." },
+      { num: "02", strong: "4 mutual collaborators in your network.", detail: "Incl. D. Schindler (UW Ecology) and C. Bitz (UW Atmospheric Sciences)." },
+      { num: "03", strong: "His current work targets the same domain as your search.", detail: "Recent papers overlap with your \"Climate Change\" and \"Emissions\" filters." },
+    ],
+    interests: [["Polar Climate",true],["Ice Dynamics",true],["Sea Level Rise",true],["Remote Sensing",false],["Glaciology",false]],
+    papers: "54", citations: "9,200", hIndex: "42",
+    tag: "Climate Science",
+  },
+  {
+    id: 102,
+    initials: "CB", name: "Cecilia Bitz",
+    affil: "University of Washington · Atmospheric Sciences",
+    match: "Strong match · Atmospheric Physics",
+    openTo: ["Research collaboration"],
+    why: [
+      { num: "01", strong: "Shared interest in Arctic sea ice modeling.", detail: "Her work on sea ice feedbacks directly complements your shortlisted Arctic papers." },
+      { num: "02", strong: "2 co-authored papers with your existing collaborators.", detail: "Joint work with K. Ebi and D. Schindler establishes network proximity." },
+    ],
+    interests: [["Arctic Sea Ice",true],["Climate Modeling",true],["Atmospheric Physics",false],["GCMs",false]],
+    papers: "87", citations: "14,100", hIndex: "55",
+    tag: "Climate Science",
+  },
+  {
+    id: 103,
+    initials: "BH", name: "Benjamin Halpern",
+    affil: "University of Washington · Aquatic & Fishery Sciences",
+    match: "Good match · Marine Ecology",
+    openTo: ["Research collaboration", "Industry partnerships"],
+    why: [
+      { num: "01", strong: "Overlapping focus on marine ecosystem impacts of climate change.", detail: "His Ocean Health Index methodology is relevant to your Conservation Biology saves." },
+    ],
+    interests: [["Marine Ecology",true],["Ocean Health",true],["Conservation",false],["Global Change",false]],
+    papers: "142", citations: "21,800", hIndex: "63",
+    tag: "Oceanography",
+  },
+];
 
-  <div class="group">
-    <div class="group-label">Documentation</div>
-    <a href="use-cases.html">Use Cases <span>→</span></a>
-  </div>
-</div>
+// ─── STATE ──────────────────────────────────────────────────────────────────────────────
+const state = {
+  screen: 'queue',
+  mode: 'papers',
+  viewMode: 'researcher',
+  paperIdx: 0,
+  resIdx: 0,
+  saved: { papers: [], researchers: [] },
+  history: [],
+  animating: false,
+  panelTab: 'papers',
+  activeFilter: { papers: 'Climate Change', researchers: 'Climate Science' },
+  sortBy: 'Date Saved',
+  undoTimer: null,
+  showUndo: false,
+  lastAction: null,
+};
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────────────────
+function currentPaper() { return PAPERS[state.paperIdx] || null; }
+function currentResearcher() { return RESEARCHERS[state.resIdx] || null; }
+function totalPapers() { return PAPERS.length; }
+function totalResearchers() { return RESEARCHERS.length; }
+function papersLeft() { return Math.max(0, totalPapers() - state.paperIdx); }
+function resLeft() { return Math.max(0, totalResearchers() - state.resIdx); }
+function queueEmpty() {
+  if (state.mode === 'papers') return state.paperIdx >= totalPapers();
+  return state.resIdx >= totalResearchers();
+}
+
+function svgIcon(name) {
+  const icons = {
+    paper:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+    person: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`,
+    play:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
+    star:   `<svg viewBox="0 0 24 24" fill="currentColor" width="11" height="11"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>`,
+  };
+  return icons[name] || '';
+}
+
+// ─── RENDER ─────────────────────────────────────────────────────────────────────────────
+function render() {
+  const app = document.getElementById('app');
+  if (state.screen === 'shortlist') {
+    app.innerHTML = renderShortlist();
+  } else {
+    app.innerHTML = renderQueueScreen();
+  }
+  bindEvents();
+  if (state.showUndo) renderUndoToast();
+}
+
+function renderQueueScreen() {
+  const badgeLabel = state.mode === 'papers'
+    ? `${papersLeft()} papers in queue`
+    : `${resLeft()} researchers in queue`;
+  const badgeDim = queueEmpty();
+  const isExt = state.viewMode === 'external';
+
+  return `
+  <nav class="topnav">
+    <div class="topnav-logo">UW Research <span>Network</span></div>
+    <div class="topnav-div"></div>
+    <div class="topnav-title">Shortlist</div>
+    <div class="topnav-actions">
+      ${state.mode === 'papers' ? `
+        <div class="view-pill ${isExt ? 'inactive' : 'active-res'}" data-action="set-view-res">
+          👤 Researcher view
+        </div>
+        <div class="view-pill ${isExt ? 'active-ext' : 'inactive'}" data-action="set-view-ext">
+          👁 External view
+        </div>
+      ` : ''}
+      <div class="queue-badge ${badgeDim ? 'dim' : ''}">${badgeLabel}</div>
+      <div class="avatar">KE</div>
+    </div>
+  </nav>
+  <div class="app-shell">
+    ${renderSidebar()}
+    <main class="main-content" id="main-content">
+      ${queueEmpty() ? renderEmptyState() : renderCardArea()}
+    </main>
+    ${renderRightPanel()}
+  </div>`;
+}
+
+function renderSidebar() {
+  const isPapers = state.mode === 'papers';
+  const reviewed = isPapers ? state.paperIdx : state.resIdx;
+  const total = isPapers ? totalPapers() : totalResearchers();
+  const pct = total > 0 ? Math.round((reviewed / total) * 100) : 0;
+  const progressLabel = pct === 100 ? `All ${total} reviewed ✓` : `${reviewed} of ${total} reviewed`;
+  const progressColor = pct === 100 ? 'color:#4ecdc4' : '';
+  const remaining = total - reviewed;
+  const filterItems = isPapers
+    ? [['Climate Change','12'],['Arctic & Ice','7'],['Emissions','9'],['Public Health','5'],['Ecology','8'],['Atmospheric','4']]
+    : [['Climate Science','8'],['Oceanography','5'],['Ecology','4'],['Atmospheric','3'],['Public Health','2']];
+  const activeFilter = state.activeFilter[state.mode];
+  const kbdRows = isPapers
+    ? [['←','Skip paper'],['→','Save to shortlist'],['↓','View full details'],['U','Undo last action']]
+    : [['←','Pass'],['→','Connect'],['↓','Full profile'],['U','Undo']];
+
+  return `
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sec-label">Browse Mode</div>
+      <div class="mode-toggle">
+        <button class="mode-btn ${state.mode==='papers'?'active':''}" data-action="mode-papers">
+          ${svgIcon('paper')} Papers <span class="mode-count">${totalPapers()}</span>
+        </button>
+        <button class="mode-btn ${state.mode==='researchers'?'active':''}" data-action="mode-researchers">
+          ${svgIcon('person')} Researchers <span class="mode-count">${totalResearchers()}</span>
+        </button>
+        <button class="mode-btn" data-action="mode-reels">
+          ${svgIcon('play')} Reels <span class="mode-count">—</span>
+        </button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sec-label">Filter by Topic</div>
+      <div class="filter-list">
+        ${filterItems.map(([label, count]) => `
+          <div class="filter-item ${label===activeFilter?'active':''}" data-action="filter" data-filter="${label}">
+            ${label} <span class="filter-count">${count}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sec-label">Queue Progress</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:4px;${progressColor}">${progressLabel}</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <div class="progress-meta">
+        <span>${pct}% complete</span>
+        <span>${pct===100 ? `${state.saved[state.mode].length} saved` : `${remaining} remaining`}</span>
+      </div>
+    </div>
+    ${pct===100 ? `<div class="sidebar-section">
+      <div class="sec-label">Expand Filters</div>
+      <div class="filter-list">
+        <div class="filter-item" data-action="filter-expand">Atmospheric <span class="filter-count">4</span></div>
+        <div class="filter-item" data-action="filter-expand">Oceanography <span class="filter-count">6</span></div>
+        <div class="filter-item" data-action="filter-expand">Geology <span class="filter-count">3</span></div>
+      </div>
+    </div>` : ''}
+    <div class="sidebar-section push-bottom">
+      <div class="sec-label">Keyboard Shortcuts</div>
+      <div class="kbd-hints">
+        ${kbdRows.map(([k,h])=>`<div class="kbd-row"><span class="kbd">${k}</span>${h}</div>`).join('')}
+      </div>
+    </div>
+  </aside>`;
+}
+
+function renderCardArea() {
+  if (state.mode === 'papers') return renderPaperCardArea();
+  return renderResearcherCardArea();
+}
+
+function renderPaperCardArea() {
+  const p = currentPaper();
+  const isExt = state.viewMode === 'external';
+  return `
+    ${isExt ? `<div class="ext-banner">
+      <span style="font-size:16px">👁</span>
+      <span class="ext-banner-title">External View</span>
+      <span class="ext-banner-sub">Showing plain-language summaries — as seen by industry partners & collaborators outside UW.</span>
+      <span class="ext-banner-link" data-action="set-view-res">Switch to Researcher View</span>
+    </div>` : ''}
+    <div class="card-wrap" id="card-wrap">
+      <div class="card" id="main-card">
+        <div class="card-header">
+          <div class="card-header-top">
+            <div class="domain-badge"><div class="dot"></div>${p.domain}</div>
+            <div class="card-top-right">
+              <div class="view-badge-sm ${isExt?'ext':'res'}">${isExt?'👁 External view':'👤 Researcher view'}</div>
+              <div class="icon-btn" title="Share">↗</div>
+              <div class="icon-btn" title="Open">⤢</div>
+            </div>
+          </div>
+          <div class="paper-title">${p.title}</div>
+          <div class="paper-meta">
+            <div class="meta-chip">📅 ${p.year}</div>
+            <div class="meta-chip">✏️ ${p.journal}</div>
+            <div class="meta-chip">${p.access === 'Open Access' ? '🔓' : '🔒'} ${p.access}</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body-grid">
+            <div>
+              ${isExt ? `
+                <div class="body-label">Plain-language Summary</div>
+                <div class="ext-summary">${p.externalSummary}</div>
+              ` : `
+                <div class="body-label">Abstract</div>
+                <div class="abstract-text">${p.abstract}</div>
+              `}
+              <div class="body-label">Keywords</div>
+              <div class="keywords">
+                ${p.keywords.map(([kw,hi])=>`<span class="kw ${hi?'hi':''}">${kw}</span>`).join('')}
+              </div>
+            </div>
+            <div>
+              <div class="stats-grid">
+                <div class="stat-box"><div class="stat-val teal">${p.citations}</div><div class="stat-lbl">Citations</div></div>
+                <div class="stat-box"><div class="stat-val">${p.year}</div><div class="stat-lbl">Published</div></div>
+                <div class="stat-box full"><div class="stat-val">${p.uwAuthors}</div><div class="stat-lbl">UW Author${p.uwAuthors>1?'s':''}</div></div>
+              </div>
+              <div class="body-label" style="margin-bottom:10px">Lead UW Author</div>
+              <div class="author-card">
+                <div class="author-avatar">${p.author.initials}</div>
+                <div>
+                  <div class="author-name">${p.author.name}</div>
+                  <div class="author-dept">${p.author.dept}</div>
+                  <div class="author-link">View profile →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swipe-badge nope" id="badge-nope">NOPE</div>
+      <div class="swipe-badge like" id="badge-like">SAVE</div>
+    </div>
+    <div class="action-bar">
+      <button class="action-btn skip" data-action="skip">✕ Skip <span class="kbd-inline">←</span></button>
+      <button class="action-btn details" data-action="details">ℹ Details <span class="kbd-inline">↓</span></button>
+      <button class="action-btn save" data-action="save">♥ Save to Shortlist <span class="kbd-inline">→</span></button>
+    </div>`;
+}
+
+function renderResearcherCardArea() {
+  const r = currentResearcher();
+  return `
+    <div class="card-wrap" id="card-wrap">
+      <div class="card" id="main-card">
+        <div class="researcher-hero">
+          <div class="res-avatar">${r.initials}<div class="online-dot"></div></div>
+          <div class="res-hero-info">
+            <h2>${r.name}</h2>
+            <div class="res-affil">${r.affil}</div>
+            <div class="res-badges">
+              <div class="match-badge">${svgIcon('star')} ${r.match}</div>
+              ${r.openTo.map(o=>`<span class="open-pill ${o.includes('Research')?'collab':'industry'}">${o}</span>`).join('')}
+            </div>
+          </div>
+          <div class="icon-btn" title="Open profile">⤢</div>
+        </div>
+        <div class="card-body">
+          <div class="res-body-grid">
+            <div>
+              <div class="body-label">Why this researcher is relevant to you</div>
+              <div class="why-relevant">
+                ${r.why.map(w=>`
+                  <div class="rel-row">
+                    <span class="rel-num">${w.num}</span>
+                    <div class="rel-text"><strong>${w.strong}</strong><span>${w.detail}</span></div>
+                  </div>`).join('')}
+              </div>
+              <div class="body-label">Research Interests</div>
+              <div class="interests-grid">
+                ${r.interests.map(([label,p])=>`<span class="int-tag ${p?'primary':'secondary'}">${label}</span>`).join('')}
+              </div>
+            </div>
+            <div class="res-stat-col">
+              <div class="stat-box"><div class="stat-val teal">${r.papers}</div><div class="stat-lbl">Publications</div></div>
+              <div class="stat-box"><div class="stat-val">${r.citations}</div><div class="stat-lbl">Total Citations</div></div>
+              <div class="stat-box"><div class="stat-val">${r.hIndex}</div><div class="stat-lbl">h-Index</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swipe-badge nope" id="badge-nope">PASS</div>
+      <div class="swipe-badge like" id="badge-like">CONNECT</div>
+    </div>
+    <div class="action-bar">
+      <button class="action-btn pass" data-action="skip">✕ Pass <span class="kbd-inline">←</span></button>
+      <button class="action-btn details" data-action="details">ℹ Profile <span class="kbd-inline">↓</span></button>
+      <button class="action-btn connect" data-action="save">⚡ Connect <span class="kbd-inline">→</span></button>
+    </div>`;
+}
+
+function renderEmptyState() {
+  const isPapers = state.mode === 'papers';
+  const savedCount = state.saved[state.mode].length;
+  const switchMode = isPapers ? 'researchers' : 'papers';
+  const switchLeft = isPapers ? resLeft() : papersLeft();
+  return `
+    <div class="empty-center">
+      <div class="empty-icon">${isPapers ? '🔬' : '🎉'}</div>
+      <div class="empty-title">You're all caught up!</div>
+      <div class="empty-sub">You've reviewed all ${isPapers?totalPapers():totalResearchers()} ${state.mode} in your queue and saved <strong>${savedCount} ${state.mode}</strong> to your shortlist.</div>
+      <div class="empty-actions">
+        <button class="empty-btn primary" data-action="view-shortlist">View Saved ${isPapers?'Papers':'Researchers'} (${savedCount})</button>
+        <button class="empty-btn secondary" data-action="expand-filters">Expand Filters & Reload Queue</button>
+        ${switchLeft > 0 ? `<button class="empty-btn secondary" data-action="mode-${switchMode}">Switch to ${isPapers?'Researcher':'Paper'} Mode (${switchLeft} queued)</button>` : ''}
+      </div>
+    </div>`;
+}
+
+function renderRightPanel() {
+  const tab = state.panelTab;
+  const papers = state.saved.papers;
+  const researchers = state.saved.researchers;
+  const totalSaved = papers.length + researchers.length;
+  const items = tab === 'papers' ? papers : researchers;
+
+  return `
+  <aside class="right-panel">
+    <div class="rp-header">
+      <h3>My Shortlist</h3>
+      <span class="panel-count">${totalSaved} saved</span>
+    </div>
+    <div class="rp-tabs">
+      <div class="panel-tab ${tab==='papers'?'active':''}" data-action="panel-tab-papers">Papers (${papers.length})</div>
+      <div class="panel-tab ${tab==='researchers'?'active':''}" data-action="panel-tab-researchers">Researchers (${researchers.length})</div>
+    </div>
+    <div class="rp-list">
+      ${items.length === 0 ? `
+        <div class="rp-empty">
+          <div class="rp-empty-icon">${tab==='papers'?'📄':'👤'}</div>
+          <div class="rp-empty-text">No ${tab} saved yet.<br>Use → or the Save button to add items.</div>
+        </div>` :
+        items.map((item, i) => `
+          <div class="saved-row">
+            <div class="row-icon">${tab==='papers'?'📄':'👤'}</div>
+            <div class="row-body">
+              <div class="row-title">${tab==='papers' ? item.title : item.name}</div>
+              <div class="row-meta">${tab==='papers' ? `${item.journal} · ${item.year} · <span>${item.citations} citations</span>` : `${item.affil}`}</div>
+            </div>
+            <button class="row-remove" data-action="remove-saved" data-tab="${tab}" data-idx="${i}" title="Remove">×</button>
+          </div>`).join('')
+      }
+    </div>
+    ${totalSaved > 0 ? `<div class="rp-export" data-action="view-shortlist">View Full Shortlist →</div>` : ''}
+  </aside>`;
+}
+
+function renderShortlist() {
+  const papers = state.saved.papers;
+  const researchers = state.saved.researchers;
+  const allItems = papers.length + researchers.length;
+
+  return `
+  <nav class="topnav">
+    <div class="topnav-logo">UW Research <span>Network</span></div>
+    <div class="topnav-div"></div>
+    <div class="topnav-title">My Shortlist</div>
+    <div class="topnav-actions">
+      <div class="queue-badge">${allItems} items total</div>
+      <div class="avatar">KE</div>
+    </div>
+  </nav>
+  <div class="app-shell two-col">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sec-label">View</div>
+        <div class="mode-toggle">
+          <button class="mode-btn ${state.mode==='papers'?'active':''}" data-action="mode-papers">${svgIcon('paper')} Papers <span class="mode-count">${papers.length}</span></button>
+          <button class="mode-btn ${state.mode==='researchers'?'active':''}" data-action="mode-researchers">${svgIcon('person')} Researchers <span class="mode-count">${researchers.length}</span></button>
+          <button class="mode-btn" data-action="mode-reels">${svgIcon('play')} Reels <span class="mode-count">—</span></button>
+        </div>
+      </div>
+      <div class="sidebar-section sidebar-sort">
+        <div class="sec-label">Sort By</div>
+        <div class="filter-list">
+          ${['Date Saved','Citation Count','Year Published','Relevance'].map(s=>`
+            <div class="filter-item ${state.sortBy===s?'active':''}" data-action="sort" data-sort="${s}">${s}</div>`).join('')}
+        </div>
+      </div>
+      <div class="sidebar-section push-bottom">
+        <div class="sec-label">Export</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <button class="export-btn" style="width:100%;text-align:left;" data-action="export-bib">BibTeX (.bib)</button>
+          <button class="export-btn" style="width:100%;text-align:left;" data-action="export-csv">CSV Spreadsheet</button>
+          <button class="export-btn" style="width:100%;text-align:left;" data-action="export-link">Share Link</button>
+        </div>
+      </div>
+    </aside>
+    <main style="background:#0a1628;overflow-y:auto;display:flex;flex-direction:column;">
+      <div class="shortlist-main">
+        <div class="shortlist-header">
+          <h2>Saved ${state.mode === 'papers' ? 'Papers' : 'Researchers'}</h2>
+          <div class="shortlist-header-actions">
+            <button class="export-btn" data-action="export-all">Export All</button>
+            <button class="back-btn" data-action="back-to-queue">← Back to Queue</button>
+          </div>
+        </div>
+        ${(state.mode === 'papers' ? papers : researchers).length === 0 ? `
+          <div style="text-align:center;padding:60px 0;color:#3a5a78;font-size:15px;">
+            No ${state.mode} saved yet. <span style="color:#4ecdc4;cursor:pointer;" data-action="back-to-queue">Go back to the queue →</span>
+          </div>` :
+          (state.mode === 'papers' ? papers : researchers).map((item, i) => `
+            <div class="full-row">
+              <div class="full-icon">${state.mode === 'papers' ? '📄' : '👤'}</div>
+              <div class="full-body">
+                <div class="full-title">${state.mode === 'papers' ? item.title : item.name}</div>
+                <div class="full-meta">
+                  ${state.mode === 'papers'
+                    ? `${item.journal} · ${item.year} · <span>${item.citations} citations</span> · UW Author: ${item.author.name}`
+                    : `${item.affil} · h-Index: ${item.hIndex}`}
+                </div>
+              </div>
+              <div class="full-actions">
+                <span class="tag-chip">${item.tag}</span>
+                <button class="remove-btn" data-action="remove-full" data-type="${state.mode==='papers'?'papers':'researchers'}" data-idx="${i}">Remove</button>
+              </div>
+            </div>`).join('')
+        }
+        ${allItems > 0 ? `
+          <div class="export-bar">
+            <button class="export-btn" data-action="export-bib">Export as BibTeX</button>
+            <button class="export-btn" data-action="export-csv">Export as CSV</button>
+            <button class="export-btn" data-action="export-link">Share Shortlist Link</button>
+          </div>` : ''}
+      </div>
+    </main>
+  </div>`;
+}
+
+function renderUndoToast() {
+  const existing = document.getElementById('undo-toast');
+  if (existing) existing.remove();
+  if (!state.showUndo || !state.lastAction) return;
+  const { action, item, type } = state.lastAction;
+  const label = action === 'save'
+    ? (type === 'papers' ? `Saved "${item.title.substring(0,42)}…"` : `Connected with ${item.name}`)
+    : (type === 'papers' ? `Skipped "${item.title.substring(0,42)}…"` : `Passed on ${item.name}`);
+  const toast = document.createElement('div');
+  toast.id = 'undo-toast';
+  toast.className = 'undo-toast';
+  toast.innerHTML = `<span>${label}</span><button class="undo-btn" id="undo-btn">Undo</button>`;
+  document.body.appendChild(toast);
+  document.getElementById('undo-btn').onclick = handleUndo;
+}
+
+// ─── ACTIONS ─────────────────────────────────────────────────────────────────────────────
+function animateCard(direction, callback) {
+  if (state.animating) return;
+  state.animating = true;
+  const card = document.getElementById('main-card');
+  const badgeNope = document.getElementById('badge-nope');
+  const badgeLike = document.getElementById('badge-like');
+  if (!card) { state.animating = false; callback(); return; }
+  if (direction === 'left'  && badgeNope) badgeNope.classList.add('show');
+  if (direction === 'right' && badgeLike) badgeLike.classList.add('show');
+  card.classList.add(direction === 'left' ? 'exit-left' : 'exit-right');
+  setTimeout(() => {
+    state.animating = false;
+    callback();
+    render();
+    setTimeout(() => {
+      const newCard = document.getElementById('main-card');
+      if (newCard) newCard.classList.add('enter-card');
+    }, 10);
+  }, 320);
+}
+
+function doSkip() {
+  if (state.animating || queueEmpty()) return;
+  const item = state.mode === 'papers' ? currentPaper() : currentResearcher();
+  const type = state.mode;
+  animateCard('left', () => {
+    state.history.push({ action: 'skip', type, item });
+    state.lastAction = { action: 'skip', type, item };
+    if (state.mode === 'papers') state.paperIdx++;
+    else state.resIdx++;
+    showUndo();
+  });
+}
+
+function doSave() {
+  if (state.animating || queueEmpty()) return;
+  const item = state.mode === 'papers' ? currentPaper() : currentResearcher();
+  const type = state.mode;
+  animateCard('right', () => {
+    state.saved[type].push(item);
+    state.history.push({ action: 'save', type, item });
+    state.lastAction = { action: 'save', type, item };
+    if (state.mode === 'papers') state.paperIdx++;
+    else state.resIdx++;
+    showUndo();
+  });
+}
+
+function showUndo() {
+  state.showUndo = true;
+  if (state.undoTimer) clearTimeout(state.undoTimer);
+  state.undoTimer = setTimeout(() => { state.showUndo = false; renderUndoToast(); }, 4000);
+}
+
+function handleUndo() {
+  if (!state.history.length) return;
+  const last = state.history.pop();
+  state.lastAction = null;
+  state.showUndo = false;
+  if (state.undoTimer) clearTimeout(state.undoTimer);
+  const toast = document.getElementById('undo-toast');
+  if (toast) toast.remove();
+  if (last.action === 'save') {
+    const arr = state.saved[last.type];
+    const idx = arr.findIndex(x => x.id === last.item.id);
+    if (idx !== -1) arr.splice(idx, 1);
+  }
+  if (last.type === 'papers') state.paperIdx = Math.max(0, state.paperIdx - 1);
+  else state.resIdx = Math.max(0, state.resIdx - 1);
+  render();
+}
+
+// ─── EVENT BINDING ────────────────────────────────────────────────────────────────────────
+function bindEvents() {
+  document.querySelectorAll('[data-action]').forEach(el => {
+    el.addEventListener('click', handleAction);
+  });
+}
+
+function handleAction(e) {
+  const el = e.currentTarget;
+  const action = el.dataset.action;
+  switch (action) {
+    case 'skip':           doSkip(); break;
+    case 'save':           doSave(); break;
+    case 'details':        break;
+    case 'set-view-res':   state.viewMode = 'researcher'; render(); break;
+    case 'set-view-ext':   state.viewMode = 'external';   render(); break;
+    case 'mode-papers':    state.mode = 'papers';      if (state.screen !== 'shortlist') state.screen = 'queue'; render(); break;
+    case 'mode-researchers': state.mode = 'researchers'; if (state.screen !== 'shortlist') state.screen = 'queue'; render(); break;
+    case 'mode-reels':     break;
+    case 'filter':         state.activeFilter[state.mode] = el.dataset.filter; render(); break;
+    case 'filter-expand':
+    case 'expand-filters': if (state.mode === 'papers') state.paperIdx = 0; else state.resIdx = 0; render(); break;
+    case 'panel-tab-papers':      state.panelTab = 'papers';      render(); break;
+    case 'panel-tab-researchers': state.panelTab = 'researchers'; render(); break;
+    case 'view-shortlist': state.screen = 'shortlist'; render(); break;
+    case 'back-to-queue':  state.screen = 'queue';     render(); break;
+    case 'sort':           state.sortBy = el.dataset.sort; render(); break;
+    case 'remove-saved': {
+      const tab = el.dataset.tab;
+      const idx = parseInt(el.dataset.idx);
+      state.saved[tab].splice(idx, 1);
+      render(); break;
+    }
+    case 'remove-full': {
+      const type = el.dataset.type;
+      const idx = parseInt(el.dataset.idx);
+      state.saved[type].splice(idx, 1);
+      render(); break;
+    }
+    case 'export-bib':
+    case 'export-csv':
+    case 'export-link':
+    case 'export-all':     alert('Export feature coming soon!'); break;
+  }
+}
+
+// ─── KEYBOARD ────────────────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (state.screen !== 'queue' || queueEmpty()) return;
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  switch (e.key) {
+    case 'ArrowLeft':  e.preventDefault(); doSkip(); break;
+    case 'ArrowRight': e.preventDefault(); doSave(); break;
+    case 'ArrowDown':  e.preventDefault(); break;
+    case 'u': case 'U': handleUndo(); break;
+  }
+});
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────────────────
+render();
+</script>
 </body>
 </html>
