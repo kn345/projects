@@ -1448,6 +1448,7 @@ function renderReelsPlayer() {
             </button>
             <button class="btn-panel-ghost">↗ Share this Reel</button>
             <button class="btn-panel-ghost">📄 View Full Paper</button>
+            <button class="btn-panel-ghost" data-action="view-saved-reels">♥ View Saved Reels</button>
           </div>
         </div>
       </div>
@@ -1743,6 +1744,7 @@ function handleAction(e) {
     case 'panel-tab-researchers':state.panelTab = 'researchers'; render(); break;
     case 'panel-tab-reels':      state.panelTab = 'reels';      render(); break;
     case 'view-shortlist': state.screen = 'shortlist'; render(); break;
+    case 'view-saved-reels': state.screen = 'shortlist'; state.mode = 'reels'; render(); break;
     case 'back-to-queue':  state.screen = 'queue';     render(); break;
     case 'sort': state.sortBy = el.dataset.sort; render(); break;
     case 'remove-saved': {
