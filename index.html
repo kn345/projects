@@ -123,9 +123,26 @@ body {
 .main-content {
   background: #0a1628;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: flex-start;
-  overflow-y: auto; padding: 28px 40px; gap: 18px;
+  align-items: stretch;
+  overflow: hidden;
   position: relative;
+}
+/* Scrollable card area — action bar stays outside and always visible */
+.card-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  display: flex; flex-direction: column;
+  align-items: center;
+  padding: 24px 40px 12px;
+  gap: 16px;
+  min-height: 0;
+}
+.action-bar-wrapper {
+  flex-shrink: 0;
+  display: flex; justify-content: center;
+  padding: 10px 40px 20px;
+  background: #0a1628;
+  border-top: 1px solid #0f1e35;
 }
 
 /* ── External view banner ── */
@@ -470,6 +487,100 @@ body {
 }
 .sidebar-sort .filter-item { cursor: pointer; }
 
+/* ── Reels screen ── */
+.reels-layout {
+  display: grid; grid-template-columns: 1fr 340px;
+  flex: 1; overflow: hidden;
+}
+.reels-feed {
+  overflow-y: auto; padding: 24px 32px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.reel-card {
+  background: #0f2040; border: 1px solid #1e3a5f; border-radius: 18px;
+  overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.reel-card:hover { border-color: #4ecdc4; box-shadow: 0 6px 30px rgba(78,205,196,0.10); }
+.reel-thumb {
+  height: 180px; background: linear-gradient(135deg, #0a1f3d 0%, #112640 50%, #0d2235 100%);
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.reel-play-btn {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(78,205,196,0.15); border: 2px solid rgba(78,205,196,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: #4ecdc4; transition: all 0.2s;
+}
+.reel-card:hover .reel-play-btn { background: rgba(78,205,196,0.3); transform: scale(1.08); }
+.reel-duration {
+  position: absolute; bottom: 10px; right: 14px;
+  font-size: 11px; font-weight: 600; color: #e8eaf0;
+  background: rgba(0,0,0,0.55); padding: 2px 8px; border-radius: 6px;
+}
+.reel-info { padding: 16px 20px 18px; }
+.reel-researcher {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+}
+.reel-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #1a4a6e, #4ecdc4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.reel-name { font-size: 13px; font-weight: 600; color: #c8dcea; }
+.reel-affil { font-size: 11px; color: #4a6580; }
+.reel-title { font-size: 14px; font-weight: 600; color: #e8eaf0; line-height: 1.4; margin-bottom: 10px; }
+.reel-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.reel-tag {
+  font-size: 11px; padding: 3px 10px; border-radius: 10px;
+  background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.25); color: #4ecdc4;
+}
+.reel-actions { display: flex; gap: 8px; margin-top: 12px; }
+.reel-btn {
+  padding: 7px 16px; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1px solid; transition: all 0.15s;
+}
+.reel-btn.save  { border-color: #4ecdc4; color: #4ecdc4; background: rgba(78,205,196,0.07); }
+.reel-btn.save:hover  { background: rgba(78,205,196,0.18); }
+.reel-btn.skip  { border-color: #1e3250; color: #4a6580; background: transparent; }
+.reel-btn.skip:hover  { border-color: #7ea8c9; color: #7ea8c9; }
+.reels-sidebar {
+  background: #060e1a; border-left: 1px solid #1e3250;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.reels-sidebar-header {
+  padding: 16px 20px; border-bottom: 1px solid #1e3250;
+  font-size: 13px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: #4a6580;
+}
+.reels-queue {
+  flex: 1; overflow-y: auto; padding: 12px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.reels-queue-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 10px;
+  background: #0a1628; border: 1px solid #1e3250;
+  cursor: pointer; transition: border-color 0.15s;
+}
+.reels-queue-item:hover { border-color: #4ecdc4; }
+.reels-queue-item.active { border-color: rgba(78,205,196,0.4); background: rgba(78,205,196,0.05); }
+.rq-thumb {
+  width: 44px; height: 32px; border-radius: 6px; flex-shrink: 0;
+  background: linear-gradient(135deg, #0a1f3d, #112640);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: #4ecdc4;
+}
+.rq-info { flex: 1; min-width: 0; }
+.rq-name { font-size: 12px; font-weight: 600; color: #c8dcea; }
+.rq-dur { font-size: 10px; color: #4a6580; }
+.coming-soon-banner {
+  background: rgba(160,126,240,0.07); border: 1px dashed rgba(160,126,240,0.3);
+  border-radius: 12px; padding: 10px 16px;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: #a07ef0; margin: 0 32px 0;
+}
+
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
@@ -477,7 +588,7 @@ body {
 <div id="app"></div>
 
 <script>
-// ─── DATA ──────────────────────────────────────────────────────────────────────────────
+// ─── DATA ───────────────────────────────────────────────────────────────────
 const PAPERS = [
   {
     id: 1,
@@ -565,7 +676,7 @@ const RESEARCHERS = [
       { num: "02", strong: "4 mutual collaborators in your network.", detail: "Incl. D. Schindler (UW Ecology) and C. Bitz (UW Atmospheric Sciences)." },
       { num: "03", strong: "His current work targets the same domain as your search.", detail: "Recent papers overlap with your \"Climate Change\" and \"Emissions\" filters." },
     ],
-    interests: [["Polar Climate",true],["Ice Dynamics",true],["Sea Level Rise",true],["Remote Sensing",false],["Glaciology",false]],
+    interests: [["Polar Climate", true], ["Ice Dynamics", true], ["Sea Level Rise", true], ["Remote Sensing", false], ["Glaciology", false]],
     papers: "54", citations: "9,200", hIndex: "42",
     tag: "Climate Science",
   },
@@ -579,7 +690,7 @@ const RESEARCHERS = [
       { num: "01", strong: "Shared interest in Arctic sea ice modeling.", detail: "Her work on sea ice feedbacks directly complements your shortlisted Arctic papers." },
       { num: "02", strong: "2 co-authored papers with your existing collaborators.", detail: "Joint work with K. Ebi and D. Schindler establishes network proximity." },
     ],
-    interests: [["Arctic Sea Ice",true],["Climate Modeling",true],["Atmospheric Physics",false],["GCMs",false]],
+    interests: [["Arctic Sea Ice", true], ["Climate Modeling", true], ["Atmospheric Physics", false], ["GCMs", false]],
     papers: "87", citations: "14,100", hIndex: "55",
     tag: "Climate Science",
   },
@@ -592,23 +703,23 @@ const RESEARCHERS = [
     why: [
       { num: "01", strong: "Overlapping focus on marine ecosystem impacts of climate change.", detail: "His Ocean Health Index methodology is relevant to your Conservation Biology saves." },
     ],
-    interests: [["Marine Ecology",true],["Ocean Health",true],["Conservation",false],["Global Change",false]],
+    interests: [["Marine Ecology", true], ["Ocean Health", true], ["Conservation", false], ["Global Change", false]],
     papers: "142", citations: "21,800", hIndex: "63",
     tag: "Oceanography",
   },
 ];
 
-// ─── STATE ──────────────────────────────────────────────────────────────────────────────
+// ─── STATE ──────────────────────────────────────────────────────────────────
 const state = {
-  screen: 'queue',
-  mode: 'papers',
-  viewMode: 'researcher',
+  screen: 'queue',       // 'queue' | 'shortlist'
+  mode: 'papers',        // 'papers' | 'researchers'
+  viewMode: 'researcher',// 'researcher' | 'external'
   paperIdx: 0,
   resIdx: 0,
   saved: { papers: [], researchers: [] },
-  history: [],
+  history: [],           // for undo: [{type:'paper'|'researcher',item,action:'save'|'skip'}]
   animating: false,
-  panelTab: 'papers',
+  panelTab: 'papers',    // 'papers' | 'researchers'
   activeFilter: { papers: 'Climate Change', researchers: 'Climate Science' },
   sortBy: 'Date Saved',
   undoTimer: null,
@@ -616,7 +727,7 @@ const state = {
   lastAction: null,
 };
 
-// ─── HELPERS ─────────────────────────────────────────────────────────────────────────────
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
 function currentPaper() { return PAPERS[state.paperIdx] || null; }
 function currentResearcher() { return RESEARCHERS[state.resIdx] || null; }
 function totalPapers() { return PAPERS.length; }
@@ -638,7 +749,7 @@ function svgIcon(name) {
   return icons[name] || '';
 }
 
-// ─── RENDER ─────────────────────────────────────────────────────────────────────────────
+// ─── RENDER ─────────────────────────────────────────────────────────────────
 function render() {
   const app = document.getElementById('app');
   if (state.screen === 'shortlist') {
@@ -651,11 +762,31 @@ function render() {
 }
 
 function renderQueueScreen() {
+  const isReels = state.mode === 'reels';
+  const isExt = state.viewMode === 'external';
   const badgeLabel = state.mode === 'papers'
     ? `${papersLeft()} papers in queue`
-    : `${resLeft()} researchers in queue`;
-  const badgeDim = queueEmpty();
-  const isExt = state.viewMode === 'external';
+    : state.mode === 'researchers'
+    ? `${resLeft()} researchers in queue`
+    : '6 reels available';
+  const badgeDim = !isReels && queueEmpty();
+
+  if (isReels) {
+    return `
+    <nav class="topnav">
+      <div class="topnav-logo">UW Research <span>Network</span></div>
+      <div class="topnav-div"></div>
+      <div class="topnav-title">Research Reels</div>
+      <div class="topnav-actions">
+        <div class="queue-badge">6 reels available</div>
+        <div class="avatar">KE</div>
+      </div>
+    </nav>
+    <div class="app-shell">
+      ${renderSidebar()}
+      ${renderReelsScreen()}
+    </div>`;
+  }
 
   return `
   <nav class="topnav">
@@ -678,7 +809,10 @@ function renderQueueScreen() {
   <div class="app-shell">
     ${renderSidebar()}
     <main class="main-content" id="main-content">
-      ${queueEmpty() ? renderEmptyState() : renderCardArea()}
+      ${queueEmpty()
+        ? `<div class="card-scroll-area">${renderEmptyState()}</div>`
+        : `<div class="card-scroll-area">${renderCardContent()}</div>
+           <div class="action-bar-wrapper">${renderActionBar()}</div>`}
     </main>
     ${renderRightPanel()}
   </div>`;
@@ -686,10 +820,14 @@ function renderQueueScreen() {
 
 function renderSidebar() {
   const isPapers = state.mode === 'papers';
+  const paperCount = totalPapers();
+  const resCount = totalResearchers();
   const reviewed = isPapers ? state.paperIdx : state.resIdx;
-  const total = isPapers ? totalPapers() : totalResearchers();
+  const total = isPapers ? paperCount : resCount;
   const pct = total > 0 ? Math.round((reviewed / total) * 100) : 0;
-  const progressLabel = pct === 100 ? `All ${total} reviewed ✓` : `${reviewed} of ${total} reviewed`;
+  const progressLabel = pct === 100
+    ? `All ${total} reviewed ✓`
+    : `${reviewed} of ${total} reviewed`;
   const progressColor = pct === 100 ? 'color:#4ecdc4' : '';
   const remaining = total - reviewed;
   const filterItems = isPapers
@@ -706,13 +844,13 @@ function renderSidebar() {
       <div class="sec-label">Browse Mode</div>
       <div class="mode-toggle">
         <button class="mode-btn ${state.mode==='papers'?'active':''}" data-action="mode-papers">
-          ${svgIcon('paper')} Papers <span class="mode-count">${totalPapers()}</span>
+          ${svgIcon('paper')} Papers <span class="mode-count">${paperCount}</span>
         </button>
         <button class="mode-btn ${state.mode==='researchers'?'active':''}" data-action="mode-researchers">
-          ${svgIcon('person')} Researchers <span class="mode-count">${totalResearchers()}</span>
+          ${svgIcon('person')} Researchers <span class="mode-count">${resCount}</span>
         </button>
-        <button class="mode-btn" data-action="mode-reels">
-          ${svgIcon('play')} Reels <span class="mode-count">—</span>
+        <button class="mode-btn ${state.mode==='reels'?'active':''}" data-action="mode-reels">
+          ${svgIcon('play')} Reels <span class="mode-count">6</span>
         </button>
       </div>
     </div>
@@ -751,12 +889,30 @@ function renderSidebar() {
   </aside>`;
 }
 
-function renderCardArea() {
-  if (state.mode === 'papers') return renderPaperCardArea();
-  return renderResearcherCardArea();
+// Card content only (no action bar — that's rendered separately in action-bar-wrapper)
+function renderCardContent() {
+  if (state.mode === 'papers') return renderPaperCard();
+  return renderResearcherCard();
 }
 
-function renderPaperCardArea() {
+function renderActionBar() {
+  if (state.mode === 'papers') {
+    return `
+      <div class="action-bar" style="max-width:700px;width:100%">
+        <button class="action-btn skip" data-action="skip">✕ Skip <span class="kbd-inline">←</span></button>
+        <button class="action-btn details" data-action="details">ℹ Details <span class="kbd-inline">↓</span></button>
+        <button class="action-btn save" data-action="save">♥ Save to Shortlist <span class="kbd-inline">→</span></button>
+      </div>`;
+  }
+  return `
+    <div class="action-bar" style="max-width:700px;width:100%">
+      <button class="action-btn pass" data-action="skip">✕ Pass <span class="kbd-inline">←</span></button>
+      <button class="action-btn details" data-action="details">ℹ Profile <span class="kbd-inline">↓</span></button>
+      <button class="action-btn connect" data-action="save">⚡ Connect <span class="kbd-inline">→</span></button>
+    </div>`;
+}
+
+function renderPaperCard() {
   const p = currentPaper();
   const isExt = state.viewMode === 'external';
   return `
@@ -820,15 +976,10 @@ function renderPaperCardArea() {
       </div>
       <div class="swipe-badge nope" id="badge-nope">NOPE</div>
       <div class="swipe-badge like" id="badge-like">SAVE</div>
-    </div>
-    <div class="action-bar">
-      <button class="action-btn skip" data-action="skip">✕ Skip <span class="kbd-inline">←</span></button>
-      <button class="action-btn details" data-action="details">ℹ Details <span class="kbd-inline">↓</span></button>
-      <button class="action-btn save" data-action="save">♥ Save to Shortlist <span class="kbd-inline">→</span></button>
     </div>`;
 }
 
-function renderResearcherCardArea() {
+function renderResearcherCard() {
   const r = currentResearcher();
   return `
     <div class="card-wrap" id="card-wrap">
@@ -871,12 +1022,62 @@ function renderResearcherCardArea() {
       </div>
       <div class="swipe-badge nope" id="badge-nope">PASS</div>
       <div class="swipe-badge like" id="badge-like">CONNECT</div>
-    </div>
-    <div class="action-bar">
-      <button class="action-btn pass" data-action="skip">✕ Pass <span class="kbd-inline">←</span></button>
-      <button class="action-btn details" data-action="details">ℹ Profile <span class="kbd-inline">↓</span></button>
-      <button class="action-btn connect" data-action="save">⚡ Connect <span class="kbd-inline">→</span></button>
     </div>`;
+}
+
+const REELS = [
+  { initials:'ES', name:'Eric J. Steig', topic:'Antarctic Ice Sheet Dynamics', duration:'4:12', tags:['Glaciology','Sea Level'], saved:false },
+  { initials:'CB', name:'Cecilia Bitz', topic:'Arctic Sea Ice Modeling & Climate Feedbacks', duration:'6:45', tags:['Arctic','Climate Modeling'], saved:false },
+  { initials:'KE', name:'Kristie L. Ebi', topic:'Health Impacts of Extreme Heat Events', duration:'3:28', tags:['Public Health','Heat'], saved:false },
+  { initials:'DS', name:'Daniel Schindler', topic:'Pacific Salmon in a Changing Climate', duration:'5:10', tags:['Ecology','Pacific NW'], saved:false },
+  { initials:'BH', name:'Benjamin Halpern', topic:'Ocean Health Index: 10-Year Retrospective', duration:'7:02', tags:['Marine Ecology','Ocean Health'], saved:false },
+  { initials:'MJ', name:'Monica Jimenez', topic:'Wildfire & Watershed Impacts in the PNW', duration:'4:50', tags:['Fire Ecology','Emissions'], saved:false },
+];
+
+function renderReelsScreen() {
+  return `
+  <div class="reels-layout">
+    <div class="reels-feed">
+      <div class="coming-soon-banner" style="margin-bottom:8px">
+        ✨ <strong style="color:#a07ef0">Research Reels</strong> — short-form video introductions from UW researchers. Save to shortlist or pass.
+      </div>
+      ${REELS.map((reel, i) => `
+        <div class="reel-card" data-reel="${i}">
+          <div class="reel-thumb">
+            <div class="reel-play-btn" data-action="play-reel" data-idx="${i}">▶</div>
+            <span class="reel-duration">${reel.duration}</span>
+          </div>
+          <div class="reel-info">
+            <div class="reel-researcher">
+              <div class="reel-avatar">${reel.initials}</div>
+              <div>
+                <div class="reel-name">${reel.name}</div>
+                <div class="reel-affil">University of Washington</div>
+              </div>
+            </div>
+            <div class="reel-title">${reel.topic}</div>
+            <div class="reel-tags">${reel.tags.map(t=>`<span class="reel-tag">${t}</span>`).join('')}</div>
+            <div class="reel-actions">
+              <button class="reel-btn save" data-action="save-reel" data-idx="${i}">♥ Save to Shortlist</button>
+              <button class="reel-btn skip" data-action="skip-reel" data-idx="${i}">Skip</button>
+            </div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <aside class="reels-sidebar">
+      <div class="reels-sidebar-header">Up Next</div>
+      <div class="reels-queue">
+        ${REELS.map((reel, i) => `
+          <div class="reels-queue-item ${i===0?'active':''}">
+            <div class="rq-thumb">▶</div>
+            <div class="rq-info">
+              <div class="rq-name">${reel.name}</div>
+              <div class="rq-dur">${reel.duration} · ${reel.tags[0]}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </aside>
+  </div>`;
 }
 
 function renderEmptyState() {
@@ -938,7 +1139,10 @@ function renderRightPanel() {
 function renderShortlist() {
   const papers = state.saved.papers;
   const researchers = state.saved.researchers;
-  const allItems = papers.length + researchers.length;
+  const allItems = [
+    ...papers.map(p => ({ type: 'paper', ...p })),
+    ...researchers.map(r => ({ type: 'researcher', ...r })),
+  ];
 
   return `
   <nav class="topnav">
@@ -946,7 +1150,7 @@ function renderShortlist() {
     <div class="topnav-div"></div>
     <div class="topnav-title">My Shortlist</div>
     <div class="topnav-actions">
-      <div class="queue-badge">${allItems} items total</div>
+      <div class="queue-badge">${allItems.length} items total</div>
       <div class="avatar">KE</div>
     </div>
   </nav>
@@ -1006,7 +1210,7 @@ function renderShortlist() {
               </div>
             </div>`).join('')
         }
-        ${allItems > 0 ? `
+        ${allItems.length > 0 ? `
           <div class="export-bar">
             <button class="export-btn" data-action="export-bib">Export as BibTeX</button>
             <button class="export-btn" data-action="export-csv">Export as CSV</button>
@@ -1023,8 +1227,8 @@ function renderUndoToast() {
   if (!state.showUndo || !state.lastAction) return;
   const { action, item, type } = state.lastAction;
   const label = action === 'save'
-    ? (type === 'papers' ? `Saved "${item.title.substring(0,42)}…"` : `Connected with ${item.name}`)
-    : (type === 'papers' ? `Skipped "${item.title.substring(0,42)}…"` : `Passed on ${item.name}`);
+    ? (type === 'papers' ? `Saved "${item.title.substring(0,40)}…"` : `Connected with ${item.name}`)
+    : (type === 'papers' ? `Skipped "${item.title.substring(0,40)}…"` : `Passed on ${item.name}`);
   const toast = document.createElement('div');
   toast.id = 'undo-toast';
   toast.className = 'undo-toast';
@@ -1033,7 +1237,7 @@ function renderUndoToast() {
   document.getElementById('undo-btn').onclick = handleUndo;
 }
 
-// ─── ACTIONS ─────────────────────────────────────────────────────────────────────────────
+// ─── ACTIONS ─────────────────────────────────────────────────────────────────
 function animateCard(direction, callback) {
   if (state.animating) return;
   state.animating = true;
@@ -1041,13 +1245,14 @@ function animateCard(direction, callback) {
   const badgeNope = document.getElementById('badge-nope');
   const badgeLike = document.getElementById('badge-like');
   if (!card) { state.animating = false; callback(); return; }
-  if (direction === 'left'  && badgeNope) badgeNope.classList.add('show');
+  if (direction === 'left' && badgeNope) badgeNope.classList.add('show');
   if (direction === 'right' && badgeLike) badgeLike.classList.add('show');
   card.classList.add(direction === 'left' ? 'exit-left' : 'exit-right');
   setTimeout(() => {
     state.animating = false;
     callback();
     render();
+    // animate in the new card
     setTimeout(() => {
       const newCard = document.getElementById('main-card');
       if (newCard) newCard.classList.add('enter-card');
@@ -1106,7 +1311,7 @@ function handleUndo() {
   render();
 }
 
-// ─── EVENT BINDING ────────────────────────────────────────────────────────────────────────
+// ─── EVENT BINDING ───────────────────────────────────────────────────────────
 function bindEvents() {
   document.querySelectorAll('[data-action]').forEach(el => {
     el.addEventListener('click', handleAction);
@@ -1117,22 +1322,37 @@ function handleAction(e) {
   const el = e.currentTarget;
   const action = el.dataset.action;
   switch (action) {
-    case 'skip':           doSkip(); break;
-    case 'save':           doSave(); break;
-    case 'details':        break;
-    case 'set-view-res':   state.viewMode = 'researcher'; render(); break;
-    case 'set-view-ext':   state.viewMode = 'external';   render(); break;
-    case 'mode-papers':    state.mode = 'papers';      if (state.screen !== 'shortlist') state.screen = 'queue'; render(); break;
-    case 'mode-researchers': state.mode = 'researchers'; if (state.screen !== 'shortlist') state.screen = 'queue'; render(); break;
-    case 'mode-reels':     break;
-    case 'filter':         state.activeFilter[state.mode] = el.dataset.filter; render(); break;
+    case 'skip':          doSkip(); break;
+    case 'save':          doSave(); break;
+    case 'details':       /* no-op in wireframe */ break;
+    case 'set-view-res':  state.viewMode = 'researcher'; render(); break;
+    case 'set-view-ext':  state.viewMode = 'external';   render(); break;
+    case 'mode-papers':
+      state.mode = 'papers'; if (state.screen !== 'shortlist') state.screen = 'queue'; render(); break;
+    case 'mode-researchers':
+      state.mode = 'researchers'; if (state.screen !== 'shortlist') state.screen = 'queue'; render(); break;
+    case 'mode-reels':    state.mode = 'reels'; state.screen = 'queue'; render(); break;
+    case 'play-reel':     alert(`▶ Playing reel: "${REELS[+el.dataset.idx].topic}"\n\n(Video player coming soon)`); break;
+    case 'save-reel': {
+      const reel = REELS[+el.dataset.idx];
+      if (!state.saved.researchers.find(r => r.name === reel.name)) {
+        state.saved.researchers.push({ id: 200 + +el.dataset.idx, initials: reel.initials, name: reel.name, affil: 'University of Washington', hIndex: '—', tag: reel.tags[0] });
+      }
+      render(); break;
+    }
+    case 'skip-reel':     render(); break;
+    case 'filter':
+      state.activeFilter[state.mode] = el.dataset.filter; render(); break;
     case 'filter-expand':
-    case 'expand-filters': if (state.mode === 'papers') state.paperIdx = 0; else state.resIdx = 0; render(); break;
-    case 'panel-tab-papers':      state.panelTab = 'papers';      render(); break;
-    case 'panel-tab-researchers': state.panelTab = 'researchers'; render(); break;
+    case 'expand-filters':
+      // reset queue for demo
+      if (state.mode === 'papers') state.paperIdx = 0; else state.resIdx = 0;
+      render(); break;
+    case 'panel-tab-papers':     state.panelTab = 'papers';     render(); break;
+    case 'panel-tab-researchers':state.panelTab = 'researchers'; render(); break;
     case 'view-shortlist': state.screen = 'shortlist'; render(); break;
     case 'back-to-queue':  state.screen = 'queue';     render(); break;
-    case 'sort':           state.sortBy = el.dataset.sort; render(); break;
+    case 'sort': state.sortBy = el.dataset.sort; render(); break;
     case 'remove-saved': {
       const tab = el.dataset.tab;
       const idx = parseInt(el.dataset.idx);
@@ -1148,23 +1368,24 @@ function handleAction(e) {
     case 'export-bib':
     case 'export-csv':
     case 'export-link':
-    case 'export-all':     alert('Export feature coming soon!'); break;
+    case 'export-all':
+      alert('Export feature coming soon!'); break;
   }
 }
 
-// ─── KEYBOARD ────────────────────────────────────────────────────────────────────────────
+// ─── KEYBOARD ────────────────────────────────────────────────────────────────
 document.addEventListener('keydown', e => {
   if (state.screen !== 'queue' || queueEmpty()) return;
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
   switch (e.key) {
     case 'ArrowLeft':  e.preventDefault(); doSkip(); break;
     case 'ArrowRight': e.preventDefault(); doSave(); break;
-    case 'ArrowDown':  e.preventDefault(); break;
+    case 'ArrowDown':  e.preventDefault(); break; // details
     case 'u': case 'U': handleUndo(); break;
   }
 });
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────────────────
+// ─── INIT ─────────────────────────────────────────────────────────────────────
 render();
 </script>
 </body>
