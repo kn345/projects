@@ -1005,10 +1005,6 @@ function renderSidebar() {
     ? [['Climate Change','12'],['Arctic & Ice','7'],['Emissions','9'],['Public Health','5'],['Ecology','8'],['Atmospheric','4']]
     : [['Climate Science','8'],['Oceanography','5'],['Ecology','4'],['Atmospheric','3'],['Public Health','2']];
   const activeFilter = state.activeFilter[state.mode];
-  const kbdRows = isPapers
-    ? [['←','Skip paper'],['→','Save'],['↓','View full details'],['U','Undo last action']]
-    : [['←','Skip'],['→','Save'],['↓','Full profile'],['U','Undo']];
-
   return `
   <aside class="sidebar">
     <div class="sidebar-section">
@@ -1051,12 +1047,6 @@ function renderSidebar() {
         <div class="filter-item" data-action="filter-expand">Geology <span class="filter-count">3</span></div>
       </div>
     </div>` : ''}
-    <div class="sidebar-section push-bottom">
-      <div class="sec-label">Keyboard Shortcuts</div>
-      <div class="kbd-hints">
-        ${kbdRows.map(([k,h])=>`<div class="kbd-row"><span class="kbd">${k}</span>${h}</div>`).join('')}
-      </div>
-    </div>
   </aside>`;
 }
 
