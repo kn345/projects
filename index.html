@@ -138,11 +138,9 @@ body {
   min-height: 0;
 }
 .action-bar-wrapper {
-  flex-shrink: 0;
   display: flex; justify-content: center;
-  padding: 10px 40px 20px;
-  background: #0a1628;
-  border-top: 1px solid #0f1e35;
+  padding: 12px 0 24px;
+  width: 100%;
 }
 
 /* ── External view banner ── */
@@ -985,8 +983,7 @@ function renderQueueScreen() {
     <main class="main-content" id="main-content">
       ${queueEmpty()
         ? `<div class="card-scroll-area">${renderEmptyState()}</div>`
-        : `<div class="card-scroll-area">${renderCardContent()}</div>
-           <div class="action-bar-wrapper">${renderActionBar()}</div>`}
+        : `<div class="card-scroll-area">${renderCardContent()}<div class="action-bar-wrapper">${renderActionBar()}</div></div>`}
     </main>
     ${renderRightPanel()}
   </div>`;
@@ -1010,7 +1007,7 @@ function renderSidebar() {
   const activeFilter = state.activeFilter[state.mode];
   const kbdRows = isPapers
     ? [['←','Skip paper'],['→','Save'],['↓','View full details'],['U','Undo last action']]
-    : [['←','Pass'],['→','Save'],['↓','Full profile'],['U','Undo']];
+    : [['←','Skip'],['→','Save'],['↓','Full profile'],['U','Undo']];
 
   return `
   <aside class="sidebar">
@@ -1080,7 +1077,7 @@ function renderActionBar() {
   }
   return `
     <div class="action-bar" style="max-width:700px;width:100%">
-      <button class="action-btn pass" data-action="skip">✕ Pass <span class="kbd-inline">←</span></button>
+      <button class="action-btn pass" data-action="skip">✕ Skip <span class="kbd-inline">←</span></button>
       <button class="action-btn details" data-action="details">ℹ Profile <span class="kbd-inline">↓</span></button>
       <button class="action-btn connect" data-action="save">♥ Save <span class="kbd-inline">→</span></button>
     </div>`;
