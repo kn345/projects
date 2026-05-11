@@ -886,7 +886,7 @@ const state = {
   viewMode: 'researcher',// 'researcher' | 'external'
   paperIdx: 0,
   resIdx: 0,
-  saved: { papers: [], researchers: [] },
+  saved: { papers: [], researchers: [], reels: [] },
   history: [],           // for undo: [{type:'paper'|'researcher',item,action:'save'|'skip'}]
   animating: false,
   panelTab: 'papers',    // 'papers' | 'researchers'
@@ -1477,8 +1477,9 @@ function renderRightPanel() {
   const tab = state.panelTab;
   const papers = state.saved.papers;
   const researchers = state.saved.researchers;
-  const totalSaved = papers.length + researchers.length;
-  const items = tab === 'papers' ? papers : researchers;
+  const reels = state.saved.reels;
+  const totalSaved = papers.length + researchers.length + reels.length;
+  const items = tab === 'papers' ? papers : tab === 'researchers' ? researchers : reels;
 
   return `
   <aside class="right-panel">
@@ -1489,19 +1490,20 @@ function renderRightPanel() {
     <div class="rp-tabs">
       <div class="panel-tab ${tab==='papers'?'active':''}" data-action="panel-tab-papers">Papers (${papers.length})</div>
       <div class="panel-tab ${tab==='researchers'?'active':''}" data-action="panel-tab-researchers">Researchers (${researchers.length})</div>
+      <div class="panel-tab ${tab==='reels'?'active':''}" data-action="panel-tab-reels">Reels (${reels.length})</div>
     </div>
     <div class="rp-list">
       ${items.length === 0 ? `
         <div class="rp-empty">
-          <div class="rp-empty-icon">${tab==='papers'?'📄':'👤'}</div>
+          <div class="rp-empty-icon">${tab==='papers'?'📄':tab==='researchers'?'👤':'▶️'}</div>
           <div class="rp-empty-text">No ${tab} saved yet.<br>Use → or the Save button to add items.</div>
         </div>` :
         items.map((item, i) => `
           <div class="saved-row">
-            <div class="row-icon">${tab==='papers'?'📄':'👤'}</div>
+            <div class="row-icon">${tab==='papers'?'📄':tab==='researchers'?'👤':item.emoji}</div>
             <div class="row-body">
-              <div class="row-title">${tab==='papers' ? item.title : item.name}</div>
-              <div class="row-meta">${tab==='papers' ? `${item.journal} · ${item.year} · <span>${item.citations} citations</span>` : `${item.affil}`}</div>
+              <div class="row-title">${tab==='papers' ? item.title : tab==='researchers' ? item.name : item.topic}</div>
+              <div class="row-meta">${tab==='papers' ? `${item.journal} · ${item.year} · <span>${item.citations} citations</span>` : tab==='researchers' ? `${item.affil}` : `${item.name} · ${item.dept} · ${item.duration}`}</div>
             </div>
             <button class="row-remove" data-action="remove-saved" data-tab="${tab}" data-idx="${i}" title="Remove">×</button>
           </div>`).join('')
@@ -1514,9 +1516,11 @@ function renderRightPanel() {
 function renderShortlist() {
   const papers = state.saved.papers;
   const researchers = state.saved.researchers;
+  const reels = state.saved.reels;
   const allItems = [
     ...papers.map(p => ({ type: 'paper', ...p })),
     ...researchers.map(r => ({ type: 'researcher', ...r })),
+    ...reels.map(r => ({ type: 'reels', ...r })),
   ];
 
   return `
@@ -1536,7 +1540,7 @@ function renderShortlist() {
         <div class="mode-toggle">
           <button class="mode-btn ${state.mode==='papers'?'active':''}" data-action="mode-papers">${svgIcon('paper')} Papers <span class="mode-count">${papers.length}</span></button>
           <button class="mode-btn ${state.mode==='researchers'?'active':''}" data-action="mode-researchers">${svgIcon('person')} Researchers <span class="mode-count">${researchers.length}</span></button>
-          <button class="mode-btn" data-action="mode-reels">${svgIcon('play')} Reels <span class="mode-count">—</span></button>
+          <button class="mode-btn ${state.mode==='reels'?'active':''}" data-action="mode-reels">${svgIcon('play')} Reels <span class="mode-count">${reels.length}</span></button>
         </div>
       </div>
       <div class="sidebar-section sidebar-sort">
@@ -1558,30 +1562,32 @@ function renderShortlist() {
     <main style="background:#0a1628;overflow-y:auto;display:flex;flex-direction:column;">
       <div class="shortlist-main">
         <div class="shortlist-header">
-          <h2>Saved ${state.mode === 'papers' ? 'Papers' : 'Researchers'}</h2>
+          <h2>Saved ${state.mode === 'papers' ? 'Papers' : state.mode === 'researchers' ? 'Researchers' : 'Reels'}</h2>
           <div class="shortlist-header-actions">
             <button class="export-btn" data-action="export-all">Export All</button>
             <button class="back-btn" data-action="back-to-queue">← Back to Queue</button>
           </div>
         </div>
-        ${(state.mode === 'papers' ? papers : researchers).length === 0 ? `
+        ${(state.mode === 'papers' ? papers : state.mode === 'researchers' ? researchers : reels).length === 0 ? `
           <div style="text-align:center;padding:60px 0;color:#3a5a78;font-size:15px;">
             No ${state.mode} saved yet. <span style="color:#4ecdc4;cursor:pointer;" data-action="back-to-queue">Go back to the queue →</span>
           </div>` :
-          (state.mode === 'papers' ? papers : researchers).map((item, i) => `
+          (state.mode === 'papers' ? papers : state.mode === 'researchers' ? researchers : reels).map((item, i) => `
             <div class="full-row">
-              <div class="full-icon">${state.mode === 'papers' ? '📄' : '👤'}</div>
+              <div class="full-icon">${state.mode === 'papers' ? '📄' : state.mode === 'researchers' ? '👤' : item.emoji}</div>
               <div class="full-body">
-                <div class="full-title">${state.mode === 'papers' ? item.title : item.name}</div>
+                <div class="full-title">${state.mode === 'papers' ? item.title : state.mode === 'researchers' ? item.name : item.topic}</div>
                 <div class="full-meta">
                   ${state.mode === 'papers'
                     ? `${item.journal} · ${item.year} · <span>${item.citations} citations</span> · UW Author: ${item.author.name}`
-                    : `${item.affil} · h-Index: ${item.hIndex}`}
+                    : state.mode === 'researchers'
+                    ? `${item.affil} · h-Index: ${item.hIndex}`
+                    : `${item.name} · ${item.dept} · ${item.duration} · ${item.views} views`}
                 </div>
               </div>
               <div class="full-actions">
                 <span class="tag-chip">${item.tag}</span>
-                <button class="remove-btn" data-action="remove-full" data-type="${state.mode==='papers'?'papers':'researchers'}" data-idx="${i}">Remove</button>
+                <button class="remove-btn" data-action="remove-full" data-type="${state.mode}" data-idx="${i}">Remove</button>
               </div>
             </div>`).join('')
         }
@@ -1715,8 +1721,8 @@ function handleAction(e) {
       const reelIdx = +el.dataset.idx;
       const reel = REELS[reelIdx];
       reel.saved = true;
-      if (!state.saved.researchers.find(r => r.name === reel.name)) {
-        state.saved.researchers.push({ id: 200 + reelIdx, initials: reel.initials, name: reel.name, affil: `University of Washington · ${reel.dept}`, hIndex: '—', tag: reel.topic_badge });
+      if (!state.saved.reels.find(r => r.topic === reel.topic)) {
+        state.saved.reels.push({ topic: reel.topic, name: reel.name, dept: reel.dept, duration: reel.duration, views: reel.views, emoji: reel.emoji, tag: reel.topic_badge, initials: reel.initials });
       }
       if (state.reelView === 'player') {
         const nextIdx = (reelIdx + 1) % REELS.length;
@@ -1735,6 +1741,7 @@ function handleAction(e) {
       render(); break;
     case 'panel-tab-papers':     state.panelTab = 'papers';     render(); break;
     case 'panel-tab-researchers':state.panelTab = 'researchers'; render(); break;
+    case 'panel-tab-reels':      state.panelTab = 'reels';      render(); break;
     case 'view-shortlist': state.screen = 'shortlist'; render(); break;
     case 'back-to-queue':  state.screen = 'queue';     render(); break;
     case 'sort': state.sortBy = el.dataset.sort; render(); break;
