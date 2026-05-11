@@ -1008,8 +1008,8 @@ function renderSidebar() {
     : [['Climate Science','8'],['Oceanography','5'],['Ecology','4'],['Atmospheric','3'],['Public Health','2']];
   const activeFilter = state.activeFilter[state.mode];
   const kbdRows = isPapers
-    ? [['←','Skip paper'],['→','Save to shortlist'],['↓','View full details'],['U','Undo last action']]
-    : [['←','Pass'],['→','Connect'],['↓','Full profile'],['U','Undo']];
+    ? [['←','Skip paper'],['→','Save'],['↓','View full details'],['U','Undo last action']]
+    : [['←','Pass'],['→','Save'],['↓','Full profile'],['U','Undo']];
 
   return `
   <aside class="sidebar">
@@ -1074,14 +1074,14 @@ function renderActionBar() {
       <div class="action-bar" style="max-width:700px;width:100%">
         <button class="action-btn skip" data-action="skip">✕ Skip <span class="kbd-inline">←</span></button>
         <button class="action-btn details" data-action="details">ℹ Details <span class="kbd-inline">↓</span></button>
-        <button class="action-btn save" data-action="save">♥ Save to Shortlist <span class="kbd-inline">→</span></button>
+        <button class="action-btn save" data-action="save">♥ Save <span class="kbd-inline">→</span></button>
       </div>`;
   }
   return `
     <div class="action-bar" style="max-width:700px;width:100%">
       <button class="action-btn pass" data-action="skip">✕ Pass <span class="kbd-inline">←</span></button>
       <button class="action-btn details" data-action="details">ℹ Profile <span class="kbd-inline">↓</span></button>
-      <button class="action-btn connect" data-action="save">⚡ Connect <span class="kbd-inline">→</span></button>
+      <button class="action-btn connect" data-action="save">♥ Save <span class="kbd-inline">→</span></button>
     </div>`;
 }
 
@@ -1447,7 +1447,7 @@ function renderReelsPlayer() {
           </div>`).join('')}
           <div class="panel-cta-group">
             <button class="btn-panel-primary" data-action="save-reel" data-idx="${state.activeReelIdx}">
-              ${reel.saved ? '♥ Saved to Shortlist' : '♥ Save to Shortlist'}
+              ${reel.saved ? '♥ Saved' : '♥ Save'}
             </button>
             <button class="btn-panel-ghost">↗ Share this Reel</button>
             <button class="btn-panel-ghost">📄 View Full Paper</button>
