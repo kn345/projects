@@ -1,0 +1,114 @@
+import { Link } from 'react-router-dom'
+import Footer from '../components/Footer'
+import styles from './CaseStudy.module.css'
+
+export default function CaseStudyAmazon() {
+  return (
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <Link to="/" className={styles.backLink}>← Back to work</Link>
+
+        <header className={styles.header}>
+          <p className={styles.tag}>AMAZON · 2025</p>
+          <h1 className={styles.title}>Amazon Ads User Research</h1>
+          <p className={styles.summary}>
+            Led user interviews, persona development, and concept testing to inform product
+            decisions for Amazon Ads.
+          </p>
+        </header>
+
+        <div className={styles.meta}>
+          <div>
+            <p className={styles.metaLabel}>My Role</p>
+            <p className={styles.metaValue}>UX Researcher</p>
+          </div>
+          <div>
+            <p className={styles.metaLabel}>Team</p>
+            <p className={styles.metaValue}>[placeholder]</p>
+          </div>
+          <div>
+            <p className={styles.metaLabel}>Duration</p>
+            <p className={styles.metaValue}>[placeholder]</p>
+          </div>
+          <div>
+            <p className={styles.metaLabel}>Methods</p>
+            <p className={styles.metaValue}>Interviews · Personas · A/B Testing</p>
+          </div>
+        </div>
+
+        <div className={styles.body}>
+          <div className={styles.callout}>
+            <p className={styles.calloutLabel}>STATUS</p>
+            <p className={styles.calloutText}>
+              This project is under NDA and in progress. High-level content will be available when
+              the project wraps in September 2025.
+            </p>
+          </div>
+
+          <section className={styles.section}>
+            <p className={styles.sectionLabel}>BACKGROUND</p>
+            <h2 className={styles.sectionTitle}>[placeholder]</h2>
+            <p className={styles.sectionBody}>[placeholder]</p>
+          </section>
+
+          <section className={styles.section}>
+            <p className={styles.sectionLabel}>APPROACH</p>
+            <h2 className={styles.sectionTitle}>[placeholder]</h2>
+            <p className={styles.sectionBody}>[placeholder]</p>
+          </section>
+
+          <section className={styles.section}>
+            <p className={styles.sectionLabel}>PROCESS</p>
+            <h2 className={styles.sectionTitle}>[placeholder]</h2>
+            <p className={styles.sectionBody}>[placeholder]</p>
+            <div className={styles.imagePlaceholder}>Research artifact placeholder</div>
+          </section>
+
+          <section className={styles.section}>
+            <p className={styles.sectionLabel}>FINDINGS</p>
+            <h2 className={styles.sectionTitle}>[placeholder]</h2>
+            <div className={styles.findingGrid}>
+              {[1, 2, 3, 4].map((n) => (
+                <div key={n} className={styles.findingCard}>
+                  <p className={styles.findingNum}>0{n}</p>
+                  <p className={styles.findingTitle}>[placeholder]</p>
+                  <p className={styles.findingDesc}>[placeholder]</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className={styles.section}>
+            <p className={styles.sectionLabel}>IMPACT</p>
+            <h2 className={styles.sectionTitle}>[placeholder]</h2>
+            <p className={styles.sectionBody}>[placeholder]</p>
+            <div className={styles.impact}>
+              <div className={styles.impactStats}>
+                {['—', '—', '—'].map((v, i) => (
+                  <div key={i}>
+                    <p className={styles.statNum}>{v}</p>
+                    <p className={styles.statDesc}>[placeholder]</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <nav className={styles.bottomNav}>
+            <Link to="/work/uw-research" className={styles.navLink}>
+              <p className={styles.navLinkLabel}>Previous project</p>
+              <p className={styles.navLinkTitle}>← UW Office of Research Platform</p>
+            </Link>
+            <Link to="/work/appa-health" className={styles.navLink}>
+              <div className={styles.navLinkRight}>
+                <p className={styles.navLinkLabel}>Next project</p>
+                <p className={styles.navLinkTitle}>Defining Product-Market Fit →</p>
+              </div>
+            </Link>
+          </nav>
+        </div>
+      </div>
+      <Footer />
+    </main>
+  )
+}
