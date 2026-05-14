@@ -20,7 +20,7 @@
 }
 
 .backLink:hover {
-  color: var(--hover-accent);
+  color: var(--sage);
 }
 
 .header {
@@ -268,7 +268,7 @@
 }
 
 .navLink:hover .navLinkTitle {
-  color: var(--hover-accent);
+  color: var(--sage);
 }
 
 .navLinkRight {

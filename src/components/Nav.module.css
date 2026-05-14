@@ -19,7 +19,7 @@
 }
 
 .name:hover {
-  color: var(--hover-accent);
+  color: var(--sage);
 }
 
 .links {
@@ -36,7 +36,7 @@
 
 .link:hover,
 .active {
-  color: var(--text-primary);
+  color: var(--sage);
 }
 
 @media (max-width: 768px) {

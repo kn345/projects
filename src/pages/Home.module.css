@@ -21,7 +21,7 @@
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--sage);
   margin-bottom: 20px;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .row:hover .rowTitle {
-  color: var(--hover-accent);
+  color: var(--sage);
 }
 
 .row:hover .arrow {
@@ -118,8 +118,8 @@
 
 .pill {
   font-size: 12px;
-  color: var(--text-muted);
-  background: var(--card-bg);
+  color: var(--sage);
+  background: var(--sage-light);
   padding: 4px 12px;
   border-radius: 100px;
   white-space: nowrap;
@@ -127,7 +127,7 @@
 
 .arrow {
   font-size: 18px;
-  color: var(--text-muted);
+  color: var(--sage);
   opacity: 0.4;
   transition: opacity 0.15s;
 }
@@ -165,7 +165,7 @@
 }
 
 .readMore:hover {
-  color: var(--hover-accent);
+  color: var(--sage);
 }
 
 @media (max-width: 768px) {
