@@ -2,6 +2,12 @@
   padding: 48px;
   border-top: 0.5px solid var(--border);
   border-bottom: 0.5px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.inner {
+  text-align: right;
 }
 
 .heading {
@@ -17,6 +23,7 @@
   display: flex;
   gap: 32px;
   align-items: center;
+  justify-content: flex-end;
   flex-wrap: wrap;
 }
 
@@ -33,8 +40,13 @@
 @media (max-width: 768px) {
   .strip {
     padding: 32px 24px;
+    justify-content: flex-start;
+  }
+  .inner {
+    text-align: left;
   }
   .links {
+    justify-content: flex-start;
     flex-direction: column;
     gap: 12px;
   }
