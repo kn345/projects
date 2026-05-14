@@ -3,7 +3,7 @@ import styles from './ContactStrip.module.css'
 export default function ContactStrip() {
   return (
     <section className={styles.strip}>
-      <span className={styles.heading}>Want to connect?</span>
+      <p className={styles.heading}>Want to connect?</p>
       <div className={styles.links}>
         <a href="mailto:kayda.norman@gmail.com" className={styles.link}>
           kayda.norman@gmail.com
