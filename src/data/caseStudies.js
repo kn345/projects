@@ -1,7 +1,7 @@
-// Central metadata for the five flagship case studies.
-// Body copy for each case study page is still pending Kay's finalized text
-// (see /case-studies/*.jsx placeholders) — this file drives the homepage
-// cards and nav only.
+// Central metadata for the flagship case studies shown on the homepage and
+// in the nav's Work dropdown. NerdWallet is temporarily removed from this
+// list (not deleted — src/pages/case-studies/NerdWallet.jsx and its route
+// still exist, just unlinked) — add it back here when ready.
 
 export const caseStudies = [
   {
@@ -10,6 +10,13 @@ export const caseStudies = [
     subtitle: 'Content research, ongoing',
     methods: ['A/B Testing', 'Customer Feedback Analysis'],
     blend: 'research',
+  },
+  {
+    slug: 'aiembodied',
+    title: 'AiEmbodied',
+    subtitle: 'Redesigning a no-code AI workflow builder',
+    methods: ['UX Design', 'IA', 'Usability Testing Protocol'],
+    blend: 'design',
   },
   {
     slug: 'capstone',
@@ -24,20 +31,6 @@ export const caseStudies = [
     subtitle: 'Understanding school user needs for a mental health platform',
     methods: ['Interviews', 'Survey', 'Thematic Analysis'],
     blend: 'research',
-  },
-  {
-    slug: 'aiembodied',
-    title: 'AiEmbodied',
-    subtitle: 'Redesigning a no-code AI workflow builder',
-    methods: ['UX Design', 'IA', 'Usability Testing Protocol'],
-    blend: 'design',
-  },
-  {
-    slug: 'nerdwallet',
-    title: 'NerdWallet',
-    subtitle: 'Insurance review template redesign',
-    methods: ['Content Design', 'Research Partnership'],
-    blend: 'content+research',
   },
   {
     slug: 'vrchat',
