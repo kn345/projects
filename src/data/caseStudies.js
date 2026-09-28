@@ -18,14 +18,6 @@ export const caseStudies = [
     blend: 'research',
   },
   {
-    slug: 'aiembodied',
-    title: 'AiEmbodied',
-    subtitle: 'Redesigning a no-code AI workflow builder',
-    description: 'Simplifying a cluttered, technical workflow builder into something approachable for non-coders, without losing its power.',
-    methods: ['UX Design', 'IA', 'Usability Testing Protocol'],
-    blend: 'design',
-  },
-  {
     slug: 'capstone',
     title: "Dub's Research Hub",
     subtitle: 'From profile problem to collaboration platform',
@@ -33,6 +25,14 @@ export const caseStudies = [
     methods: ['Research', 'Design', 'IA', 'Concept Testing'],
     blend: 'research+design',
     image: '/images/work/capstone/hifi-home.png',
+  },
+  {
+    slug: 'aiembodied',
+    title: 'AI Embodied',
+    subtitle: 'Redesigning a no-code AI workflow builder',
+    description: 'Simplifying a cluttered, technical workflow builder into something approachable for non-coders, without losing its power.',
+    methods: ['UX Design', 'IA', 'Usability Testing Protocol'],
+    blend: 'design',
   },
   {
     slug: 'appa-health',

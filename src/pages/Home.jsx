@@ -26,13 +26,6 @@ export default function Home() {
           <p style={{ maxWidth: '620px', color: 'var(--color-text-muted)' }}>
             I research what people need and design experiences that earn their trust.
           </p>
-
-          <div className="pill-row">
-            <span className="hero-pill">User Research</span>
-            <span className="hero-pill">UX Design</span>
-            <span className="hero-pill">Content Strategy</span>
-            <span className="hero-pill">Information Architecture</span>
-          </div>
         </div>
       </section>
 

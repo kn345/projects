@@ -3,7 +3,7 @@ import CaseStudyLayout from '../../components/CaseStudyLayout';
 export default function AiEmbodied() {
   return (
     <CaseStudyLayout
-      title="AiEmbodied: Redesigning a No-Code AI Workflow Builder"
+      title="AI Embodied: Redesigning a No-Code AI Workflow Builder"
       meta="Role: Sole UX Designer (contract) · Client: AiEmbodied Inc., a workflow-automation startup · Duration: 6 weeks · Methods: persona development, information architecture, wireframing, usability testing protocol design"
     >
       <section id="overview">
