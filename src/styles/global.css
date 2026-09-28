@@ -1,0 +1,73 @@
+@import './tokens.css';
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+
+p { margin: 0 0 var(--space-sm); color: var(--color-text); }
+
+a {
+  color: var(--color-sage-dark);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.section {
+  padding: var(--space-xl) 0;
+}
+
+.tag-pill {
+  display: inline-block;
+  font-size: var(--fs-small);
+  color: var(--color-sage-dark);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  margin: 0 0.4rem 0.4rem 0;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  font-size: var(--fs-small);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.btn:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .section { padding: var(--space-lg) 0; }
+}
