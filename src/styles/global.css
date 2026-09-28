@@ -112,11 +112,40 @@ details[open] summary ~ * { animation: fadein 0.1s ease; }
   letter-spacing: -0.01em;
 }
 
+.about-photo-rail {
+  position: sticky;
+  top: var(--space-md);
+}
+
+.about-bio-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-bio-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
 @media (max-width: 720px) {
   .about-hero {
     grid-template-columns: 1fr;
   }
   .about-hero > div:last-child {
+    max-width: 320px;
+  }
+  .about-photo-rail {
+    position: static;
+  }
+  .about-bio-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-bio-photo {
     max-width: 320px;
   }
 }
