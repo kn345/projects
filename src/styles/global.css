@@ -113,8 +113,7 @@ details[open] summary ~ * { animation: fadein 0.1s ease; }
 }
 
 .about-photo-rail {
-  position: sticky;
-  top: var(--space-md);
+  position: static;
 }
 
 .about-bio-grid {

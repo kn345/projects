@@ -68,8 +68,8 @@ export default function About() {
             </div>
 
             <img
-              src="/images/life/rock-climbing.jpg"
-              alt="Kayda rock climbing outdoors"
+              src="/images/about/design-conference.jpg"
+              alt="Kayda at a UX design conference, presenting workshop research"
               className="about-bio-photo"
             />
           </div>
@@ -128,8 +128,8 @@ export default function About() {
             <div className="about-photo-rail">
               <div className="about-photo-card">
                 <img
-                  src="/images/about/design-conference.jpg"
-                  alt="Kayda at a UX design conference, presenting workshop research"
+                  src="/images/life/rock-climbing.jpg"
+                  alt="Kayda rock climbing outdoors"
                 />
                 <div className="about-photo-overlay">
                   <span>Kayda</span>
