@@ -8,8 +8,8 @@
   --color-text-muted: #6B6459;
   --color-border: #E3DAC7;
 
-  /* Type */
-  --font-display: 'Fraunces', Georgia, serif;
+  /* Type — all sans-serif, weight carries the hierarchy instead of a serif/sans pairing */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   --fs-hero: clamp(2.25rem, 4vw + 1rem, 3.75rem);

@@ -23,6 +23,7 @@ export default function Nav() {
           to="/"
           style={{
             fontFamily: 'var(--font-display)',
+            fontWeight: 700,
             fontSize: '1.25rem',
             color: 'var(--color-text)',
             textDecoration: 'none',

@@ -7,8 +7,20 @@ export default function Home() {
     <>
       <section className="section">
         <div className="container">
+          <p
+            style={{
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              fontSize: 'var(--fs-small)',
+              color: 'var(--color-sage-dark)',
+              fontWeight: 600,
+              margin: '0 0 0.5rem',
+            }}
+          >
+            UX Researcher &amp; Designer
+          </p>
           <h1 style={{ fontSize: 'var(--fs-hero)', maxWidth: '780px' }}>
-            Hi, I'm Kayda — a UX researcher with a background in content strategy.
+            Hi, I'm Kayda.
           </h1>
           <p style={{ maxWidth: '620px', color: 'var(--color-text-muted)' }}>
             I look for the real barriers between people and the help they need, then follow that all the way to a decision that changes something.
