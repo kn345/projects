@@ -74,6 +74,55 @@ details[open] summary ~ * { animation: fadein 0.1s ease; }
   text-decoration: none;
 }
 
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-photo-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.about-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-photo-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.25rem 1.25rem 1rem;
+  background: linear-gradient(to top, rgba(46, 42, 36, 0.75), transparent);
+}
+
+.about-photo-overlay span {
+  color: #FAF6EF;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 720px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+  }
+  .about-hero > div:last-child {
+    max-width: 320px;
+  }
+}
+
 @media (max-width: 640px) {
   .section { padding: var(--space-lg) 0; }
+  .about-hero { gap: 2rem; }
 }
