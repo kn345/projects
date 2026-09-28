@@ -1,10 +1,44 @@
 import { LINKEDIN_URL, RESUME_URL } from '../data/links';
 
+const lifePhotos = [
+  { src: '/images/life/paddleboarding.jpg', alt: 'Paddleboarding on a lake' },
+  { src: '/images/life/rock-climbing.jpg', alt: 'Rock climbing outdoors' },
+  { src: '/images/life/tree-swing.jpg', alt: 'On a rope swing in the forest' },
+  { src: '/images/life/sedona-portrait.jpg', alt: 'Hiking in Sedona, Arizona' },
+];
+
 export default function About() {
   return (
     <section className="section">
       <div className="container" style={{ maxWidth: '720px' }}>
-        <h1>Hi, I'm Kayda!</h1>
+        <div
+          style={{
+            display: 'flex',
+            gap: '1.5rem',
+            alignItems: 'flex-start',
+            flexWrap: 'wrap',
+            marginBottom: '0.5rem',
+          }}
+        >
+          <img
+            src="/images/about/design-conference.jpg"
+            alt="Kayda at a UX design conference, presenting workshop research"
+            style={{
+              width: '140px',
+              height: '140px',
+              objectFit: 'cover',
+              borderRadius: 'var(--radius)',
+              border: '1px solid var(--color-border)',
+              flexShrink: 0,
+            }}
+          />
+          <div style={{ flex: 1, minWidth: '260px' }}>
+            <h1 style={{ marginBottom: '0.5rem' }}>Hi, I'm Kayda!</h1>
+            <p style={{ margin: 0, color: 'var(--color-text-muted)', fontSize: 'var(--fs-small)' }}>
+              At a UX design conference, presenting workshop research
+            </p>
+          </div>
+        </div>
 
         <p>
           I'm a UX researcher with a background in content strategy. I currently work at Amazon Ads,
@@ -47,27 +81,23 @@ export default function About() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '0.75rem',
           }}
         >
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div
-              key={i}
+          {lifePhotos.map((photo) => (
+            <img
+              key={photo.src}
+              src={photo.src}
+              alt={photo.alt}
               style={{
                 aspectRatio: '1',
-                background: 'var(--color-bg-alt)',
-                border: '1px dashed var(--color-border)',
+                width: '100%',
+                objectFit: 'cover',
                 borderRadius: 'var(--radius)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--color-text-muted)',
-                fontSize: 'var(--fs-small)',
+                border: '1px solid var(--color-border)',
               }}
-            >
-              photo {i}
-            </div>
+            />
           ))}
         </div>
       </div>
