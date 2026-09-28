@@ -5,7 +5,7 @@ const TABS = ['Overview', 'Process', 'Outcome'];
 // Tabs act as scroll anchors into one continuous page — clicking a tab
 // smooth-scrolls to that section, but the page still reads fine as a
 // normal scroll if someone ignores the tabs entirely.
-export default function CaseStudyLayout({ title, subtitle, meta, children }) {
+export default function CaseStudyLayout({ title, subtitle, meta, pills, children }) {
   const [active, setActive] = useState('Overview');
 
   const scrollTo = (id) => {
@@ -23,6 +23,13 @@ export default function CaseStudyLayout({ title, subtitle, meta, children }) {
             <p style={{ fontStyle: 'italic', color: 'var(--color-text-muted)', fontSize: 'var(--fs-small)' }}>
               {meta}
             </p>
+          )}
+          {pills && (
+            <div className="pill-row">
+              {pills.map((p) => (
+                <span className="hero-pill" key={p}>{p}</span>
+              ))}
+            </div>
           )}
         </div>
       </header>

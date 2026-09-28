@@ -26,15 +26,22 @@ export default function Home() {
           <p style={{ maxWidth: '620px', color: 'var(--color-text-muted)' }}>
             I research what people need and design experiences that earn their trust.
           </p>
+
+          <div className="pill-row">
+            <span className="hero-pill">User Research</span>
+            <span className="hero-pill">UX Design</span>
+            <span className="hero-pill">Content Strategy</span>
+            <span className="hero-pill">Information Architecture</span>
+          </div>
         </div>
       </section>
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <h2 style={{ fontSize: 'var(--fs-body)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          <h2 style={{ fontSize: 'var(--fs-body)', color: 'var(--color-text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '1.5rem' }}>
             Selected Work
           </h2>
-          <div style={{ marginTop: '1rem' }}>
+          <div className="work-grid">
             {caseStudies.map((cs) => (
               <CaseStudyCard key={cs.slug} {...cs} />
             ))}

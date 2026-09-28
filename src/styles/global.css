@@ -158,3 +158,78 @@ details[open] summary ~ * { animation: fadein 0.1s ease; }
     grid-template-columns: 1fr;
   }
 }
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.work-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.work-card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  display: block;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.work-card-image--placeholder {
+  background: var(--color-bg-alt);
+}
+
+.work-card:hover .work-card-image {
+  transform: translateY(-2px);
+}
+
+.work-card-title {
+  margin-bottom: 0.5rem;
+  transition: color 0.15s ease;
+}
+
+.work-card:hover .work-card-title {
+  color: var(--color-sage-dark);
+}
+
+.work-card-desc {
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.work-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-sage-dark);
+}
+
+.work-card:hover .work-card-link {
+  text-decoration: underline;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.hero-pill {
+  display: inline-block;
+  font-size: var(--fs-small);
+  color: var(--color-sage-dark);
+  background: transparent;
+  border: 1px solid var(--color-sage);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+}

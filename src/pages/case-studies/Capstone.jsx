@@ -14,7 +14,8 @@ export default function Capstone() {
   return (
     <CaseStudyLayout
       title="Dub's Research Hub: From Profile Problem to Collaboration Platform"
-      meta="Role: UX Researcher & Designer (capstone team of 4) · Sponsor: UW Office of Research Information Services (ORIS) · Duration: 6 months · Methods: interviews, survey, affinity mapping, AI-assisted synthesis, concept testing, information architecture"
+      meta="Role: UX Researcher & Designer (capstone team of 4) · Sponsor: UW Office of Research Information Services (ORIS) · Duration: 6 months"
+      pills={['Research', 'Design', 'Information Architecture', 'Concept Testing']}
     >
       <section id="overview">
         <SectionLabel>The Brief</SectionLabel>
