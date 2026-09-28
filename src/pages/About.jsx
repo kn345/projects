@@ -10,7 +10,7 @@ const lifePhotos = [
 export default function About() {
   return (
     <section className="section">
-      <div className="container" style={{ maxWidth: '720px' }}>
+      <div className="container" style={{ maxWidth: '860px' }}>
         <div
           style={{
             display: 'flex',
@@ -37,41 +37,43 @@ export default function About() {
           </div>
         </div>
 
-        <p>
-          I'm a UX researcher with a background in content strategy. I currently work at Amazon Ads,
-          where I've been driving research to understand what actually helps people, alongside my
-          content role.
-        </p>
+        <div style={{ maxWidth: '640px' }}>
+          <p>
+            I'm a UX researcher with a background in content strategy. I currently work at Amazon Ads,
+            where I've been driving research to understand what actually helps people, alongside my
+            content role.
+          </p>
 
-        <p>
-          My path to UX started in journalism, where I learned to ask the right questions, find the
-          real story, and communicate what matters most. That foundation carried throughout my content
-          work, where I found myself increasingly drawn to the underlying question: what do users
-          actually need, and why?
-        </p>
+          <p>
+            My path to UX started in journalism, where I learned to ask the right questions, find the
+            real story, and communicate what matters most. That foundation carried throughout my content
+            work, where I found myself increasingly drawn to the underlying question: what do users
+            actually need, and why?
+          </p>
 
-        <p>
-          That question is what draws me to research that surfaces the real barriers between people and
-          the help they need, whether that's shaping an app that helps people navigate a layoff or
-          financial hardship, or helping teens work through loneliness.
-        </p>
+          <p>
+            That question is what draws me to research that surfaces the real barriers between people and
+            the help they need, whether that's shaping an app that helps people navigate a layoff or
+            financial hardship, or helping teens work through loneliness.
+          </p>
 
-        <p>
-          I'm a recent graduate of the M.S. in Human Centered Design and Engineering program at the
-          University of Washington. My work spans research, design, and content decisions, but the
-          throughline is always the same: understand what's actually happening, then follow it all the
-          way to a decision that changes something.
-        </p>
+          <p>
+            I'm a recent graduate of the M.S. in Human Centered Design and Engineering program at the
+            University of Washington. My work spans research, design, and content decisions, but the
+            throughline is always the same: understand what's actually happening, then follow it all the
+            way to a decision that changes something.
+          </p>
 
-        <p>
-          Want to connect? Reach me at{' '}
-          <a href="mailto:kayda.norman@gmail.com">kayda.norman@gmail.com</a>, or check out my resume and
-          LinkedIn below.
-        </p>
+          <p>
+            Want to connect? Reach me at{' '}
+            <a href="mailto:kayda.norman@gmail.com">kayda.norman@gmail.com</a>, or check out my resume and
+            LinkedIn below.
+          </p>
 
-        <div style={{ display: 'flex', gap: '1rem', margin: '1.5rem 0' }}>
-          <a className="btn" href={RESUME_URL} target="_blank" rel="noreferrer">Resume</a>
-          <a className="btn" href={LINKEDIN_URL} target="_blank" rel="noreferrer">LinkedIn</a>
+          <div style={{ display: 'flex', gap: '1rem', margin: '1.5rem 0' }}>
+            <a className="btn" href={RESUME_URL} target="_blank" rel="noreferrer">Resume</a>
+            <a className="btn" href={LINKEDIN_URL} target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
         </div>
 
         <h2 style={{ marginTop: 'var(--space-lg)' }}>Life Outside of Work</h2>

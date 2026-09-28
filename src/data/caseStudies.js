@@ -5,6 +5,13 @@
 
 export const caseStudies = [
   {
+    slug: 'amazon-ads',
+    title: 'Amazon Ads',
+    subtitle: 'Content research, ongoing',
+    methods: ['A/B Testing', 'Customer Feedback Analysis'],
+    blend: 'research',
+  },
+  {
     slug: 'capstone',
     title: "Dub's Research Hub",
     subtitle: 'From profile problem to collaboration platform',
@@ -38,13 +45,6 @@ export const caseStudies = [
     subtitle: 'Designing a safer onboarding experience',
     methods: ['Research', 'Contextual Inquiry', 'Prototyping'],
     blend: 'research+design',
-  },
-  {
-    slug: 'amazon-ads',
-    title: 'Amazon Ads',
-    subtitle: 'Content research, ongoing',
-    methods: ['A/B Testing', 'Customer Feedback Analysis'],
-    blend: 'research',
   },
 ];
 
