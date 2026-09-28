@@ -1,3 +1,5 @@
+import { LINKEDIN_URL, RESUME_URL } from '../data/links';
+
 export default function About() {
   return (
     <section className="section">
@@ -37,8 +39,8 @@ export default function About() {
         </p>
 
         <div style={{ display: 'flex', gap: '1rem', margin: '1.5rem 0' }}>
-          <a className="btn" href="#" target="_blank" rel="noreferrer">Resume</a>
-          <a className="btn" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a className="btn" href={RESUME_URL} target="_blank" rel="noreferrer">Resume</a>
+          <a className="btn" href={LINKEDIN_URL} target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
 
         <h2 style={{ marginTop: 'var(--space-lg)' }}>Life Outside of Work</h2>

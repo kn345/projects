@@ -1,3 +1,5 @@
+import { LINKEDIN_URL, RESUME_URL } from '../data/links';
+
 export default function Footer() {
   return (
     <footer className="section" style={{ borderTop: '1px solid var(--color-border)' }}>
@@ -7,8 +9,8 @@ export default function Footer() {
           <a href="mailto:kayda.norman@gmail.com">kayda.norman@gmail.com</a>
         </p>
         <div style={{ display: 'flex', gap: '1.25rem' }}>
-          <a href="#" target="_blank" rel="noreferrer">Resume</a>
-          <a href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href={RESUME_URL} target="_blank" rel="noreferrer">Resume</a>
+          <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
       </div>
     </footer>
