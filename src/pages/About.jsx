@@ -4,7 +4,6 @@ const lifePhotos = [
   { src: '/images/life/paddleboarding.jpg', alt: 'Paddleboarding on a lake' },
   { src: '/images/life/rock-climbing.jpg', alt: 'Rock climbing outdoors' },
   { src: '/images/life/tree-swing.jpg', alt: 'On a rope swing in the forest' },
-  { src: '/images/life/sedona-portrait.jpg', alt: 'Hiking in Sedona, Arizona' },
 ];
 
 const interests = ['Paddleboarding', 'Rock Climbing', 'Hiking', 'Being Outdoors'];
@@ -100,7 +99,7 @@ export default function About() {
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
                   gap: '0.75rem',
                 }}
               >
@@ -124,8 +123,8 @@ export default function About() {
             <div className="about-photo-rail">
               <div className="about-photo-card">
                 <img
-                  src="/images/life/rock-climbing.jpg"
-                  alt="Kayda rock climbing outdoors"
+                  src="/images/life/sedona-portrait.jpg"
+                  alt="Kayda hiking in Sedona, Arizona"
                 />
                 <div className="about-photo-overlay">
                   <span>Kayda</span>
