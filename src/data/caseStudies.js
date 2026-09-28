@@ -39,6 +39,13 @@ export const caseStudies = [
     methods: ['Research', 'Contextual Inquiry', 'Prototyping'],
     blend: 'research+design',
   },
+  {
+    slug: 'amazon-ads',
+    title: 'Amazon Ads',
+    subtitle: 'Content research, ongoing',
+    methods: ['A/B Testing', 'Customer Feedback Analysis'],
+    blend: 'research',
+  },
 ];
 
 // Reserve pieces — shown only in the lightweight "Additional Work" strip,

@@ -1,6 +1,7 @@
 import { caseStudies } from '../data/caseStudies';
 import CaseStudyCard from '../components/CaseStudyCard';
-import AdditionalWork from '../components/AdditionalWork';
+// Additional Work strip is built (src/components/AdditionalWork.jsx) but not
+// shown yet — Kay wants to hold off surfacing the reserve pieces for now.
 
 export default function Home() {
   return (
@@ -40,8 +41,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <AdditionalWork />
     </>
   );
 }

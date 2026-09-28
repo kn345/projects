@@ -1,4 +1,4 @@
-export default function CurrentWork() {
+export default function AmazonAds() {
   return (
     <section className="section">
       <div className="container" style={{ maxWidth: '680px' }}>

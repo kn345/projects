@@ -24,8 +24,8 @@ export default function About() {
             src="/images/about/design-conference.jpg"
             alt="Kayda at a UX design conference, presenting workshop research"
             style={{
-              width: '140px',
-              height: '140px',
+              width: '220px',
+              height: '220px',
               objectFit: 'cover',
               borderRadius: 'var(--radius)',
               border: '1px solid var(--color-border)',
@@ -34,9 +34,6 @@ export default function About() {
           />
           <div style={{ flex: 1, minWidth: '260px' }}>
             <h1 style={{ marginBottom: '0.5rem' }}>Hi, I'm Kayda!</h1>
-            <p style={{ margin: 0, color: 'var(--color-text-muted)', fontSize: 'var(--fs-small)' }}>
-              At a UX design conference, presenting workshop research
-            </p>
           </div>
         </div>
 
