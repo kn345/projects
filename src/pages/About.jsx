@@ -27,11 +27,7 @@ export default function About() {
           >
             About
           </p>
-          <h1 style={{ marginBottom: '0.75rem' }}>Hi, I'm Kayda.</h1>
-          <p style={{ fontSize: 'var(--fs-h2)', color: 'var(--color-text-muted)', maxWidth: '620px', marginBottom: 0 }}>
-            A UX researcher and designer out of Seattle, looking for the real barriers between people and
-            the help they need.
-          </p>
+          <h1 style={{ marginBottom: 0 }}>Hi, I'm Kayda.</h1>
         </div>
       </section>
 
