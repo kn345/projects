@@ -29,9 +29,9 @@ export default function About() {
             <h1 style={{ marginBottom: '1.25rem' }}>Researcher. Designer. Perpetually curious.</h1>
 
             <p>
-              I'm a UX designer and researcher, currently at Amazon where I conduct research and design
-              content experiences for Amazon Ads. I recently completed my M.S. in Human Centered Design
-              and Engineering at the University of Washington.
+              I'm a UX designer and researcher, currently at Amazon where I research and design content
+              experiences for Amazon Ads. I recently completed my M.S. in Human Centered Design and
+              Engineering at the University of Washington.
             </p>
 
             <p>
