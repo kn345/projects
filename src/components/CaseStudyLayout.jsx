@@ -7,7 +7,7 @@ const TABS = ['Overview', 'Process', 'Outcome'];
 // Tabs act as scroll anchors into one continuous page — clicking a tab
 // smooth-scrolls to that section, but the page still reads fine as a
 // normal scroll if someone ignores the tabs entirely.
-export default function CaseStudyLayout({ title, subtitle, meta, pills, facts, slug, children }) {
+export default function CaseStudyLayout({ title, subtitle, meta, facts, slug, children }) {
   const [active, setActive] = useState('Overview');
 
   const index = caseStudies.findIndex((cs) => cs.slug === slug);
@@ -30,19 +30,22 @@ export default function CaseStudyLayout({ title, subtitle, meta, pills, facts, s
               {meta}
             </p>
           )}
-          {pills && (
-            <div className="pill-row">
-              {pills.map((p) => (
-                <span className="hero-pill" key={p}>{p}</span>
-              ))}
-            </div>
-          )}
           {facts && (
             <dl className="case-facts-grid">
               {facts.map((f) => (
                 <div key={f.label}>
                   <dt>{f.label}</dt>
-                  <dd>{f.value}</dd>
+                  {Array.isArray(f.value) ? (
+                    <dd>
+                      <ul style={{ margin: 0, paddingLeft: '1.1rem' }}>
+                        {f.value.map((line) => (
+                          <li key={line} style={{ marginBottom: '0.2rem' }}>{line}</li>
+                        ))}
+                      </ul>
+                    </dd>
+                  ) : (
+                    <dd>{f.value}</dd>
+                  )}
                 </div>
               ))}
             </dl>

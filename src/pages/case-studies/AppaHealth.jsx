@@ -7,7 +7,15 @@ export default function AppaHealth() {
       slug="appa-health"
       facts={[
         { label: 'Client', value: 'Appa Health' },
-        { label: 'My Role', value: 'UX Researcher' },
+        {
+          label: 'My Role',
+          value: [
+            'Stakeholder alignment & research planning',
+            'Participant recruiting (hard-to-reach population)',
+            'Interview facilitation & thematic analysis',
+            'Final report & stakeholder readout',
+          ],
+        },
         { label: 'Team', value: '3 UX Researchers, 1 Senior Researcher' },
         { label: 'Timeline', value: '4 months' },
       ]}

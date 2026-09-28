@@ -7,7 +7,14 @@ export default function NerdWallet() {
       slug="nerdwallet"
       facts={[
         { label: 'Client', value: 'NerdWallet' },
-        { label: 'My Role', value: 'Content Designer' },
+        {
+          label: 'My Role',
+          value: [
+            'Study design & content strategy',
+            'Template redesign & content rewrite',
+            'Implementation',
+          ],
+        },
         { label: 'Team', value: '1 UX Researcher, 1 Content Designer, 1 Editor' },
         { label: 'Timeline', value: '2 months' },
       ]}

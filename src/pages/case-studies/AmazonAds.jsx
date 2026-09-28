@@ -7,9 +7,15 @@ export default function AmazonAds() {
       slug="amazon-ads"
       facts={[
         { label: 'Client', value: 'Amazon Ads' },
-        { label: 'My Role', value: 'Researcher (Help Content Developer)' },
+        {
+          label: 'My Role',
+          value: [
+            'Own UX research for Ads content quality',
+            'Design and run A/B tests',
+            'Analyze customer feedback to prioritize fixes',
+          ],
+        },
         { label: 'Timeline', value: 'Ongoing' },
-        { label: 'Methods', value: 'A/B Testing, Feedback Analysis' },
       ]}
     >
       <section id="overview">

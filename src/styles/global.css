@@ -224,16 +224,6 @@ details[open] summary ~ * { animation: fadein 0.1s ease; }
   margin: 1rem 0 1.5rem;
 }
 
-.hero-pill {
-  display: inline-block;
-  font-size: var(--fs-small);
-  color: var(--color-sage-dark);
-  background: transparent;
-  border: 1px solid var(--color-sage);
-  border-radius: 999px;
-  padding: 0.3rem 0.9rem;
-}
-
 .case-facts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));

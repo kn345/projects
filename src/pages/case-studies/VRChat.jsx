@@ -7,7 +7,14 @@ export default function VRChat() {
       slug="vrchat"
       facts={[
         { label: 'Client', value: 'VRChat' },
-        { label: 'My Role', value: 'UX Researcher & Designer' },
+        {
+          label: 'My Role',
+          value: [
+            'Secondary research & contextual inquiry',
+            'Sketching & prototyping (mid- to hi-fi)',
+            'Usability test facilitation & severity rating',
+          ],
+        },
         { label: 'Team', value: 'Avani Babar, Kayda Norman, Kelsey Yeh, Kim Johnson' },
         { label: 'Timeline', value: '3 months (Oct–Dec 2022)' },
       ]}

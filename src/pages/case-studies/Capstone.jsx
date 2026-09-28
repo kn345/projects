@@ -15,10 +15,17 @@ export default function Capstone() {
     <CaseStudyLayout
       title="Dub's Research Hub: From Profile Problem to Collaboration Platform"
       slug="capstone"
-      pills={['Research', 'Design', 'Information Architecture', 'Concept Testing']}
       facts={[
         { label: 'Client', value: 'UW Office of Research Information Services' },
-        { label: 'My Role', value: 'UX Researcher & Designer' },
+        {
+          label: 'My Role',
+          value: [
+            'Project management & sponsor POC',
+            'Participant recruiting & interviewing',
+            'Personas, journey maps & information architecture',
+            'Concept testing across the full feature set',
+          ],
+        },
         { label: 'Team', value: 'Capstone team of 4' },
         { label: 'Timeline', value: '6 months' },
       ]}

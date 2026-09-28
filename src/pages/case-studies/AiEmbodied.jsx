@@ -7,9 +7,15 @@ export default function AiEmbodied() {
       slug="aiembodied"
       facts={[
         { label: 'Client', value: 'AiEmbodied Inc.' },
-        { label: 'My Role', value: 'Sole UX Designer (Contract)' },
+        {
+          label: 'My Role',
+          value: [
+            'Persona development & information architecture',
+            'End-to-end workflow builder screen design',
+            'Built a usability testing protocol for the team',
+          ],
+        },
         { label: 'Timeline', value: '6 weeks' },
-        { label: 'Methods', value: 'Persona, IA, Usability Testing Protocol' },
       ]}
     >
       <section id="overview">
