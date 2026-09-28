@@ -17,7 +17,7 @@ export default function Capstone() {
       slug="capstone"
       pills={['Research', 'Design', 'Information Architecture', 'Concept Testing']}
       facts={[
-        { label: 'Sponsor', value: 'UW Office of Research Information Services' },
+        { label: 'Client', value: 'UW Office of Research Information Services' },
         { label: 'My Role', value: 'UX Researcher & Designer' },
         { label: 'Team', value: 'Capstone team of 4' },
         { label: 'Timeline', value: '6 months' },
@@ -40,7 +40,7 @@ export default function Capstone() {
 
         <InfoCardGrid>
           <InfoCard label="Team">4 HCDE capstone students</InfoCard>
-          <InfoCard label="Sponsor">UW Office of Research Information Services</InfoCard>
+          <InfoCard label="Client">UW Office of Research Information Services</InfoCard>
           <InfoCard label="Live prototype">
             <a href="https://inika-gupta.github.io/Dubs-Research-Hub-by-ORIS/" target="_blank" rel="noreferrer">
               inika-gupta.github.io/Dubs-Research-Hub-by-ORIS
