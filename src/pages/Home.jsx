@@ -24,7 +24,7 @@ export default function Home() {
             Hi, I'm Kayda.
           </h1>
           <p style={{ maxWidth: '620px', color: 'var(--color-text-muted)' }}>
-            With a background in content strategy, I use data and experimentation to design for what people actually need.
+            I research what people need and design experiences that earn their trust.
           </p>
         </div>
       </section>

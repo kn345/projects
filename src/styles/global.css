@@ -75,15 +75,22 @@ details[open] summary ~ * { animation: fadein 0.1s ease; }
 
 .about-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(0, 1fr) 280px;
   gap: 3rem;
-  align-items: start;
+  align-items: stretch;
+}
+
+.about-photo-rail {
+  display: flex;
+  flex-direction: column;
 }
 
 .about-photo-card {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  flex: 1;
+  min-height: 280px;
+  max-height: 420px;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--color-border);
@@ -112,10 +119,6 @@ details[open] summary ~ * { animation: fadein 0.1s ease; }
   letter-spacing: -0.01em;
 }
 
-.about-photo-rail {
-  position: static;
-}
-
 .about-bio-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
@@ -138,8 +141,9 @@ details[open] summary ~ * { animation: fadein 0.1s ease; }
   .about-hero > div:last-child {
     max-width: 320px;
   }
-  .about-photo-rail {
-    position: static;
+  .about-photo-card {
+    aspect-ratio: 4 / 5;
+    max-height: none;
   }
   .about-bio-grid {
     grid-template-columns: 1fr;
