@@ -2,6 +2,11 @@
 // in the nav's Work dropdown. NerdWallet is temporarily removed from this
 // list (not deleted — src/pages/case-studies/NerdWallet.jsx and its route
 // still exist, just unlinked) — add it back here when ready.
+//
+// To show a thumbnail on a homepage card, add an `image: '/images/work/<file>'`
+// field to that case study below, and put the image file in
+// public/images/work/. Cards without an `image` field just show text, same
+// as today.
 
 export const caseStudies = [
   {

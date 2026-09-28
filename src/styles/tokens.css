@@ -8,9 +8,9 @@
   --color-text-muted: #6B6459;
   --color-border: #E3DAC7;
 
-  /* Type — all sans-serif, weight carries the hierarchy instead of a serif/sans pairing */
-  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Type — Playfair Display for headings, Lato for body */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
 
   --fs-hero: clamp(2.25rem, 4vw + 1rem, 3.75rem);
   --fs-h1: clamp(1.875rem, 2.5vw + 1rem, 2.75rem);

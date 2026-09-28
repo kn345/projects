@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 
-export default function CaseStudyCard({ slug, title, subtitle, methods }) {
+export default function CaseStudyCard({ slug, title, subtitle, methods, image }) {
   return (
     <Link
       to={`/work/${slug}`}
       style={{
-        display: 'block',
+        display: 'flex',
+        gap: '1.5rem',
+        alignItems: 'center',
         textDecoration: 'none',
         color: 'inherit',
         background: 'var(--color-bg-alt)',
@@ -24,12 +26,28 @@ export default function CaseStudyCard({ slug, title, subtitle, methods }) {
         e.currentTarget.style.boxShadow = 'none';
       }}
     >
-      <h2 style={{ marginBottom: '0.35rem' }}>{title}</h2>
-      <p style={{ color: 'var(--color-text-muted)', marginBottom: '0.75rem' }}>{subtitle}</p>
+      {image && (
+        <img
+          src={image}
+          alt=""
+          style={{
+            width: '140px',
+            height: '100px',
+            objectFit: 'cover',
+            borderRadius: '8px',
+            border: '1px solid var(--color-border)',
+            flexShrink: 0,
+          }}
+        />
+      )}
       <div>
-        {methods.map((m) => (
-          <span className="tag-pill" key={m}>{m}</span>
-        ))}
+        <h2 style={{ marginBottom: '0.35rem' }}>{title}</h2>
+        <p style={{ color: 'var(--color-text-muted)', marginBottom: '0.75rem' }}>{subtitle}</p>
+        <div>
+          {methods.map((m) => (
+            <span className="tag-pill" key={m}>{m}</span>
+          ))}
+        </div>
       </div>
     </Link>
   );
