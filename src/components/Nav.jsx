@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { caseStudies } from '../data/caseStudies';
+import { RESUME_URL } from '../data/links';
 
 const links = [
   { to: '/', label: 'Home' },
@@ -101,6 +102,15 @@ export default function Nav() {
           <Link to={links[1].to} style={navLinkStyle(location.pathname === links[1].to)}>
             {links[1].label}
           </Link>
+
+          <a
+            href={RESUME_URL}
+            target="_blank"
+            rel="noreferrer"
+            style={navLinkStyle(false)}
+          >
+            Résumé
+          </a>
         </div>
       </nav>
     </header>
