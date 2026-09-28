@@ -7,8 +7,6 @@ const lifePhotos = [
   { src: '/images/life/sedona-portrait.jpg', alt: 'Hiking in Sedona, Arizona' },
 ];
 
-const interests = ['Paddleboarding', 'Rock Climbing', 'Hiking', 'Being Outdoors'];
-
 export default function About() {
   return (
     <>
@@ -83,34 +81,16 @@ export default function About() {
         </div>
       </section>
 
-      {/* Ask me about */}
+      {/* Life outside of work */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container" style={{ maxWidth: '1040px' }}>
-          <p
-            style={{
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              fontSize: 'var(--fs-small)',
-              color: 'var(--color-sage-dark)',
-              fontWeight: 600,
-              margin: '0 0 0.5rem',
-            }}
-          >
-            Off the clock
-          </p>
-          <h2 style={{ marginBottom: '1rem' }}>Ask me about...</h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: 'var(--space-lg)' }}>
-            {interests.map((i) => (
-              <span className="tag-pill" key={i} style={{ margin: 0, padding: '0.5rem 1rem' }}>{i}</span>
-            ))}
-          </div>
-
           <h2 style={{ marginBottom: '1rem' }}>Life Outside of Work</h2>
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
               gap: '0.75rem',
+              marginBottom: '1.25rem',
             }}
           >
             {lifePhotos.map((photo) => (
@@ -128,6 +108,12 @@ export default function About() {
               />
             ))}
           </div>
+
+          <p style={{ maxWidth: '640px', marginBottom: 0 }}>
+            Depending on the weather, you'll usually find me rock climbing, paddleboarding, or hiking
+            outside of work. I'm also perfectly happy staying inside to read, play a board game, or plot my
+            next travel adventure.
+          </p>
         </div>
       </section>
     </>
