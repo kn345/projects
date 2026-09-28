@@ -24,7 +24,7 @@ export default function Home() {
             Hi, I'm Kayda.
           </h1>
           <p style={{ maxWidth: '620px', color: 'var(--color-text-muted)' }}>
-            I look for the real barriers between people and the help they need, then follow that all the way to a decision that changes something.
+            With a background in content strategy, I use data and experimentation to design for what people actually need.
           </p>
         </div>
       </section>
