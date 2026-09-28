@@ -4,7 +4,13 @@ export default function NerdWallet() {
   return (
     <CaseStudyLayout
       title="NerdWallet: Insurance Review Template Redesign"
-      meta="Role: Content Designer · Team: 1 UX Researcher, 1 Content Designer, 1 Editor · Duration: 2 months · Methods: content strategy, research collaboration, implementation"
+      slug="nerdwallet"
+      facts={[
+        { label: 'Client', value: 'NerdWallet' },
+        { label: 'My Role', value: 'Content Designer' },
+        { label: 'Team', value: '1 UX Researcher, 1 Content Designer, 1 Editor' },
+        { label: 'Timeline', value: '2 months' },
+      ]}
     >
       <section id="overview">
         <h2>Goal</h2>

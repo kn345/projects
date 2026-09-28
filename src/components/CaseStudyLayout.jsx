@@ -1,12 +1,18 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { caseStudies } from '../data/caseStudies';
 
 const TABS = ['Overview', 'Process', 'Outcome'];
 
 // Tabs act as scroll anchors into one continuous page — clicking a tab
 // smooth-scrolls to that section, but the page still reads fine as a
 // normal scroll if someone ignores the tabs entirely.
-export default function CaseStudyLayout({ title, subtitle, meta, pills, children }) {
+export default function CaseStudyLayout({ title, subtitle, meta, pills, facts, slug, children }) {
   const [active, setActive] = useState('Overview');
+
+  const index = caseStudies.findIndex((cs) => cs.slug === slug);
+  const prevCS = index > 0 ? caseStudies[index - 1] : null;
+  const nextCS = index >= 0 && index < caseStudies.length - 1 ? caseStudies[index + 1] : null;
 
   const scrollTo = (id) => {
     setActive(id);
@@ -30,6 +36,16 @@ export default function CaseStudyLayout({ title, subtitle, meta, pills, children
                 <span className="hero-pill" key={p}>{p}</span>
               ))}
             </div>
+          )}
+          {facts && (
+            <dl className="case-facts-grid">
+              {facts.map((f) => (
+                <div key={f.label}>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
           )}
         </div>
       </header>
@@ -70,6 +86,34 @@ export default function CaseStudyLayout({ title, subtitle, meta, pills, children
       <div className="container" style={{ paddingTop: 'var(--space-lg)', paddingBottom: 'var(--space-xl)' }}>
         {children}
       </div>
+
+      {(prevCS || nextCS) && (
+        <div
+          className="container"
+          style={{
+            borderTop: '1px solid var(--color-border)',
+            padding: 'var(--space-lg) var(--space-md)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            gap: '2rem',
+          }}
+        >
+          {prevCS ? (
+            <Link to={`/work/${prevCS.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <p className="case-nav-label">← Previous</p>
+              <p className="case-nav-title">{prevCS.title}</p>
+            </Link>
+          ) : (
+            <span />
+          )}
+          {nextCS && (
+            <Link to={`/work/${nextCS.slug}`} style={{ textDecoration: 'none', color: 'inherit', textAlign: 'right' }}>
+              <p className="case-nav-label">Next →</p>
+              <p className="case-nav-title">{nextCS.title}</p>
+            </Link>
+          )}
+        </div>
+      )}
     </article>
   );
 }

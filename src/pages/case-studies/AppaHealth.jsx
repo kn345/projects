@@ -4,7 +4,13 @@ export default function AppaHealth() {
   return (
     <CaseStudyLayout
       title="Appa Health: Understanding School User Needs for a Mental Health Platform"
-      meta="Role: UX Researcher · Team: 3 UX researchers, 1 senior researcher · Duration: 4 months · Methods: semi-structured user interviews, survey"
+      slug="appa-health"
+      facts={[
+        { label: 'Client', value: 'Appa Health' },
+        { label: 'My Role', value: 'UX Researcher' },
+        { label: 'Team', value: '3 UX Researchers, 1 Senior Researcher' },
+        { label: 'Timeline', value: '4 months' },
+      ]}
     >
       <section id="overview">
         <p style={{ fontStyle: 'italic', color: 'var(--color-text-muted)' }}>

@@ -4,7 +4,13 @@ export default function AiEmbodied() {
   return (
     <CaseStudyLayout
       title="AI Embodied: Redesigning a No-Code AI Workflow Builder"
-      meta="Role: Sole UX Designer (contract) · Client: AiEmbodied Inc., a workflow-automation startup · Duration: 6 weeks · Methods: persona development, information architecture, wireframing, usability testing protocol design"
+      slug="aiembodied"
+      facts={[
+        { label: 'Client', value: 'AiEmbodied Inc.' },
+        { label: 'My Role', value: 'Sole UX Designer (Contract)' },
+        { label: 'Timeline', value: '6 weeks' },
+        { label: 'Methods', value: 'Persona, IA, Usability Testing Protocol' },
+      ]}
     >
       <section id="overview">
         <h2>Goal</h2>
