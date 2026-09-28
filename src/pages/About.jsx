@@ -4,6 +4,7 @@ const lifePhotos = [
   { src: '/images/life/paddleboarding.jpg', alt: 'Paddleboarding on a lake' },
   { src: '/images/life/rock-climbing.jpg', alt: 'Rock climbing outdoors' },
   { src: '/images/life/tree-swing.jpg', alt: 'On a rope swing in the forest' },
+  { src: '/images/life/sedona-portrait.jpg', alt: 'Hiking in Sedona, Arizona' },
 ];
 
 const interests = ['Paddleboarding', 'Rock Climbing', 'Hiking', 'Being Outdoors'];
@@ -60,6 +61,17 @@ export default function About() {
                 throughline is always the same: understand what's actually happening, then follow it all
                 the way to a decision that changes something.
               </p>
+
+              <p>
+                Want to connect? Reach me at{' '}
+                <a href="mailto:kayda.norman@gmail.com">kayda.norman@gmail.com</a>, or check out my resume
+                and LinkedIn below.
+              </p>
+
+              <div style={{ display: 'flex', gap: '1rem', margin: '1.5rem 0 0' }}>
+                <a className="btn" href={RESUME_URL} target="_blank" rel="noreferrer">Resume</a>
+                <a className="btn" href={LINKEDIN_URL} target="_blank" rel="noreferrer">LinkedIn</a>
+              </div>
             </div>
 
             <img
@@ -71,93 +83,51 @@ export default function About() {
         </div>
       </section>
 
-      {/* Ask me about / photo rail */}
+      {/* Ask me about */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container" style={{ maxWidth: '1040px' }}>
-          <div className="about-hero">
-            <div>
-              <p
-                style={{
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  fontSize: 'var(--fs-small)',
-                  color: 'var(--color-sage-dark)',
-                  fontWeight: 600,
-                  margin: '0 0 0.5rem',
-                }}
-              >
-                Off the clock
-              </p>
-              <h2 style={{ marginBottom: '1rem' }}>Ask me about...</h2>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: 'var(--space-lg)' }}>
-                {interests.map((i) => (
-                  <span className="tag-pill" key={i} style={{ margin: 0, padding: '0.5rem 1rem' }}>{i}</span>
-                ))}
-              </div>
-
-              <h2 style={{ marginBottom: '1rem' }}>Life Outside of Work</h2>
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '0.75rem',
-                }}
-              >
-                {lifePhotos.map((photo) => (
-                  <img
-                    key={photo.src}
-                    src={photo.src}
-                    alt={photo.alt}
-                    style={{
-                      aspectRatio: '1',
-                      width: '100%',
-                      objectFit: 'cover',
-                      borderRadius: 'var(--radius)',
-                      border: '1px solid var(--color-border)',
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="about-photo-rail">
-              <div className="about-photo-card">
-                <img
-                  src="/images/life/sedona-portrait.jpg"
-                  alt="Kayda hiking in Sedona, Arizona"
-                />
-                <div className="about-photo-overlay">
-                  <span>Kayda</span>
-                </div>
-              </div>
-              <p
-                style={{
-                  marginTop: '0.75rem',
-                  color: 'var(--color-text-muted)',
-                  fontSize: 'var(--fs-small)',
-                }}
-              >
-                Seattle, WA · UX Research &amp; Design
-              </p>
-
-              <div style={{ display: 'flex', gap: '1.25rem', marginTop: '1rem' }}>
-                <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">Find me on LinkedIn →</a>
-              </div>
-              <div style={{ marginTop: '0.5rem' }}>
-                <a href={RESUME_URL} target="_blank" rel="noreferrer">See my résumé →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section style={{ borderTop: '1px solid var(--color-border)' }}>
-        <div className="container section" style={{ maxWidth: '1040px' }}>
-          <p style={{ margin: 0 }}>
-            Want to connect? Reach me at{' '}
-            <a href="mailto:kayda.norman@gmail.com">kayda.norman@gmail.com</a>.
+          <p
+            style={{
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              fontSize: 'var(--fs-small)',
+              color: 'var(--color-sage-dark)',
+              fontWeight: 600,
+              margin: '0 0 0.5rem',
+            }}
+          >
+            Off the clock
           </p>
+          <h2 style={{ marginBottom: '1rem' }}>Ask me about...</h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: 'var(--space-lg)' }}>
+            {interests.map((i) => (
+              <span className="tag-pill" key={i} style={{ margin: 0, padding: '0.5rem 1rem' }}>{i}</span>
+            ))}
+          </div>
+
+          <h2 style={{ marginBottom: '1rem' }}>Life Outside of Work</h2>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '0.75rem',
+            }}
+          >
+            {lifePhotos.map((photo) => (
+              <img
+                key={photo.src}
+                src={photo.src}
+                alt={photo.alt}
+                style={{
+                  aspectRatio: '1',
+                  width: '100%',
+                  objectFit: 'cover',
+                  borderRadius: 'var(--radius)',
+                  border: '1px solid var(--color-border)',
+                }}
+              />
+            ))}
+          </div>
         </div>
       </section>
     </>
