@@ -85,12 +85,18 @@ export default function About() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container" style={{ maxWidth: '1040px' }}>
           <h2 style={{ marginBottom: '1rem' }}>Life Outside of Work</h2>
+
+          <p style={{ marginBottom: '1.25rem' }}>
+            If the weather is nice, I'm usually outdoors rock climbing, paddleboarding, or hiking.
+            Otherwise, I'm perfectly happy staying inside to read, play a board game, or plot my next
+            travel adventure.
+          </p>
+
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
               gap: '0.75rem',
-              marginBottom: '1.25rem',
             }}
           >
             {lifePhotos.map((photo) => (
@@ -108,12 +114,6 @@ export default function About() {
               />
             ))}
           </div>
-
-          <p style={{ maxWidth: '640px', marginBottom: 0 }}>
-            Depending on the weather, you'll usually find me rock climbing, paddleboarding, or hiking
-            outside of work. I'm also perfectly happy staying inside to read, play a board game, or plot my
-            next travel adventure.
-          </p>
         </div>
       </section>
     </>
