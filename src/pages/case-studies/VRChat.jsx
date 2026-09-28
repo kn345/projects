@@ -1,35 +1,66 @@
-import CaseStudyLayout, { Placeholder } from '../../components/CaseStudyLayout';
+import CaseStudyLayout from '../../components/CaseStudyLayout';
 
-// PENDING: final case-study copy. Role = "UX Researcher & Designer."
-// Attribution notes carried over from drafting:
-//  - Secondary research (Reddit/articles) + contextual inquiry (Oculus
-//    headset observation): Kay, personally.
-//  - 1:1 user interviews: led by teammate Kelsey Yeh, not Kay.
-//  - 4 usability tests, one facilitated per team member; Kay took notes
-//    on two others and rated every issue found via Nielsen's severity scale.
-//  - NEW: Kay also contributed to sketching/prototyping, helping take the
-//    tutorial from mid-fidelity through to final hi-fidelity in Figma —
-//    needs to be worked into the Process section alongside the research work.
 export default function VRChat() {
   return (
     <CaseStudyLayout
-      title="VR Chat"
-      subtitle="Tutorial & VR Buddy — helping newcomers navigate VRChat safely"
-      meta="UX Researcher & Designer / Team of 4 / Duration — pending / Methods — pending final copy"
+      title="VRChat: Designing a Safer Onboarding Experience"
+      meta="Role: UX Researcher & Designer (team of 4: Avani Babar, Kayda Norman, Kelsey Yeh, Kim Johnson) · Duration: 3 months (Oct–Dec 2022) · Methods: secondary research, contextual inquiry, survey, two-round usability testing"
     >
       <section id="overview">
-        <h2>Overview</h2>
-        <Placeholder label="Goal — pending final copy" />
+        <h2>Goal</h2>
+        <p>
+          VRChat, a popular social VR platform, had a growing safety and harassment problem, and new
+          users had almost no onboarding to help them navigate it. The design question became: how do
+          you equip new users with the skills to navigate VRChat and make real connections within their
+          first week?
+        </p>
       </section>
 
       <section id="process">
         <h2>Process</h2>
-        <Placeholder label="Secondary research, contextual inquiry, sketching + prototyping (mid-to-hi-fidelity) — pending final copy + visuals" />
+        <p>
+          I conducted secondary research, reading existing literature on VR harassment and embodiment
+          and browsing the VRChat subreddit to understand how the community talked about the problem. I
+          used an Oculus headset to observe user behavior and social norms firsthand through contextual
+          inquiry. I also contributed to the survey that went out to 45 respondents across Discord and
+          Reddit communities.
+        </p>
+
+        <h3>Insight → Decision</h3>
+        <p>
+          The research kept surfacing the same root cause: new users weren't overwhelmed by harassment
+          itself, they were overwhelmed by the platform's complexity, and they only learned safety tools
+          like block and mute through repeated bad experiences, not through any guided path. That
+          reframed the problem from "reduce harassment" to "teach new users the skills to protect
+          themselves and connect with others," which became the case for an onboarding tutorial built
+          around safety literacy from day one.
+        </p>
+
+        <h3>Usability Testing</h3>
+        <p>
+          We ran four usability testing sessions, one facilitated by each team member, and I took notes
+          on two others. I rated every usability issue we found using Nielsen's severity scale to help
+          the team prioritize what to fix. Testing ran in two rounds: the first, on a low-fidelity
+          prototype, found users felt overloaded with information, which led to trimming the tutorial's
+          content. The second, on a medium-fidelity prototype, found users missed the "next" button and
+          found some graphics confusing, which led to larger buttons and added narration from the VR
+          assistant.
+        </p>
       </section>
 
       <section id="outcome">
-        <h2>Outcome</h2>
-        <Placeholder label="Usability testing, severity rating, Delivered, Reflection — pending final copy" />
+        <h2>Delivered</h2>
+        <p>
+          A VRChat onboarding tutorial prototype (low-fi and hi-fi versions in Figma) covering controls,
+          safety tools, profile setup, and world exploration, validated across two rounds of usability
+          testing.
+        </p>
+
+        <h3>Reflection</h3>
+        <p>
+          Looking back, I'd want to recruit a more diverse set of participants and bring personas into
+          the design process earlier, both were flagged as gaps at the end of the project.
+        </p>
       </section>
     </CaseStudyLayout>
   );

@@ -5,8 +5,9 @@ export default function About() {
         <h1>Hi, I'm Kayda!</h1>
 
         <p>
-          I'm a UX researcher with a background in content strategy. At Amazon Ads, I run research
-          experiments to understand what actually helps people, work I do alongside my core content role.
+          I'm a UX researcher with a background in content strategy. I currently work at Amazon Ads,
+          where I've been driving research to understand what actually helps people, alongside my
+          content role.
         </p>
 
         <p>
