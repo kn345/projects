@@ -73,8 +73,8 @@ export default function About() {
             </div>
 
             <img
-              src="/images/about/design-conference.jpg"
-              alt="Kayda at a UX design conference, presenting workshop research"
+              src="/images/about/headshot.jpg"
+              alt="Kayda Norman"
               className="about-bio-photo"
             />
           </div>
