@@ -36,7 +36,7 @@ export const caseStudies = [
     slug: 'vrchat',
     title: 'VRChat',
     subtitle: 'Designing a safer onboarding experience',
-    methods: ['Research', 'Contextual Inquiry', 'Usability Testing'],
+    methods: ['Research', 'Contextual Inquiry', 'Prototyping'],
     blend: 'research+design',
   },
 ];

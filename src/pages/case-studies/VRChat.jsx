@@ -4,7 +4,7 @@ export default function VRChat() {
   return (
     <CaseStudyLayout
       title="VRChat: Designing a Safer Onboarding Experience"
-      meta="Role: UX Researcher & Designer (team of 4: Avani Babar, Kayda Norman, Kelsey Yeh, Kim Johnson) · Duration: 3 months (Oct–Dec 2022) · Methods: secondary research, contextual inquiry, survey, two-round usability testing"
+      meta="Role: UX Researcher & Designer (team of 4: Avani Babar, Kayda Norman, Kelsey Yeh, Kim Johnson) · Duration: 3 months (Oct–Dec 2022) · Methods: secondary research, contextual inquiry, survey, prototyping, two-round usability testing"
     >
       <section id="overview">
         <h2>Goal</h2>
@@ -24,6 +24,10 @@ export default function VRChat() {
           used an Oculus headset to observe user behavior and social norms firsthand through contextual
           inquiry. I also contributed to the survey that went out to 45 respondents across Discord and
           Reddit communities.
+        </p>
+        <p>
+          Alongside the research, I contributed to sketching and prototyping, helping take the
+          onboarding tutorial from mid-fidelity through to the final hi-fidelity version in Figma.
         </p>
 
         <h3>Insight → Decision</h3>
