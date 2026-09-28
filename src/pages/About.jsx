@@ -37,7 +37,7 @@ export default function About() {
           <div className="about-bio-grid">
             <div style={{ maxWidth: '620px' }}>
               <p>
-                I'm a UX researcher with a background in content strategy. I currently work at Amazon Ads,
+                I'm a UX researcher and designer with a background in content strategy. I currently work at Amazon Ads,
                 where I've been driving research to understand what actually helps people, alongside my
                 content role.
               </p>
