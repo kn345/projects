@@ -9,113 +9,83 @@ const lifePhotos = [
 
 export default function About() {
   return (
-    <>
-      {/* Hero band */}
-      <section style={{ background: 'var(--color-bg-alt)', borderBottom: '1px solid var(--color-border)' }}>
-        <div className="container section" style={{ maxWidth: '860px' }}>
-          <p
-            style={{
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              fontSize: 'var(--fs-small)',
-              color: 'var(--color-sage-dark)',
-              fontWeight: 600,
-              margin: '0 0 0.5rem',
-            }}
-          >
-            About
-          </p>
-          <h1 style={{ marginBottom: 0 }}>Hi, I'm Kayda.</h1>
-        </div>
-      </section>
+    <section className="section">
+      <div className="container" style={{ maxWidth: '1040px' }}>
+        {/* Bio + photo */}
+        <div className="about-bio-grid">
+          <div>
+            <p
+              style={{
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                fontSize: 'var(--fs-small)',
+                color: 'var(--color-sage-dark)',
+                fontWeight: 600,
+                margin: '0 0 0.5rem',
+              }}
+            >
+              About Me
+            </p>
+            <h1 style={{ marginBottom: '1.25rem' }}>Researcher. Designer. Perpetually curious.</h1>
 
-      {/* Bio + photo */}
-      <section className="section">
-        <div className="container" style={{ maxWidth: '1040px' }}>
-          <div className="about-bio-grid">
-            <div style={{ maxWidth: '620px' }}>
-              <p>
-                I'm a UX researcher and designer with a background in content strategy. I currently work at Amazon Ads,
-                where I've been driving research to understand what actually helps people, alongside my
-                content role.
-              </p>
+            <p>
+              I'm a UX designer and researcher, currently at Amazon where I conduct research and design
+              content experiences for Amazon Ads. I recently completed my M.S. in Human Centered Design
+              and Engineering at the University of Washington.
+            </p>
 
-              <p>
-                My path to UX started in journalism, where I learned to ask the right questions, find the
-                real story, and communicate what matters most. That foundation carried throughout my
-                content work, where I found myself increasingly drawn to the underlying question: what do
-                users actually need, and why?
-              </p>
-
-              <p>
-                That question is what draws me to research that surfaces the real barriers between people
-                and the help they need, whether that's shaping an app that helps people navigate a layoff
-                or financial hardship, or helping teens work through loneliness.
-              </p>
-
-              <p>
-                I'm a recent graduate of the M.S. in Human Centered Design and Engineering program at the
-                University of Washington. My work spans research, design, and content decisions, but the
-                throughline is always the same: understand what's actually happening, then follow it all
-                the way to a decision that changes something.
-              </p>
-
-              <p>
-                Want to connect? Reach me at{' '}
-                <a href="mailto:kayda.norman@gmail.com">kayda.norman@gmail.com</a>, or check out my resume
-                and LinkedIn below.
-              </p>
-
-              <div style={{ display: 'flex', gap: '1rem', margin: '1.5rem 0 0' }}>
-                <a className="btn" href={RESUME_URL} target="_blank" rel="noreferrer">Resume</a>
-                <a className="btn" href={LINKEDIN_URL} target="_blank" rel="noreferrer">LinkedIn</a>
-              </div>
-            </div>
-
-            <img
-              src="/images/about/headshot.jpg"
-              alt="Kayda Norman"
-              className="about-bio-photo"
-            />
+            <p>
+              My path to research started in journalism, where I learned to ask the right questions, find
+              the real story, and communicate it clearly to people who need to act on it. That foundation
+              carried through my content work, where I found myself increasingly drawn to the underlying
+              question: what do users actually need, and why?
+            </p>
           </div>
+
+          <img src="/images/about/headshot.jpg" alt="Kayda Norman" className="about-bio-photo" />
         </div>
-      </section>
 
-      {/* Life outside of work */}
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container" style={{ maxWidth: '1040px' }}>
-          <h2 style={{ marginBottom: '1rem' }}>Life Outside of Work</h2>
-
-          <p style={{ marginBottom: '1.25rem' }}>
-            If the weather is nice, I'm usually outdoors rock climbing, paddleboarding, or hiking.
-            Otherwise, I'm perfectly happy staying inside to read, play a board game, or plot my next
-            travel adventure.
-          </p>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '0.75rem',
-            }}
-          >
-            {lifePhotos.map((photo) => (
-              <img
-                key={photo.src}
-                src={photo.src}
-                alt={photo.alt}
-                style={{
-                  aspectRatio: '1',
-                  width: '100%',
-                  objectFit: 'cover',
-                  borderRadius: 'var(--radius)',
-                  border: '1px solid var(--color-border)',
-                }}
-              />
-            ))}
+        {/* Facts */}
+        <dl className="about-facts-grid" style={{ margin: '2.5rem 0', paddingTop: '2rem', borderTop: '1px solid var(--color-border)' }}>
+          <div>
+            <dt>Experience</dt>
+            <dd>Amazon (2025–Present)</dd>
+            <dd>NerdWallet (2019–2024)</dd>
+            <dd>The Walt Disney Company (2017–2019)</dd>
           </div>
+          <div>
+            <dt>Education</dt>
+            <dd>M.S. Human Centered Design & Engineering</dd>
+            <dd>University of Washington, 2026</dd>
+            <dd>B.A. Journalism</dd>
+          </div>
+          <div>
+            <dt>Methods</dt>
+            <dd>User Interviews</dd>
+            <dd>Usability & Concept Testing</dd>
+            <dd>Information Architecture</dd>
+            <dd>Wireframing & Prototyping</dd>
+          </div>
+        </dl>
+
+        {/* Connect */}
+        <div style={{ display: 'flex', gap: '1rem', margin: '0 0 2.5rem' }}>
+          <a className="btn" href={RESUME_URL} target="_blank" rel="noreferrer">Resume</a>
+          <a className="btn" href={LINKEDIN_URL} target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
-      </section>
-    </>
+
+        {/* Life outside of work */}
+        <p style={{ marginBottom: '1.25rem' }}>
+          Outside of work, you'll find me hiking Pacific Northwest trails, on a paddleboard, or finding a
+          quiet corner with a good book.
+        </p>
+
+        <div className="about-photo-mosaic">
+          {lifePhotos.map((photo) => (
+            <img key={photo.src} src={photo.src} alt={photo.alt} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
