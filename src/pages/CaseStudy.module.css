@@ -288,36 +288,29 @@
   .container {
     padding: 0 24px;
   }
-
   .title {
     font-size: 28px;
   }
-
   .meta {
     grid-template-columns: 1fr;
     gap: 28px;
   }
-
   .metaSidebar {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px 24px;
   }
-
   .findingGrid {
     grid-template-columns: 1fr;
   }
-
   .impactStats {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-
   .bottomNav {
     flex-direction: column;
     gap: 20px;
   }
-
   .navLinkRight {
     text-align: left;
   }

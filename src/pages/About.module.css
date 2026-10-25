@@ -51,9 +51,7 @@
   margin-bottom: 0;
 }
 
-.photoWrap {
-  /* intentionally empty; used for mobile ordering */
-}
+.photoWrap {}
 
 .photo {
   width: 100%;
@@ -99,24 +97,19 @@
   .container {
     padding: 0 24px;
   }
-
   .hero {
     padding: 56px 0 48px;
   }
-
   .heroGrid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-
   .photoWrap {
     order: -1;
   }
-
   .headline {
     font-size: 26px;
   }
-
   .detailsGrid {
     grid-template-columns: 1fr;
     gap: 32px;
