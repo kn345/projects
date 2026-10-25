@@ -24,8 +24,7 @@
 }
 
 .header {
-  padding: 32px 0 48px;
-  border-bottom: 0.5px solid var(--border);
+  padding: 32px 0 32px;
 }
 
 .tag {
@@ -42,22 +41,32 @@
   font-weight: 500;
   color: var(--text-primary);
   line-height: 1.25;
-  margin-bottom: 20px;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 48px;
+  padding: 32px 0 40px;
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+  align-items: start;
+}
+
+.metaSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.metaContent {
+  padding-top: 4px;
 }
 
 .summary {
   font-size: 17px;
   color: var(--text-secondary);
   line-height: 1.8;
-  max-width: 640px;
-}
-
-.meta {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  padding: 32px 0;
-  border-bottom: 0.5px solid var(--border);
 }
 
 .metaLabel {
@@ -285,8 +294,14 @@
   }
 
   .meta {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .metaSidebar {
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 16px 24px;
   }
 
   .findingGrid {

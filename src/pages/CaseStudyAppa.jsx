@@ -11,28 +11,32 @@ export default function CaseStudyAppa() {
         <header className={styles.header}>
           <p className={styles.tag}>APPA HEALTH · 2023</p>
           <h1 className={styles.title}>Defining Product-Market Fit for a Mental Health Platform</h1>
-          <p className={styles.summary}>
-            A four-month qualitative research study that reframed a mental health startup’s
-            go-to-market strategy and directly informed their school partnership approach.
-          </p>
         </header>
 
         <div className={styles.meta}>
-          <div>
-            <p className={styles.metaLabel}>My Role</p>
-            <p className={styles.metaValue}>UX Researcher</p>
+          <div className={styles.metaSidebar}>
+            <div>
+              <p className={styles.metaLabel}>My Role</p>
+              <p className={styles.metaValue}>UX Researcher</p>
+            </div>
+            <div>
+              <p className={styles.metaLabel}>Team</p>
+              <p className={styles.metaValue}>3 researchers, 1 senior researcher</p>
+            </div>
+            <div>
+              <p className={styles.metaLabel}>Duration</p>
+              <p className={styles.metaValue}>4 months</p>
+            </div>
+            <div>
+              <p className={styles.metaLabel}>Methods</p>
+              <p className={styles.metaValue}>Semi-structured interviews, thematic analysis</p>
+            </div>
           </div>
-          <div>
-            <p className={styles.metaLabel}>Team</p>
-            <p className={styles.metaValue}>3 researchers, 1 senior researcher</p>
-          </div>
-          <div>
-            <p className={styles.metaLabel}>Duration</p>
-            <p className={styles.metaValue}>4 months</p>
-          </div>
-          <div>
-            <p className={styles.metaLabel}>Methods</p>
-            <p className={styles.metaValue}>Semi-structured interviews, thematic analysis</p>
+          <div className={styles.metaContent}>
+            <p className={styles.summary}>
+              A four-month qualitative research study that reframed a mental health startup’s
+              go-to-market strategy and directly informed their school partnership approach.
+            </p>
           </div>
         </div>
 
