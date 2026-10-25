@@ -17,9 +17,6 @@ export default function ContactStrip() {
           >
             LinkedIn
           </a>
-          <a href="/resume.pdf" className={styles.link}>
-            Resume
-          </a>
         </div>
       </div>
     </section>

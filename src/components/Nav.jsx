@@ -19,7 +19,6 @@ export default function Nav() {
         >
           About
         </NavLink>
-        <a href="/resume.pdf" className={styles.link}>Resume</a>
         <NavLink
           to="/contact"
           className={({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link}

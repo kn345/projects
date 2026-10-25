@@ -3,19 +3,6 @@ import ContactStrip from '../components/ContactStrip'
 import Footer from '../components/Footer'
 import styles from './About.module.css'
 
-function GridCell({ src, alt = '', className }) {
-  const [failed, setFailed] = useState(false)
-  return (
-    <div className={`${styles.gridCell} ${className}`}>
-      {!failed ? (
-        <img src={src} alt={alt} className={styles.gridImg} onError={() => setFailed(true)} />
-      ) : (
-        <div className={styles.gridPlaceholder} />
-      )}
-    </div>
-  )
-}
-
 export default function About() {
   const [photoFailed, setPhotoFailed] = useState(false)
 
@@ -79,21 +66,6 @@ export default function About() {
               <p className={styles.detailItem}>Surveys &amp; Card Sorting</p>
               <p className={styles.detailItem}>Thematic Analysis</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.photoSection}>
-        <div className={styles.container}>
-          <p className={styles.photoIntro}>
-            Outside of work, you’ll find me hiking Pacific Northwest trails, on a paddleboard, or
-            finding a quiet corner with a good book.
-          </p>
-          <div className={styles.photoGrid}>
-            <GridCell src="/images/hiking.jpg" alt="Hiking" className={styles.photoHiking} />
-            <GridCell src="/images/yoga.jpg" alt="" className={styles.photoYoga} />
-            <GridCell src="/images/outdoor2.jpg" alt="" className={styles.photoOutdoor} />
-            <GridCell src="/images/paddleboard.jpg" alt="" className={styles.photoPaddle} />
           </div>
         </div>
       </section>
